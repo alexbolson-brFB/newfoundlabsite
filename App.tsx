@@ -1,5 +1,6 @@
 import React, { Suspense, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Header from './components/Header';
 import NewHero from './components/NewHero';
 import CommandMenu from './components/CommandMenu';
@@ -131,6 +132,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <Suspense fallback={null}>
         <Footer />
       </Suspense>
+      <SpeedInsights />
     </div>
   );
 };
