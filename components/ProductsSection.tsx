@@ -309,8 +309,8 @@ const ProductCard: React.FC<{ product: Product; isActive: boolean }> = ({ produc
             src={product.image} 
             alt={product.name} 
             className="w-full h-full object-contain object-right drop-shadow-2xl" 
-            initial={{ filter: "blur(10px)" }}
-            animate={{ filter: isActive ? "blur(0px)" : "blur(10px)" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isActive ? 1 : 0 }}
             transition={{ duration: 0.6 }}
           />
         ) : (

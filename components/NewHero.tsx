@@ -44,11 +44,10 @@ const titleWordVariants: Variants = {
 
 // 4. Subtitle Word (The word itself animates)
 const subtitleSimpleWordVariant: Variants = {
-  hidden: { opacity: 0, y: 10, filter: "blur(5px)" },
+  hidden: { opacity: 0, y: 10 },
   visible: { 
     opacity: 1, 
     y: 0, 
-    filter: "blur(0px)",
     transition: { duration: 0.4, ease: "easeOut" }
   }
 };
@@ -58,14 +57,12 @@ const teleportEntranceVariants: Variants = {
   hidden: { 
     opacity: 0, 
     scale: 2.0, 
-    y: -20,
-    filter: "blur(12px)"
+    y: -20
   },
   visible: {
     opacity: 1, 
     scale: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: {
       duration: 0.35,
       ease: [0.22, 1, 0.36, 1] // Custom cubic bezier for "Snap"
@@ -104,7 +101,6 @@ const TeleportLetter: React.FC<{
       await glitchControls.start({
         opacity: [1, 0.85, 1],
         x: [0, -0.5, 0.5, 0],
-        filter: ["blur(0px)", "blur(1px)", "blur(0px)"],
         transition: { duration: 0.25, times: [0, 0.2, 1] }
       });
     };
@@ -239,7 +235,7 @@ const NewHero: React.FC = () => {
           
           {/* Floating Orbs - Primary Gold */}
           <motion.div 
-            className="absolute w-[600px] h-[600px] rounded-full bg-gradient-radial from-gold-400/20 via-gold-400/5 to-transparent blur-3xl"
+            className="absolute w-[600px] h-[600px] rounded-full bg-gradient-radial from-gold-400/20 via-gold-400/5 to-transparent blur-3xl will-change-transform"
             animate={{
               x: ['-10%', '5%', '-10%'],
               y: ['-5%', '10%', '-5%'],
@@ -256,7 +252,7 @@ const NewHero: React.FC = () => {
           
           {/* Floating Orbs - Secondary Navy */}
           <motion.div 
-            className="absolute w-[500px] h-[500px] rounded-full bg-gradient-radial from-navy-900/10 via-navy-900/5 to-transparent blur-3xl"
+            className="absolute w-[500px] h-[500px] rounded-full bg-gradient-radial from-navy-900/10 via-navy-900/5 to-transparent blur-3xl will-change-transform"
             animate={{
               x: ['10%', '-5%', '10%'],
               y: ['5%', '-10%', '5%'],
@@ -273,7 +269,7 @@ const NewHero: React.FC = () => {
           
           {/* Floating Orbs - Accent */}
           <motion.div 
-            className="absolute w-[400px] h-[400px] rounded-full bg-gradient-radial from-slate-400/10 via-slate-300/5 to-transparent blur-2xl"
+            className="absolute w-[400px] h-[400px] rounded-full bg-gradient-radial from-slate-400/10 via-slate-300/5 to-transparent blur-2xl will-change-transform"
             animate={{
               x: ['-5%', '8%', '-5%'],
               y: ['8%', '-5%', '8%'],
@@ -414,8 +410,8 @@ const NewHero: React.FC = () => {
 
             {/* --- Visual Content --- */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
-              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
               className="relative w-full max-w-md mx-auto lg:col-span-2"
             >

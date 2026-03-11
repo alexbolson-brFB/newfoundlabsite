@@ -184,7 +184,7 @@ const GeminiGuardSection: React.FC = () => {
         
         {/* Floating accent orbs */}
         <motion.div
-          className="absolute w-[400px] h-[400px] rounded-full bg-gradient-radial from-gold-400/10 to-transparent blur-3xl pointer-events-none"
+          className="absolute w-[400px] h-[400px] rounded-full bg-gradient-radial from-gold-400/10 to-transparent blur-3xl pointer-events-none will-change-transform"
           animate={{
             x: ['-5%', '5%', '-5%'],
             y: ['-5%', '5%', '-5%'],
@@ -193,7 +193,7 @@ const GeminiGuardSection: React.FC = () => {
           style={{ top: '20%', right: '10%' }}
         />
         <motion.div
-          className="absolute w-[300px] h-[300px] rounded-full bg-gradient-radial from-navy-900/5 to-transparent blur-3xl pointer-events-none"
+          className="absolute w-[300px] h-[300px] rounded-full bg-gradient-radial from-navy-900/5 to-transparent blur-3xl pointer-events-none will-change-transform"
           animate={{
             x: ['5%', '-5%', '5%'],
             y: ['5%', '-5%', '5%'],
