@@ -1,6 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FileText, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+
+const WHITEPAPER_URL = 'https://foundlab-poweredbygooglecloud.github.io/F2F-RAAT/';
 
 const WhitepaperSection: React.FC = () => {
   const { t } = useLanguage();
@@ -55,13 +58,17 @@ const WhitepaperSection: React.FC = () => {
 
                       <div className="flex flex-col sm:flex-row gap-4">
                       <a
-                          href="mailto:contato@foundlab.com.br?subject=FoundLab%20Whitepaper%20Abstract"
-                          className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-navy-900 text-white text-[10px] font-bold tracking-[0.2em] uppercase rounded-sm hover:bg-navy-800 transition-all shadow-lg"
+                          href={WHITEPAPER_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-navy-900 text-white text-[10px] font-bold tracking-[0.2em] uppercase rounded-sm hover:bg-navy-800 transition-all shadow-lg group"
                       >
+                          <FileText className="w-4 h-4" />
                           {t.whitepaper.ctaPrimary}
+                          <ExternalLink className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity" />
                       </a>
                       <a
-                          href="#contact"
+                          href="#contact-form"
                           className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white border border-slate-300 text-navy-900 text-[10px] font-bold tracking-[0.2em] uppercase rounded-sm hover:border-navy-900 transition-colors"
                       >
                           {t.whitepaper.ctaSecondary}

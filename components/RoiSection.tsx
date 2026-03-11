@@ -1,9 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ShieldAlert, Clock } from 'lucide-react';
+import { ShieldAlert, Clock, FileText, ExternalLink, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+
+const CASE_STUDY_URL = 'https://irelia0nerf.github.io/Studycase/';
 const RoiSection: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section id="roi-case-study" className="py-24 lg:py-32 bg-white relative overflow-hidden border-t border-slate-200">
@@ -24,9 +26,19 @@ const RoiSection: React.FC = () => {
             <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl text-navy-900 leading-[1.05] tracking-tight mb-8">
                 {t.roi.title}
             </h2>
-            <p className="text-slate-600 text-xl font-light leading-relaxed">
+            <p className="text-slate-600 text-xl font-light leading-relaxed mb-8">
                 {t.roi.subtitle}
             </p>
+            <a
+              href={CASE_STUDY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-6 py-3 bg-navy-900 text-white text-[10px] font-bold tracking-[0.2em] uppercase rounded-sm hover:bg-navy-800 transition-all shadow-lg group"
+            >
+              <FileText className="w-4 h-4" />
+              {language === 'pt' ? 'Ver Estudo de Caso Completo' : 'View Full Case Study'}
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </a>
         </div>
 
         <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-start">
