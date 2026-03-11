@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence, Variants } from 'framer-motion';
 import {
   Shield,
   BrainCircuit,
@@ -181,7 +181,7 @@ const accents = [
 /* ------------------------------------------------------------------ */
 /*  Animation Variants for Stagger Effects                             */
 /* ------------------------------------------------------------------ */
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -193,7 +193,7 @@ const containerVariants = {
   exit: { opacity: 0, transition: { duration: 0.2 } },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -202,7 +202,7 @@ const itemVariants = {
   },
 };
 
-const imageVariants = {
+const imageVariants: Variants = {
   hidden: { opacity: 0, scale: 0.9, x: 40 },
   visible: {
     opacity: 1,

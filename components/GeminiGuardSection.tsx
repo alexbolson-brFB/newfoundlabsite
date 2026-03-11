@@ -1,10 +1,10 @@
 import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, Variants } from 'framer-motion';
 import { Shield, Lock, FileCheck, ArrowRight, Fingerprint, Sparkles } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 /* Animation variants for stagger effects */
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -12,7 +12,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
