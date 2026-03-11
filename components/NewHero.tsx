@@ -210,29 +210,125 @@ const NewHero: React.FC = () => {
     <>
       <section className="relative isolate min-h-screen flex flex-col justify-center bg-slate-50 pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden">
         
-        {/* === BACKGROUND === */}
-        <div 
-          className="absolute inset-0 w-full h-full pointer-events-none"
-        >
-          {/* Noise Texture for Texture/Grain */}
-          <div className="absolute inset-0 bg-slate-50" aria-hidden="true"></div>
-          <div className="absolute inset-0 opacity-[0.03]" aria-hidden="true" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
+        {/* === ANIMATED BACKGROUND === */}
+        <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
+          {/* Base */}
+          <div className="absolute inset-0 bg-slate-50" aria-hidden="true" />
           
-          {/* Subtle Grid */}
-          <div 
-             className="absolute inset-0 opacity-[0.3]"
-             aria-hidden="true"
-             style={{
-               backgroundImage: `linear-gradient(to right, rgba(15,23,42,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,23,42,0.05) 1px, transparent 1px)`,
-               backgroundSize: "60px 60px",
-               maskImage: "radial-gradient(circle at 50% 50%, black 30%, transparent 80%)"
-             }}
+          {/* Noise Texture */}
+          <div className="absolute inset-0 opacity-[0.03]" aria-hidden="true" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
+          
+          {/* Animated Grid with Pulse */}
+          <motion.div 
+            className="absolute inset-0 opacity-[0.4]"
+            aria-hidden="true"
+            animate={{
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{
+              backgroundImage: `linear-gradient(to right, rgba(15,23,42,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,23,42,0.06) 1px, transparent 1px)`,
+              backgroundSize: "60px 60px",
+              maskImage: "radial-gradient(ellipse at 50% 50%, black 20%, transparent 70%)"
+            }}
           />
           
-          {/* Ambient Gold Glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] max-w-[800px] max-h-[800px] bg-gold-400/5 blur-[120px] rounded-full mix-blend-multiply" aria-hidden="true" />
+          {/* Floating Orbs - Primary Gold */}
+          <motion.div 
+            className="absolute w-[600px] h-[600px] rounded-full bg-gradient-radial from-gold-400/20 via-gold-400/5 to-transparent blur-3xl"
+            animate={{
+              x: ['-10%', '5%', '-10%'],
+              y: ['-5%', '10%', '-5%'],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{ top: '10%', left: '20%' }}
+            aria-hidden="true"
+          />
           
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-slate-50/80" aria-hidden="true"></div>
+          {/* Floating Orbs - Secondary Navy */}
+          <motion.div 
+            className="absolute w-[500px] h-[500px] rounded-full bg-gradient-radial from-navy-900/10 via-navy-900/5 to-transparent blur-3xl"
+            animate={{
+              x: ['10%', '-5%', '10%'],
+              y: ['5%', '-10%', '5%'],
+              scale: [1.1, 1, 1.1],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{ bottom: '10%', right: '15%' }}
+            aria-hidden="true"
+          />
+          
+          {/* Floating Orbs - Accent */}
+          <motion.div 
+            className="absolute w-[400px] h-[400px] rounded-full bg-gradient-radial from-slate-400/10 via-slate-300/5 to-transparent blur-2xl"
+            animate={{
+              x: ['-5%', '8%', '-5%'],
+              y: ['8%', '-5%', '8%'],
+            }}
+            transition={{
+              duration: 18,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{ top: '50%', left: '60%' }}
+            aria-hidden="true"
+          />
+          
+          {/* Animated Particles */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 rounded-full bg-gold-500/40"
+              initial={{
+                x: `${20 + i * 12}%`,
+                y: '100%',
+                opacity: 0,
+              }}
+              animate={{
+                y: [null, '-10%'],
+                opacity: [0, 0.8, 0],
+              }}
+              transition={{
+                duration: 8 + i * 2,
+                repeat: Infinity,
+                delay: i * 1.5,
+                ease: "easeOut"
+              }}
+              aria-hidden="true"
+            />
+          ))}
+          
+          {/* Horizontal Light Beam */}
+          <motion.div
+            className="absolute h-px w-full bg-gradient-to-r from-transparent via-gold-400/30 to-transparent"
+            style={{ top: '40%' }}
+            animate={{
+              opacity: [0, 0.6, 0],
+              scaleX: [0.5, 1, 0.5],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            aria-hidden="true"
+          />
+          
+          {/* Top/Bottom Fade */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-slate-50/80" aria-hidden="true" />
         </div>
         
         {/* === CONTENT === */}
@@ -286,16 +382,32 @@ const NewHero: React.FC = () => {
                   animate="visible"
                 >
                     <MagneticButton href="#contact-form" strength={0.2}>
-                        <div className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-navy-900 text-white font-sans text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-navy-800 transition-all shadow-glow rounded-sm border border-transparent focus:outline-none focus:ring-2 focus:ring-gold">
-                            {t.hero.cta1}
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                        </div>
+                        <motion.div 
+                          className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-navy-900 text-white font-sans text-[11px] font-bold uppercase tracking-[0.2em] rounded-sm border border-transparent focus:outline-none focus:ring-2 focus:ring-gold overflow-hidden"
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          transition={{ type: "spring", stiffness: 400 }}
+                        >
+                            {/* Animated background shine */}
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full"
+                              animate={{ translateX: ['-100%', '200%'] }}
+                              transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
+                            />
+                            <span className="relative z-10">{t.hero.cta1}</span>
+                            <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                        </motion.div>
                     </MagneticButton>
                     
                     <MagneticButton href="#whitepaper" strength={0.2}>
-                        <div className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent border border-slate-300 text-navy-900 font-sans text-[11px] font-bold uppercase tracking-[0.2em] hover:border-navy-900 transition-colors duration-300 rounded-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-gold">
+                        <motion.div 
+                          className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent border border-slate-300 text-navy-900 font-sans text-[11px] font-bold uppercase tracking-[0.2em] rounded-sm hover:bg-slate-50/50 focus:outline-none focus:ring-2 focus:ring-gold"
+                          whileHover={{ scale: 1.02, borderColor: '#0f172a' }}
+                          whileTap={{ scale: 0.98 }}
+                          transition={{ type: "spring", stiffness: 400 }}
+                        >
                             {t.hero.cta2}
-                        </div>
+                        </motion.div>
                     </MagneticButton>
                 </motion.div>
             </motion.div>
@@ -307,7 +419,29 @@ const NewHero: React.FC = () => {
               transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
               className="relative w-full max-w-md mx-auto lg:col-span-2"
             >
-               <video 
+              {/* Glowing frame effect */}
+              <motion.div
+                className="absolute -inset-4 bg-gradient-to-r from-gold-400/20 via-navy-900/10 to-gold-400/20 rounded-lg blur-xl"
+                animate={{
+                  opacity: [0.5, 0.8, 0.5],
+                  scale: [1, 1.02, 1],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              
+              {/* Frame border */}
+              <div className="relative border border-slate-200/50 bg-white/50 backdrop-blur-sm p-2 rounded-sm shadow-2xl">
+                {/* Corner accents */}
+                <div className="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-gold-500/60" />
+                <div className="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-gold-500/60" />
+                <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-gold-500/60" />
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-gold-500/60" />
+                
+                <video 
                   src="/hero_visual.webm" 
                   poster={heroVisual}
                   autoPlay
@@ -315,9 +449,23 @@ const NewHero: React.FC = () => {
                   muted
                   playsInline
                   preload="metadata"
-                  className="w-full h-auto object-contain drop-shadow-2xl" 
+                  className="w-full h-auto object-contain rounded-sm" 
                   aria-label="FoundLab infrastructure visualization"
-               />
+                />
+              </div>
+              
+              {/* Floating badge */}
+              <motion.div
+                className="absolute -bottom-4 -right-4 px-4 py-2 bg-navy-900 text-white text-[10px] font-bold uppercase tracking-widest shadow-lg"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2, duration: 0.6 }}
+              >
+                <span className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold-500 animate-pulse" />
+                  Google Cloud Partner
+                </span>
+              </motion.div>
             </motion.div>
           </div>
         </div>

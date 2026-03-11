@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence, Variants } from 'framer-motion';
 import {
   Shield,
   BrainCircuit,
@@ -54,35 +54,39 @@ const productsCopy: Record<Locale, Omit<Product, 'id' | 'index' | 'icon' | 'acce
       image: '/hero_visual.png',
     },
     {
-      name: 'VEX-OS',
-      subtitle: 'Audit Operating System',
-      tag: 'Big 4 & Internal Audit',
-      tagline: 'Compliance visible to any auditor.',
-      body: 'VEX-OS is the control interface for Big 4 firms and internal audit teams. It translates Veritas Protocol technical logs into comprehensible reports — transforming audit from a cost centre into a strategic partner in compliance validation.',
+name: 'VEX-OS',
+  subtitle: 'Audit Operating System',
+  tag: 'Big 4 & Internal Audit',
+  tagline: 'Compliance visible to any auditor.',
+  body: 'VEX-OS is the control interface for Big 4 firms and internal audit teams. It translates Veritas Protocol technical logs into comprehensible reports — transforming audit from a cost centre into a strategic partner in compliance validation.',
+  image: '/product_vexos.jpg',
+  },
+    {
+name: 'Rex Guard Gemini',
+  subtitle: 'Gemini Governance Layer',
+  tag: 'Google Cloud · BCB 538',
+  tagline: 'Native compliance for Vertex AI.',
+  body: 'Specialised in governing Google Gemini-based infrastructure, this module ensures native compliance with BCB 538/2025. It acts as an interdiction layer that prevents sensitive data from leaking into public models — maintaining latency below 20ms.',
+  image: '/product_rexguard.jpg',
+  proof: '<20 ms',
+  proofLabel: 'Inference latency guarantee',
     },
     {
-      name: 'Rex Guard Gemini',
-      subtitle: 'Gemini Governance Layer',
-      tag: 'Google Cloud · BCB 538',
-      tagline: 'Native compliance for Vertex AI.',
-      body: 'Specialised in governing Google Gemini-based infrastructure, this module ensures native compliance with BCB 538/2025. It acts as an interdiction layer that prevents sensitive data from leaking into public models — maintaining latency below 20ms.',
-      proof: '<20 ms',
-      proofLabel: 'Inference latency guarantee',
-    },
-    {
-      name: 'Spezzatura',
-      subtitle: 'The Signal Filter',
-      tag: 'Acceleration Programmes',
-      tagline: 'Separates real AI from AI washing.',
-      body: 'Spezzatura operates at the ecosystem edge, validating the technical authenticity of AI startups in corporate acceleration programmes. It prevents AI Washing — ensuring only technologies with robust fundamentals are integrated into core infrastructure, creating a qualified lead pipeline for the FoundLab suite.',
-    },
-    {
-      name: 'Umbrella',
-      subtitle: 'Unified Compliance Platform',
-      tag: 'C-Suite · CIO · CISO · CRO',
-      tagline: 'One dashboard. Full governance.',
-      body: 'The Umbrella platform unifies all modules, delivering a holistic view of compliance and computational trust. It serves as the central dashboard for C-level executives — consolidating evidence, risk scores, and regulatory coverage in a single interface integrated with the Google Cloud ecosystem.',
-    },
+name: 'Spezzatura',
+  subtitle: 'The Signal Filter',
+  tag: 'Acceleration Programmes',
+  tagline: 'Separates real AI from AI washing.',
+  body: 'Spezzatura operates at the ecosystem edge, validating the technical authenticity of AI startups in corporate acceleration programmes. It prevents AI Washing — ensuring only technologies with robust fundamentals are integrated into core infrastructure, creating a qualified lead pipeline for the FoundLab suite.',
+  image: '/product_spezzatura.jpg',
+  },
+  {
+name: 'Umbrella',
+  subtitle: 'Unified Compliance Platform',
+  tag: 'C-Suite · CIO · CISO · CRO',
+  tagline: 'One dashboard. Full governance.',
+  body: 'The Umbrella platform unifies all modules, delivering a holistic view of compliance and computational trust. It serves as the central dashboard for C-level executives — consolidating evidence, risk scores, and regulatory coverage in a single interface integrated with the Google Cloud ecosystem.',
+  image: '/product_umbrella.jpg',
+  },
   ],
   pt: [
     {
@@ -104,35 +108,39 @@ const productsCopy: Record<Locale, Omit<Product, 'id' | 'index' | 'icon' | 'acce
       image: '/hero_visual.png',
     },
     {
-      name: 'VEX-OS',
-      subtitle: 'Audit Operating System',
-      tag: 'Big 4 & Auditoria Interna',
-      tagline: 'Compliance visível para qualquer auditor.',
-      body: 'O VEX-OS é a interface de controle para as Big 4 e auditores internos. Ele transforma logs técnicos do Protocolo Veritas em relatórios compreensíveis, permitindo que a auditoria deixe de ser um centro de custo e se torne parceiro estratégico na validação de conformidade.',
+name: 'VEX-OS',
+  subtitle: 'Audit Operating System',
+  tag: 'Big 4 & Auditoria Interna',
+  tagline: 'Compliance visível para qualquer auditor.',
+  body: 'O VEX-OS é a interface de controle para as Big 4 e auditores internos. Ele transforma logs técnicos do Protocolo Veritas em relatórios compreensíveis, permitindo que a auditoria deixe de ser um centro de custo e se torne parceiro estratégico na validação de conformidade.',
+  image: '/product_vexos.jpg',
+  },
+    {
+name: 'Rex Guard Gemini',
+  subtitle: 'Camada de Governança Gemini',
+  tag: 'Google Cloud · BCB 538',
+  tagline: 'Compliance nativo para Vertex AI.',
+  body: 'Especializado na governança de infraestrutura baseada no Google Gemini, este módulo garante conformidade nativa com a Resolução BCB 538/2025. Ele atua como camada de interdição que impede o vazamento de dados sensíveis para modelos públicos, mantendo a latência abaixo de 20ms.',
+  image: '/product_rexguard.jpg',
+  proof: '<20 ms',
+  proofLabel: 'Garantia de latência de inferência',
     },
     {
-      name: 'Rex Guard Gemini',
-      subtitle: 'Camada de Governança Gemini',
-      tag: 'Google Cloud · BCB 538',
-      tagline: 'Compliance nativo para Vertex AI.',
-      body: 'Especializado na governança de infraestrutura baseada no Google Gemini, este módulo garante conformidade nativa com a Resolução BCB 538/2025. Ele atua como camada de interdição que impede o vazamento de dados sensíveis para modelos públicos, mantendo a latência abaixo de 20ms.',
-      proof: '<20 ms',
-      proofLabel: 'Garantia de latência de inferência',
-    },
-    {
-      name: 'Spezzatura',
-      subtitle: 'The Signal Filter',
-      tag: 'Programas de Aceleração',
-      tagline: 'Separa IA real de AI Washing.',
-      body: 'O Spezzatura atua na borda do ecossistema, validando a autenticidade técnica de startups de IA em programas de aceleração corporativa. Ele previne o "AI Washing", garantindo que apenas tecnologias com fundamentos robustos sejam integradas à infraestrutura principal, criando um pipeline de leads qualificados para os outros produtos da FoundLab.',
-    },
-    {
-      name: 'Umbrella',
-      subtitle: 'Plataforma Unificada de Compliance',
-      tag: 'C-Suite · CIO · CISO · CRO',
-      tagline: 'Um dashboard. Governança total.',
-      body: 'A plataforma Umbrella unifica todos os módulos, provendo uma visão holística da conformidade e da confiança computacional. Ela serve como o dashboard central para C-levels (CIO, CISO, CRO), consolidando evidências e pontuações de risco em uma interface integrada ao ecossistema Google Cloud.',
-    },
+name: 'Spezzatura',
+  subtitle: 'The Signal Filter',
+  tag: 'Programas de Aceleração',
+  tagline: 'Separa IA real de AI Washing.',
+  body: 'O Spezzatura atua na borda do ecossistema, validando a autenticidade técnica de startups de IA em programas de aceleração corporativa. Ele previne o "AI Washing", garantindo que apenas tecnologias com fundamentos robustos sejam integradas à infraestrutura principal, criando um pipeline de leads qualificados para os outros produtos da FoundLab.',
+  image: '/product_spezzatura.jpg',
+  },
+  {
+name: 'Umbrella',
+  subtitle: 'Plataforma Unificada de Compliance',
+  tag: 'C-Suite · CIO · CISO · CRO',
+  tagline: 'Um dashboard. Governança total.',
+  body: 'A plataforma Umbrella unifica todos os módulos, provendo uma visão holística da conformidade e da confiança computacional. Ela serve como o dashboard central para C-levels (CIO, CISO, CRO), consolidando evidências e pontuações de risco em uma interface integrada ao ecossistema Google Cloud.',
+  image: '/product_umbrella.jpg',
+  },
   ],
 };
 
@@ -171,6 +179,40 @@ const accents = [
 ];
 
 /* ------------------------------------------------------------------ */
+/*  Animation Variants for Stagger Effects                             */
+/* ------------------------------------------------------------------ */
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+  exit: { opacity: 0, transition: { duration: 0.2 } },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+};
+
+const imageVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.9, x: 40 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    x: 0,
+    transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+};
+
+/* ------------------------------------------------------------------ */
 /*  ProductCard — full-bleed panel for one product                     */
 /* ------------------------------------------------------------------ */
 const ProductCard: React.FC<{ product: Product; isActive: boolean }> = ({ product, isActive }) => {
@@ -178,92 +220,163 @@ const ProductCard: React.FC<{ product: Product; isActive: boolean }> = ({ produc
 
   return (
     <motion.div
-      initial={false}
-      animate={{ 
-        opacity: isActive ? 1 : 0,
-        pointerEvents: isActive ? 'auto' : 'none',
-        zIndex: isActive ? 10 : 0
-      }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
+      initial="hidden"
+      animate={isActive ? "visible" : "hidden"}
+      exit="exit"
+      variants={containerVariants}
       aria-hidden={!isActive}
-      className="absolute inset-0 flex flex-col justify-between p-10 lg:p-14 bg-white"
+      className={`absolute inset-0 flex flex-col justify-between p-6 md:p-10 lg:p-14 bg-white ${
+        isActive ? 'pointer-events-auto z-10' : 'pointer-events-none z-0'
+      }`}
     >
       {/* Top row */}
-      <div className="flex items-start justify-between">
+      <motion.div variants={itemVariants} className="flex items-start justify-between">
         {/* Index */}
-        <span className="font-mono text-[11px] uppercase tracking-widest text-slate-400">
+        <motion.span 
+          className="font-mono text-[11px] uppercase tracking-widest text-slate-400"
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : -10 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+        >
           {String(product.index + 1).padStart(2, '0')} / 06
-        </span>
+        </motion.span>
         {/* Tag pill */}
-        <span className={`text-[10px] font-bold uppercase tracking-[0.15em] px-3 py-1 border rounded-sm ${product.accentBg} ${product.accentBorder} ${product.accentClass}`}>
+        <motion.span 
+          className={`text-[10px] font-bold uppercase tracking-[0.15em] px-3 py-1 border rounded-sm ${product.accentBg} ${product.accentBorder} ${product.accentClass}`}
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: "spring", stiffness: 400 }}
+        >
           {product.tag}
-        </span>
-      </div>
+        </motion.span>
+      </motion.div>
 
       {/* Centre block */}
-      <div className="flex-1 flex flex-col justify-center gap-6 py-10">
+      <div className="flex-1 flex flex-col justify-center gap-4 md:gap-6 py-6 md:py-10">
         {/* Icon */}
-        <div className={`w-12 h-12 flex items-center justify-center border ${product.accentBorder} bg-white`}>
+        <motion.div 
+          variants={itemVariants}
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          transition={{ type: "spring", stiffness: 300 }}
+          className={`w-12 h-12 flex items-center justify-center border ${product.accentBorder} bg-white shadow-sm`}
+        >
           <Icon className={`w-6 h-6 ${product.accentClass}`} />
-        </div>
+        </motion.div>
 
         {/* Name + subtitle */}
-        <div>
-          <h3 className="font-serif text-5xl md:text-6xl lg:text-7xl text-navy-900 leading-none tracking-tight mb-2">
+        <motion.div variants={itemVariants}>
+          <motion.h3 
+            className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-navy-900 leading-none tracking-tight mb-2"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 30 }}
+            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.15 }}
+          >
             {product.name}
-          </h3>
-          <p className="text-sm font-mono uppercase tracking-widest text-slate-500">
+          </motion.h3>
+          <motion.p 
+            className="text-xs md:text-sm font-mono uppercase tracking-widest text-slate-500"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isActive ? 1 : 0 }}
+            transition={{ duration: 0.4, delay: 0.25 }}
+          >
             {product.subtitle}
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Tagline */}
-        <p className={`font-serif text-xl md:text-2xl italic font-light ${product.accentClass}`}>
+        <motion.p 
+          variants={itemVariants}
+          className={`font-serif text-lg md:text-xl lg:text-2xl italic font-light ${product.accentClass}`}
+        >
           {product.tagline}
-        </p>
+        </motion.p>
 
         {/* Body */}
-        <p className="text-slate-600 text-base md:text-lg font-light leading-relaxed max-w-xl">
+        <motion.p 
+          variants={itemVariants}
+          className="text-slate-600 text-sm md:text-base lg:text-lg font-light leading-relaxed max-w-xl"
+        >
           {product.body}
-        </p>
+        </motion.p>
       </div>
 
-      {/* Right side Image block */}
-      {product.image && (
-        <div className="hidden lg:flex absolute top-1/2 right-0 -translate-y-1/2 w-[55%] h-[90%] items-center justify-center pointer-events-none z-0">
+      {/* Right side Image/Visual block */}
+      <motion.div 
+        className="hidden lg:flex absolute top-1/2 right-0 -translate-y-1/2 w-[45%] xl:w-[50%] h-[80%] items-center justify-center pointer-events-none z-0"
+        variants={imageVariants}
+      >
+        {product.image ? (
           <motion.img 
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: isActive ? 1 : 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
             src={product.image} 
             alt={product.name} 
-            className="w-full h-full object-contain object-right opacity-95 drop-shadow-2xl" 
+            className="w-full h-full object-contain object-right drop-shadow-2xl" 
+            initial={{ filter: "blur(10px)" }}
+            animate={{ filter: isActive ? "blur(0px)" : "blur(10px)" }}
+            transition={{ duration: 0.6 }}
           />
-        </div>
-      )}
+        ) : (
+          /* Decorative visual for products without images */
+          <motion.div 
+            className="w-full h-full flex items-center justify-center relative"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isActive ? 1 : 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Abstract geometric pattern */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className={`w-64 h-64 xl:w-80 xl:h-80 border-2 ${product.accentBorder} rounded-3xl rotate-12 opacity-20`} />
+              <div className={`absolute w-48 h-48 xl:w-64 xl:h-64 border-2 ${product.accentBorder} rounded-2xl -rotate-6 opacity-30`} />
+              <div className={`absolute w-32 h-32 xl:w-48 xl:h-48 ${product.accentBg} rounded-xl rotate-3 opacity-50`} />
+            </div>
+            {/* Large icon in center */}
+            <motion.div
+              className={`relative w-24 h-24 xl:w-32 xl:h-32 flex items-center justify-center ${product.accentBg} border-2 ${product.accentBorder} rounded-2xl shadow-xl`}
+              animate={{ 
+                rotate: [0, 3, -3, 0],
+                scale: [1, 1.02, 1]
+              }}
+              transition={{ 
+                duration: 6, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+            >
+              <Icon className={`w-12 h-12 xl:w-16 xl:h-16 ${product.accentClass}`} />
+            </motion.div>
+          </motion.div>
+        )}
+      </motion.div>
 
       {/* Bottom row — proof metric + divider */}
-      <div className="border-t border-slate-200 pt-8 flex items-end justify-between gap-6">
+      <motion.div 
+        variants={itemVariants}
+        className="border-t border-slate-200 pt-6 md:pt-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6"
+      >
         {product.proof ? (
-          <div>
-            <p className={`font-serif text-4xl font-medium ${product.accentClass}`}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: isActive ? 1 : 0, scale: isActive ? 1 : 0.9 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <p className={`font-serif text-3xl md:text-4xl font-medium ${product.accentClass}`}>
               {product.proof}
             </p>
             <p className="text-[10px] font-mono uppercase tracking-[0.15em] text-slate-400 mt-1">
               {product.proofLabel}
             </p>
-          </div>
+          </motion.div>
         ) : (
           <div />
         )}
-        <a
+        <motion.a
           href="#contact-form"
           className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-navy-900 hover:text-gold-500 transition-colors group"
+          whileHover={{ x: 5 }}
+          transition={{ type: "spring", stiffness: 400 }}
         >
           Request access
           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-        </a>
-      </div>
+        </motion.a>
+      </motion.div>
     </motion.div>
   );
 };
@@ -384,26 +497,46 @@ const ProductsSection: React.FC = () => {
             {/* Product nav list */}
             <nav className="flex flex-col gap-1" role="tablist" aria-label="Product selection">
               {products.map((p, i) => (
-                <button
+                <motion.button
                   key={p.id}
                   id={`product-tab-${p.id}`}
                   role="tab"
                   aria-selected={activeIndex === i}
                   aria-controls="product-panel"
                   onClick={() => scrollToProduct(i)}
-                  className={`group flex items-center gap-3 px-3 py-2.5 text-left transition-all duration-200 rounded-sm ${
-                    activeIndex === i
-                      ? 'bg-navy-900 text-white'
-                      : 'text-slate-500 hover:text-navy-900 hover:bg-slate-50'
-                  }`}
+                  initial={false}
+                  animate={{
+                    backgroundColor: activeIndex === i ? '#0f172a' : 'transparent',
+                    color: activeIndex === i ? '#ffffff' : '#64748b',
+                  }}
+                  whileHover={{ 
+                    scale: 1.02, 
+                    backgroundColor: activeIndex === i ? '#0f172a' : '#f8fafc' 
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.2 }}
+                  className="group flex items-center gap-3 px-3 py-2.5 text-left rounded-sm"
                 >
-                  <span className={`font-mono text-[10px] ${activeIndex === i ? 'text-gold-400' : 'text-slate-400'}`}>
+                  <motion.span 
+                    className="font-mono text-[10px]"
+                    animate={{ color: activeIndex === i ? '#c9a227' : '#94a3b8' }}
+                    transition={{ duration: 0.2 }}
+                  >
                     {String(i + 1).padStart(2, '0')}
-                  </span>
+                  </motion.span>
                   <span className="text-[11px] font-bold uppercase tracking-[0.15em]">
                     {p.name}
                   </span>
-                </button>
+                  {activeIndex === i && (
+                    <motion.div
+                      layoutId="activeIndicator"
+                      className="ml-auto w-1.5 h-1.5 rounded-full bg-gold-500"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    />
+                  )}
+                </motion.button>
               ))}
             </nav>
 
@@ -431,16 +564,22 @@ const ProductsSection: React.FC = () => {
               />
             ))}
 
-            {/* Mobile: dot nav */}
+{/* Mobile: dot nav */}
             <div className="lg:hidden absolute bottom-8 left-0 right-0 flex justify-center gap-3 z-20">
-              {products.map((_, i) => (
-                <button
+              {products.map((p, i) => (
+                <motion.button
                   key={i}
-                  aria-label={`Go to product ${i + 1}`}
+                  aria-label={`Go to product ${i + 1}: ${p.name}`}
                   onClick={() => scrollToProduct(i)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    activeIndex === i ? 'w-8 bg-navy-900' : 'w-2 bg-slate-300 hover:bg-slate-400'
-                  }`}
+                  className="h-2 rounded-full"
+                  initial={false}
+                  animate={{
+                    width: activeIndex === i ? 32 : 8,
+                    backgroundColor: activeIndex === i ? '#0f172a' : '#cbd5e1',
+                  }}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 />
               ))}
             </div>

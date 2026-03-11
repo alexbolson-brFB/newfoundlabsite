@@ -1,7 +1,25 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Shield, Lock, FileCheck, ArrowRight, Fingerprint } from 'lucide-react';
+import { motion, useScroll, useTransform, Variants } from 'framer-motion';
+import { Shield, Lock, FileCheck, ArrowRight, Fingerprint, Sparkles } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+
+/* Animation variants for stagger effects */
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+};
 
 /* ------------------------------------------------------------------ */
 /*  Bilingual copy                                                    */
@@ -146,14 +164,42 @@ const GeminiGuardSection: React.FC = () => {
 
       {/* ====== PART 1: HERO — WHITE (matches site aesthetic) ====== */}
       <div className="relative py-24 lg:py-32 bg-white border-t border-slate-200 overflow-hidden">
-        {/* Grid background */}
-        <div
-          className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        {/* Animated Grid background */}
+        <motion.div
+          className="absolute inset-0 opacity-[0.04] pointer-events-none"
           aria-hidden="true"
+          animate={{
+            opacity: [0.03, 0.05, 0.03],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
           style={{
             backgroundImage: 'linear-gradient(#0f172a 1px, transparent 1px), linear-gradient(90deg, #0f172a 1px, transparent 1px)',
             backgroundSize: '40px 40px',
           }}
+        />
+        
+        {/* Floating accent orbs */}
+        <motion.div
+          className="absolute w-[400px] h-[400px] rounded-full bg-gradient-radial from-gold-400/10 to-transparent blur-3xl pointer-events-none"
+          animate={{
+            x: ['-5%', '5%', '-5%'],
+            y: ['-5%', '5%', '-5%'],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          style={{ top: '20%', right: '10%' }}
+        />
+        <motion.div
+          className="absolute w-[300px] h-[300px] rounded-full bg-gradient-radial from-navy-900/5 to-transparent blur-3xl pointer-events-none"
+          animate={{
+            x: ['5%', '-5%', '5%'],
+            y: ['5%', '-5%', '5%'],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          style={{ bottom: '20%', left: '5%' }}
         />
 
         <div className="relative max-w-7xl mx-auto px-6 md:px-12">
@@ -161,46 +207,82 @@ const GeminiGuardSection: React.FC = () => {
             {/* Left: Text */}
             <div className="lg:col-span-7">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
               >
-                {/* Badge — same as rest of site */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200 rounded-full mb-6">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold-500 animate-pulse" />
+                {/* Badge — with sparkle effect */}
+                <motion.div 
+                  variants={itemVariants}
+                  className="inline-flex items-center gap-2 px-4 py-1.5 bg-white border border-slate-200 rounded-full mb-6 shadow-sm"
+                >
+                  <motion.span 
+                    className="w-1.5 h-1.5 rounded-full bg-gold-500"
+                    animate={{ scale: [1, 1.3, 1], opacity: [1, 0.7, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                  <Sparkles className="w-3 h-3 text-gold-500" />
                   <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-navy-900">
                     {t.badge}
                   </span>
-                </div>
+                </motion.div>
 
-                {/* Title — serif, same scale as NewParadoxSection */}
-                <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl text-navy-900 leading-[1.05] tracking-tight mb-4">
-                  {t.title}
-                  <span className="block italic font-light text-slate-400 mt-2">{t.titleItalic}</span>
-                </h2>
+                {/* Title — with stagger animation */}
+                <motion.h2 
+                  variants={itemVariants}
+                  className="font-serif text-4xl md:text-6xl lg:text-7xl text-navy-900 leading-[1.05] tracking-tight mb-4"
+                >
+                  <motion.span
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, delay: 0.2 }}
+                  >
+                    {t.title}
+                  </motion.span>
+                  <motion.span 
+                    className="block italic font-light text-slate-400 mt-2"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, delay: 0.4 }}
+                  >
+                    {t.titleItalic}
+                  </motion.span>
+                </motion.h2>
 
                 {/* Subtitle */}
                 <p className="text-slate-600 text-lg md:text-xl font-light leading-relaxed max-w-xl mb-10 text-pretty">
                   {t.subtitle}
                 </p>
 
-                {/* CTAs — matching Hero CTA style */}
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <a
+                {/* CTAs — with hover animations */}
+                <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
+                  <motion.a
                     href="#contact-form"
-                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-navy-900 text-white text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-navy-800 transition-all shadow-glow rounded-sm min-h-[48px]"
+                    className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-navy-900 text-white text-[11px] font-bold uppercase tracking-[0.2em] rounded-sm min-h-[48px] overflow-hidden"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    {t.cta1}
-                    <ArrowRight className="w-4 h-4" />
-                  </a>
-                  <a
+                    {/* Shine effect */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full"
+                      animate={{ translateX: ['-100%', '200%'] }}
+                      transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
+                    />
+                    <span className="relative z-10">{t.cta1}</span>
+                    <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </motion.a>
+                  <motion.a
                     href="#architecture"
-                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent border border-slate-300 text-navy-900 text-[11px] font-bold uppercase tracking-[0.2em] hover:border-navy-900 transition-colors rounded-sm min-h-[48px]"
+                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent border border-slate-300 text-navy-900 text-[11px] font-bold uppercase tracking-[0.2em] rounded-sm min-h-[48px]"
+                    whileHover={{ scale: 1.02, borderColor: '#0f172a' }}
+                    whileTap={{ scale: 0.98 }}
                   >
                     {t.cta2}
-                  </a>
-                </div>
+                  </motion.a>
+                </motion.div>
               </motion.div>
             </div>
 
@@ -238,8 +320,23 @@ const GeminiGuardSection: React.FC = () => {
 
       {/* ====== PART 2: PIPELINE — DARK (matches ROI dark card) ====== */}
       <div className="relative bg-navy-950 py-20 lg:py-28 border-t border-slate-200 overflow-hidden">
-        {/* Grid bg */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px]" />
+        {/* Animated Grid bg */}
+        <motion.div 
+          className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px]"
+          animate={{ opacity: [0.5, 0.8, 0.5] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        
+        {/* Floating particles */}
+        {[...Array(4)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 rounded-full bg-gold-500/30"
+            initial={{ x: `${15 + i * 20}%`, y: '110%' }}
+            animate={{ y: '-10%', opacity: [0, 0.6, 0] }}
+            transition={{ duration: 10 + i * 2, repeat: Infinity, delay: i * 2 }}
+          />
+        ))}
 
         <div className="relative max-w-7xl mx-auto px-6 md:px-12">
           {/* Section header */}
@@ -265,28 +362,57 @@ const GeminiGuardSection: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Pipeline steps — same border style as ROI card interior */}
+          {/* Pipeline steps — with progressive animation */}
           <div className="grid grid-cols-1 md:grid-cols-5 border border-navy-800">
             {t.steps.map((step, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.08 }}
-                className={`relative p-6 lg:p-8 flex flex-col group hover:bg-navy-900/60 transition-all duration-300 ${
+                transition={{ duration: 0.5, delay: idx * 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
+                whileHover={{ backgroundColor: 'rgba(15, 23, 42, 0.6)' }}
+                className={`relative p-6 lg:p-8 flex flex-col group transition-all duration-300 ${
                   idx < t.steps.length - 1 ? 'border-b md:border-b-0 md:border-r border-navy-800' : ''
                 }`}
               >
-                <span className="text-[10px] font-mono text-slate-600 uppercase tracking-widest mb-3">
+                {/* Step number with glow on hover */}
+                <motion.span 
+                  className="text-[10px] font-mono text-slate-600 uppercase tracking-widest mb-3 group-hover:text-gold-500/80 transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                >
                   0{idx + 1}
-                </span>
+                </motion.span>
+                
+                {/* Animated indicator line */}
+                <motion.div
+                  className="absolute top-0 left-0 h-1 bg-gradient-to-r from-gold-500 to-gold-400 origin-left"
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: idx * 0.15 + 0.3 }}
+                  style={{ width: '100%' }}
+                />
+                
                 <h4 className="text-sm font-bold uppercase tracking-[0.1em] text-white mb-2 group-hover:text-gold-400 transition-colors">
                   {step.label}
                 </h4>
-                <p className="text-xs text-slate-500 font-light leading-relaxed mt-auto">
+                <p className="text-xs text-slate-500 font-light leading-relaxed mt-auto group-hover:text-slate-400 transition-colors">
                   {step.desc}
                 </p>
+                
+                {/* Arrow connector (hidden on last) */}
+                {idx < t.steps.length - 1 && (
+                  <motion.div
+                    className="hidden md:block absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 z-10"
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.15 + 0.5 }}
+                  >
+                    <ArrowRight className="w-4 h-4 text-gold-500/50" />
+                  </motion.div>
+                )}
               </motion.div>
             ))}
           </div>
