@@ -36,7 +36,7 @@ const copy: Record<Locale, GeminiGuardCopy> = {
     titleItalic: 'Compliance as Physics.',
     subtitle:
       'Middleware that enables banks and insurers to deploy Google Gemini at scale — while respecting BCB 538/2025, EU AI Act, and DORA. Every AI decision becomes a cryptographic proof.',
-    cta1: 'Request Demo',
+    cta1: 'Access Demo',
     cta2: 'Read Architecture',
     archEyebrow: 'Pipeline Architecture',
     archTitle: 'Zero-Persistence Pipeline',
@@ -82,7 +82,7 @@ const copy: Record<Locale, GeminiGuardCopy> = {
     titleItalic: 'Compliance como Fisica.',
     subtitle:
       'Middleware que permite bancos e seguradoras implantarem Google Gemini em escala — respeitando BCB 538/2025, EU AI Act e DORA. Cada decisao de IA se torna uma prova criptografica.',
-    cta1: 'Solicitar Demo',
+    cta1: 'Acesse a Demo',
     cta2: 'Ver Arquitetura',
     archEyebrow: 'Arquitetura do Pipeline',
     archTitle: 'Pipeline Zero-Persistencia',
@@ -188,15 +188,17 @@ const GeminiGuardSection: React.FC = () => {
                 {/* CTAs — matching Hero CTA style */}
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a
-                    href="#contact-form"
-                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-navy-900 text-white text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-navy-800 transition-all shadow-glow rounded-sm min-h-[48px]"
+                    href="https://foundlab-ati.web.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-navy-900 text-white text-[11px] font-bold uppercase tracking-[0.2em] transition-all rounded-sm min-h-[48px]"
                   >
                     {t.cta1}
                     <ArrowRight className="w-4 h-4" />
                   </a>
                   <a
                     href="#architecture"
-                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent border border-slate-300 text-navy-900 text-[11px] font-bold uppercase tracking-[0.2em] hover:border-navy-900 transition-colors rounded-sm min-h-[48px]"
+                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent border border-slate-300 text-navy-900 text-[11px] font-bold uppercase tracking-[0.2em] transition-colors rounded-sm min-h-[48px]"
                   >
                     {t.cta2}
                   </a>
@@ -214,16 +216,11 @@ const GeminiGuardSection: React.FC = () => {
             >
               <div className="relative border border-slate-200 bg-white shadow-xl overflow-hidden">
                 <img
-                  src="/images/foundlab-office.jpg"
+                  src="/images/gemini-guard-main.jpg"
                   alt={t.photoCaption1}
                   className="w-full h-auto object-cover"
                   loading="eager"
                 />
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-white via-white/80 to-transparent p-4 pt-12">
-                  <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400">
-                    {t.photoCaption1}
-                  </p>
-                </div>
               </div>
 
               {/* Corner markings — consistent with ParadoxSection cards */}
@@ -471,8 +468,10 @@ const GeminiGuardSection: React.FC = () => {
                   </p>
                 </div>
                 <a
-                  href="#contact-form"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-navy-900 text-white text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-navy-800 transition-all shadow-glow rounded-sm self-start md:self-auto min-h-[48px]"
+                  href="https://foundlab-ati.web.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-navy-900 text-white text-[11px] font-bold uppercase tracking-[0.2em] transition-all rounded-sm self-start md:self-auto min-h-[48px]"
                 >
                   {t.cta1}
                   <ArrowRight className="w-4 h-4" />

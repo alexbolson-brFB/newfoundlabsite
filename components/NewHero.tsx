@@ -245,28 +245,28 @@ const NewHero: React.FC = () => {
               className="text-center lg:text-left lg:col-span-3"
             >
                 <h1 className="font-serif text-[clamp(2.5rem,6vw,4.5rem)] text-navy-900 leading-[1.1] mb-8 font-medium tracking-tight break-words">
-                  <div className="block">
-                    <AnimatedText 
-                        key={`title1-${language}`}
-                        text={t.hero.title1} 
-                        containerVariants={titleContainerVariants} 
-                        wordVariants={titleWordVariants}
-                        mode="letter"
-                        enableGlitch={true}
-                     />
-                  </div>
-                  <div className="block mt-1">
-                     <span className="italic text-slate-500 font-light inline-block">
-                       <AnimatedText 
-                          key={`title2-${language}`}
-                          text={t.hero.title2} 
+                    <span className="block">
+                      <AnimatedText 
+                          key={`title1-${language}`}
+                          text={t.hero.title1} 
                           containerVariants={titleContainerVariants} 
                           wordVariants={titleWordVariants}
                           mode="letter"
                           enableGlitch={true}
                        />
-                     </span>
-                  </div>
+                    </span>
+                    <span className="block mt-1">
+                       <span className="italic text-slate-500 font-light inline-block">
+                         <AnimatedText 
+                            key={`title2-${language}`}
+                            text={t.hero.title2} 
+                            containerVariants={titleContainerVariants} 
+                            wordVariants={titleWordVariants}
+                            mode="letter"
+                            enableGlitch={true}
+                         />
+                       </span>
+                    </span>
                 </h1>
 
                 <div className="max-w-xl mx-auto lg:mx-0 mb-10 text-base md:text-lg text-slate-600 font-light leading-relaxed">
@@ -285,18 +285,20 @@ const NewHero: React.FC = () => {
                   initial="hidden"
                   animate="visible"
                 >
-                    <MagneticButton href="#contact-form" strength={0.2}>
-                        <div className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-navy-900 text-white font-sans text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-navy-800 transition-all shadow-glow rounded-sm border border-transparent focus:outline-none focus:ring-2 focus:ring-gold">
-                            {t.hero.cta1}
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                        </div>
-                    </MagneticButton>
-                    
-                    <MagneticButton href="#whitepaper" strength={0.2}>
-                        <div className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent border border-slate-300 text-navy-900 font-sans text-[11px] font-bold uppercase tracking-[0.2em] hover:border-navy-900 transition-colors duration-300 rounded-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-gold">
-                            {t.hero.cta2}
-                        </div>
-                    </MagneticButton>
+                  <a 
+                    href="#contact-form" 
+                    className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-navy-900 text-white font-sans text-[11px] font-bold uppercase tracking-[0.2em] rounded-sm border border-transparent focus:outline-none focus:ring-2 focus:ring-gold"
+                  >
+                    {t.hero.cta1}
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300" />
+                  </a>
+                  
+                  <a 
+                    href="#whitepaper" 
+                    className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent border border-slate-300 text-navy-900 font-sans text-[11px] font-bold uppercase tracking-[0.2em] rounded-sm focus:outline-none focus:ring-2 focus:ring-gold"
+                  >
+                    {t.hero.cta2}
+                  </a>
                 </motion.div>
             </motion.div>
 

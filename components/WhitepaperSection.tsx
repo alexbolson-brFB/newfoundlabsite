@@ -29,7 +29,16 @@ const WhitepaperSection: React.FC = () => {
                 {t.whitepaper.badge}
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-serif text-navy-900 leading-tight mb-4">{t.whitepaper.title}</h2>
+            <a 
+              href="/whitepaper.html" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group block"
+            >
+              <h2 className="text-4xl md:text-5xl font-serif text-navy-900 leading-tight mb-4 group-hover:text-gold-600 transition-colors">
+                {t.whitepaper.title}
+              </h2>
+            </a>
             <p className="text-slate-600 text-lg leading-relaxed font-light">{t.whitepaper.subtitle}</p>
           </motion.div>
 
@@ -55,14 +64,16 @@ const WhitepaperSection: React.FC = () => {
 
                       <div className="flex flex-col sm:flex-row gap-4">
                       <a
-                          href="mailto:contato@foundlab.com.br?subject=FoundLab%20Whitepaper%20Abstract"
-                          className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-navy-900 text-white text-[10px] font-bold tracking-[0.2em] uppercase rounded-sm hover:bg-navy-800 transition-all shadow-lg"
+                          href="/whitepaper.html"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-navy-900 text-white text-[10px] font-bold tracking-[0.2em] uppercase rounded-sm transition-all"
                       >
                           {t.whitepaper.ctaPrimary}
                       </a>
                       <a
                           href="#contact"
-                          className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white border border-slate-300 text-navy-900 text-[10px] font-bold tracking-[0.2em] uppercase rounded-sm hover:border-navy-900 transition-colors"
+                          className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white border border-slate-300 text-navy-900 text-[10px] font-bold tracking-[0.2em] uppercase rounded-sm transition-colors"
                       >
                           {t.whitepaper.ctaSecondary}
                       </a>

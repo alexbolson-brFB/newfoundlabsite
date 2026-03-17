@@ -84,10 +84,19 @@ const ArchitectureSection: React.FC = () => {
                 <motion.h2 
                    initial={{ opacity: 0, y: 20 }}
                    whileInView={{ opacity: 1, y: 0 }}
-                   className="font-serif text-4xl md:text-6xl text-navy-900 leading-[1.05] tracking-tight"
+                   className="font-serif text-4xl md:text-6xl text-navy-900 leading-[1.05] tracking-tight mb-6"
                 >
                     {t.architecture.title}
                 </motion.h2>
+
+                <motion.p
+                   initial={{ opacity: 0, y: 20 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   transition={{ delay: 0.1 }}
+                   className="text-slate-600 text-lg md:text-xl font-light leading-relaxed text-pretty"
+                >
+                    {t.architecture.subtitle}
+                </motion.p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

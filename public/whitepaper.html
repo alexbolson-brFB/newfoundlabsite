@@ -1,0 +1,1943 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FoundLab — Trust by Physics | Whitepaper Técnico-Estratégico 2025/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ═══════════════════════════════════════════
+     DESIGN SYSTEM — FOUNDLAB ENTERPRISE
+  ═══════════════════════════════════════════ */
+  :root {
+    --ink:        #0D1117;
+    --ink-2:      #161C26;
+    --ink-3:      #1E2535;
+    --ink-4:      #252E42;
+    --gold:       #C49A3C;
+    --gold-light: #E2B95A;
+    --gold-pale:  #F5E6C0;
+    --silver:     #8A95A8;
+    --silver-2:   #B0BACC;
+    --white:      #F8F5EE;
+    --white-2:    #EDE8DC;
+    --rule:       rgba(196,154,60,0.25);
+    --rule-2:     rgba(196,154,60,0.10);
+
+    --ff-display: 'Cormorant Garamond', Georgia, serif;
+    --ff-body:    'IBM Plex Sans', sans-serif;
+    --ff-mono:    'IBM Plex Mono', monospace;
+
+    --col-w:      820px;
+    --col-narrow: 640px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #0B0F18;
+    color: var(--white);
+    font-family: var(--ff-body);
+    font-size: 15px;
+    line-height: 1.75;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--ink); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+  /* ═══════════════════════════════════════════
+     DOCUMENT WRAPPER
+  ═══════════════════════════════════════════ */
+  .doc-shell {
+    background: var(--ink-2);
+    max-width: var(--col-w);
+    margin: 40px auto;
+    border: 1px solid var(--rule);
+    box-shadow:
+      0 0 0 1px rgba(196,154,60,0.06),
+      0 2px 4px rgba(0,0,0,0.4),
+      0 8px 32px rgba(0,0,0,0.6),
+      0 32px 80px rgba(0,0,0,0.5),
+      inset 0 1px 0 rgba(196,154,60,0.15);
+    position: relative;
+  }
+
+  /* ─── DOCUMENT CORNER ACCENTS ─── */
+  .doc-shell::before,
+  .doc-shell::after {
+    content: '';
+    position: absolute;
+    width: 40px; height: 40px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.6;
+    z-index: 10;
+  }
+  .doc-shell::before {
+    top: -1px; left: -1px;
+    border-width: 2px 0 0 2px;
+  }
+  .doc-shell::after {
+    bottom: -1px; right: -1px;
+    border-width: 0 2px 2px 0;
+  }
+
+  /* ═══════════════════════════════════════════
+     RUNNING HEADER
+  ═══════════════════════════════════════════ */
+  .running-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    border-bottom: 1px solid var(--rule-2);
+    background: var(--ink);
+  }
+  .rh-logo {
+    font-family: var(--ff-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .rh-meta {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--silver);
+  }
+  .rh-classification {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.6;
+    border: 1px solid currentColor;
+    padding: 2px 8px;
+  }
+
+  /* ═══════════════════════════════════════════
+     COVER PAGE
+  ═══════════════════════════════════════════ */
+  .cover {
+    padding: 80px 72px 64px;
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(160deg, rgba(196,154,60,0.04) 0%, transparent 60%),
+      var(--ink-2);
+  }
+
+  /* Geometric background pattern */
+  .cover-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.035;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 59px, var(--gold) 59px, var(--gold) 60px),
+      repeating-linear-gradient(90deg, transparent, transparent 59px, var(--gold) 59px, var(--gold) 60px);
+  }
+
+  /* Diagonal accent */
+  .cover-accent {
+    position: absolute;
+    top: 0; right: 0;
+    width: 220px; height: 220px;
+    background: linear-gradient(225deg, rgba(196,154,60,0.12) 0%, transparent 70%);
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+  }
+
+  .cover-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .cover-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px; height: 1px;
+    background: var(--gold);
+  }
+
+  .cover-title {
+    font-family: var(--ff-display);
+    font-size: 64px;
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-title strong {
+    font-weight: 600;
+    color: var(--gold-light);
+  }
+
+  .cover-subtitle {
+    font-family: var(--ff-display);
+    font-size: 20px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--silver-2);
+    margin-bottom: 48px;
+    max-width: 560px;
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-rule {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold) 0%, rgba(196,154,60,0.1) 100%);
+    margin: 40px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-meta-item label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .cover-meta-item span {
+    display: block;
+    font-size: 13px;
+    color: var(--silver-2);
+    font-weight: 400;
+  }
+
+  /* ═══════════════════════════════════════════
+     TABLE OF CONTENTS
+  ═══════════════════════════════════════════ */
+  .toc-section {
+    padding: 56px 72px;
+    border-top: 1px solid var(--rule-2);
+    background: var(--ink);
+  }
+  .toc-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+  .toc-label {
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .toc-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--rule-2);
+  }
+  .toc-list { list-style: none; }
+  .toc-list > li {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .toc-list > li:hover { background: rgba(196,154,60,0.04); }
+  .toc-num {
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    color: var(--gold);
+    opacity: 0.7;
+    min-width: 32px;
+  }
+  .toc-title {
+    flex: 1;
+    font-size: 13px;
+    color: var(--silver-2);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+  .toc-list > li:hover .toc-title { color: var(--white); }
+  .toc-dots {
+    flex: 1;
+    border-bottom: 1px dotted rgba(196,154,60,0.2);
+    margin: 0 12px;
+    position: relative;
+    top: -3px;
+  }
+  .toc-page {
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    color: var(--gold);
+    opacity: 0.5;
+  }
+
+  /* ═══════════════════════════════════════════
+     EXECUTIVE SUMMARY
+  ═══════════════════════════════════════════ */
+  .exec-summary {
+    padding: 64px 72px;
+    background:
+      linear-gradient(180deg, rgba(196,154,60,0.04) 0%, transparent 40%),
+      var(--ink-2);
+    border-top: 1px solid var(--rule-2);
+    position: relative;
+  }
+
+  .exec-summary::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+  }
+
+  /* ═══════════════════════════════════════════
+     SECTION STRUCTURE
+  ═══════════════════════════════════════════ */
+  .wp-section {
+    padding: 64px 72px;
+    border-top: 1px solid var(--rule-2);
+    position: relative;
+  }
+  .wp-section:nth-child(odd) {
+    background: var(--ink-2);
+  }
+  .wp-section:nth-child(even) {
+    background: var(--ink);
+  }
+
+  /* Section number badge */
+  .section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .section-num {
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    color: var(--gold);
+    border: 1px solid rgba(196,154,60,0.4);
+    padding: 3px 10px;
+    letter-spacing: 0.12em;
+  }
+  .section-tag {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--silver);
+    font-weight: 500;
+  }
+
+  .section-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::after {
+    content: '';
+    display: block;
+    width: 24px; height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  /* ═══════════════════════════════════════════
+     TYPOGRAPHY
+  ═══════════════════════════════════════════ */
+  h1.doc-title {
+    font-family: var(--ff-display);
+    font-size: 52px;
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  h1.doc-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  h2.section-title {
+    font-family: var(--ff-display);
+    font-size: 38px;
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 32px;
+  }
+  h2.section-title strong {
+    font-weight: 600;
+    color: var(--gold-light);
+  }
+
+  h3.sub-title {
+    font-family: var(--ff-display);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--white);
+    margin: 40px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  h3.sub-title::before {
+    content: '';
+    display: block;
+    width: 20px; height: 1px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  h4.minor-title {
+    font-family: var(--ff-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 32px 0 12px;
+  }
+
+  p {
+    color: var(--silver-2);
+    margin-bottom: 18px;
+    max-width: 680px;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  p strong { color: var(--white); font-weight: 500; }
+  p em { font-style: italic; color: var(--white-2); }
+
+  /* ═══════════════════════════════════════════
+     PULL QUOTE
+  ═══════════════════════════════════════════ */
+  .pull-quote {
+    margin: 40px 0;
+    padding: 32px 40px;
+    border-left: 3px solid var(--gold);
+    background:
+      linear-gradient(90deg, rgba(196,154,60,0.06) 0%, transparent 100%);
+    position: relative;
+  }
+  .pull-quote::before {
+    content: '"';
+    position: absolute;
+    top: 8px; left: 16px;
+    font-family: var(--ff-display);
+    font-size: 80px;
+    color: var(--gold);
+    opacity: 0.2;
+    line-height: 1;
+  }
+  .pull-quote p {
+    font-family: var(--ff-display);
+    font-size: 20px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--white);
+    margin-bottom: 12px;
+    max-width: 100%;
+    line-height: 1.5;
+  }
+  .pull-quote cite {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* ═══════════════════════════════════════════
+     CALLOUT BOX
+  ═══════════════════════════════════════════ */
+  .callout {
+    border: 1px solid var(--rule);
+    background: rgba(196,154,60,0.04);
+    padding: 24px 28px;
+    margin: 28px 0;
+    position: relative;
+  }
+  .callout::before {
+    content: attr(data-label);
+    position: absolute;
+    top: -1px; left: 20px;
+    transform: translateY(-50%);
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+  }
+  .callout p { margin-bottom: 0; max-width: 100%; font-size: 14px; }
+  .callout ul { list-style: none; }
+  .callout ul li {
+    color: var(--silver-2);
+    font-size: 14px;
+    padding: 4px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-weight: 300;
+  }
+  .callout ul li::before {
+    content: '◆';
+    color: var(--gold);
+    font-size: 6px;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  /* ═══════════════════════════════════════════
+     DATA TABLE
+  ═══════════════════════════════════════════ */
+  .wp-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 28px 0;
+    font-size: 13px;
+  }
+  .wp-table thead tr {
+    border-bottom: 2px solid rgba(196,154,60,0.3);
+  }
+  .wp-table thead th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    font-family: var(--ff-body);
+  }
+  .wp-table tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.15s;
+  }
+  .wp-table tbody tr:hover { background: rgba(196,154,60,0.04); }
+  .wp-table tbody td {
+    padding: 11px 14px;
+    color: var(--silver-2);
+    font-weight: 300;
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .wp-table tbody td:first-child {
+    color: var(--white);
+    font-weight: 400;
+    font-family: var(--ff-mono);
+    font-size: 12px;
+  }
+
+  /* ═══════════════════════════════════════════
+     CODE / TECH BLOCK
+  ═══════════════════════════════════════════ */
+  .code-block {
+    background: var(--ink);
+    border: 1px solid rgba(196,154,60,0.15);
+    border-left: 3px solid rgba(196,154,60,0.4);
+    padding: 24px 28px;
+    margin: 24px 0;
+    font-family: var(--ff-mono);
+    font-size: 12px;
+    color: #8DA0B8;
+    line-height: 1.7;
+    overflow-x: auto;
+    position: relative;
+  }
+  .code-block::before {
+    content: attr(data-lang);
+    position: absolute;
+    top: 10px; right: 14px;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.5;
+  }
+  .code-block .kw  { color: #C49A3C; }
+  .code-block .str { color: #8FC67F; }
+  .code-block .cm  { color: #4E6478; font-style: italic; }
+  .code-block .ty  { color: #7AB8D4; }
+  .code-block .nm  { color: #BDB3E2; }
+
+  /* ═══════════════════════════════════════════
+     ARCHITECTURE DIAGRAM — CSS
+  ═══════════════════════════════════════════ */
+  .arch-diagram {
+    margin: 36px 0;
+    border: 1px solid var(--rule);
+    background: var(--ink);
+    padding: 36px;
+    position: relative;
+  }
+  .arch-diagram::before {
+    content: attr(data-title);
+    position: absolute;
+    top: -1px; left: 32px;
+    transform: translateY(-50%);
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+  }
+  .arch-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* Flow nodes */
+  .flow-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+  }
+  .flow-node {
+    background: var(--ink-3);
+    border: 1px solid rgba(196,154,60,0.3);
+    padding: 12px 20px;
+    font-size: 11px;
+    font-family: var(--ff-mono);
+    color: var(--white);
+    text-align: center;
+    min-width: 140px;
+    position: relative;
+    transition: all 0.2s;
+  }
+  .flow-node:hover {
+    border-color: var(--gold);
+    background: rgba(196,154,60,0.08);
+    transform: translateY(-1px);
+  }
+  .flow-node .node-label {
+    font-size: 9px;
+    color: var(--gold);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .flow-node .node-name {
+    font-size: 12px;
+    color: var(--white);
+    font-weight: 500;
+  }
+  .flow-node .node-desc {
+    font-size: 10px;
+    color: var(--silver);
+    margin-top: 4px;
+    font-family: var(--ff-body);
+    font-weight: 300;
+  }
+  .flow-node.highlight {
+    border-color: var(--gold);
+    background: rgba(196,154,60,0.1);
+    box-shadow: 0 0 16px rgba(196,154,60,0.12);
+  }
+  .flow-node.kms {
+    border-color: #5A8FC4;
+    background: rgba(90,143,196,0.08);
+  }
+  .flow-node.ledger {
+    border-color: #7CB87A;
+    background: rgba(124,184,122,0.08);
+  }
+
+  .flow-arrow {
+    color: var(--gold);
+    font-size: 16px;
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+  .flow-arrow-down {
+    text-align: center;
+    color: var(--gold);
+    font-size: 16px;
+    opacity: 0.4;
+    margin: 4px 0;
+    line-height: 1;
+  }
+
+  .flow-branch {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    width: 100%;
+  }
+  .flow-branch-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .flow-label {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--silver);
+    text-align: center;
+    padding: 4px 0;
+    font-weight: 500;
+  }
+
+  /* RAM visual */
+  .ram-block {
+    background: linear-gradient(135deg, rgba(196,154,60,0.08), rgba(196,154,60,0.03));
+    border: 1px dashed rgba(196,154,60,0.4);
+    padding: 16px 20px;
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--gold-pale);
+    text-align: center;
+    width: 100%;
+    position: relative;
+  }
+  .ram-block::before {
+    content: 'RAM VOLÁTIL — EPHEMERAL';
+    display: block;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-bottom: 8px;
+  }
+  .ram-row {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .ram-chip {
+    background: rgba(196,154,60,0.15);
+    border: 1px solid rgba(196,154,60,0.3);
+    padding: 4px 10px;
+    font-size: 10px;
+    color: var(--gold-light);
+  }
+
+  /* ═══════════════════════════════════════════
+     REGULATORY MATRIX
+  ═══════════════════════════════════════════ */
+  .reg-matrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .reg-card {
+    border: 1px solid var(--rule);
+    background: rgba(196,154,60,0.02);
+    padding: 20px 22px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+  .reg-card:hover {
+    background: rgba(196,154,60,0.05);
+    border-color: rgba(196,154,60,0.5);
+  }
+  .reg-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .reg-name {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .reg-desc {
+    font-size: 13px;
+    color: var(--silver-2);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ═══════════════════════════════════════════
+     COMPARISON TABLE — SECURITY
+  ═══════════════════════════════════════════ */
+  .sec-compare {
+    margin: 28px 0;
+  }
+  .sec-compare-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 0;
+    border-bottom: 2px solid rgba(196,154,60,0.3);
+    padding: 8px 0;
+  }
+  .sec-compare-header div {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    padding: 0 12px;
+  }
+  .sec-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.15s;
+  }
+  .sec-row:hover { background: rgba(196,154,60,0.04); }
+  .sec-row div {
+    padding: 11px 12px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .sec-row .vector { color: var(--white); font-weight: 400; }
+  .sec-row .conv   { color: #E07070; font-size: 12px; }
+  .sec-row .found  { color: #7CB87A; font-size: 12px; font-weight: 500; }
+
+  /* ═══════════════════════════════════════════
+     FINANCIAL MODEL
+  ═══════════════════════════════════════════ */
+  .fin-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin: 32px 0;
+    border: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .fin-step {
+    flex: 1;
+    padding: 24px 20px;
+    text-align: center;
+    border-right: 1px solid var(--rule-2);
+    position: relative;
+    background: var(--ink);
+    transition: background 0.2s;
+  }
+  .fin-step:hover { background: rgba(196,154,60,0.05); }
+  .fin-step:last-child { border-right: none; }
+  .fin-step-num {
+    font-family: var(--ff-mono);
+    font-size: 28px;
+    color: rgba(196,154,60,0.2);
+    line-height: 1;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .fin-step-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .fin-step-desc {
+    font-size: 12px;
+    color: var(--silver);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .fin-arrow {
+    display: flex;
+    align-items: center;
+    color: var(--gold);
+    opacity: 0.3;
+    font-size: 18px;
+    flex-shrink: 0;
+    padding: 0 -1px;
+    background: var(--ink);
+    border-right: 1px solid var(--rule-2);
+    padding: 0 8px;
+  }
+
+  /* ═══════════════════════════════════════════
+     PRINCIPLE PILLARS
+  ═══════════════════════════════════════════ */
+  .pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .pillar {
+    border: 1px solid var(--rule);
+    padding: 24px 22px;
+    background: rgba(255,255,255,0.01);
+    transition: all 0.2s;
+    position: relative;
+  }
+  .pillar:hover {
+    background: rgba(196,154,60,0.04);
+    border-color: rgba(196,154,60,0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+  .pillar-icon {
+    font-size: 24px;
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+  .pillar-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+  .pillar-body {
+    font-size: 13px;
+    color: var(--silver);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* ═══════════════════════════════════════════
+     TECH STACK GRID
+  ═══════════════════════════════════════════ */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .stack-item {
+    background: var(--ink);
+    border: 1px solid rgba(196,154,60,0.12);
+    padding: 14px 16px;
+    transition: all 0.2s;
+  }
+  .stack-item:hover {
+    border-color: rgba(196,154,60,0.4);
+    background: rgba(196,154,60,0.04);
+  }
+  .stack-key {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .stack-val {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--silver-2);
+  }
+
+  /* ═══════════════════════════════════════════
+     CONCLUSION / CLOSING
+  ═══════════════════════════════════════════ */
+  .conclusion {
+    padding: 72px 72px 80px;
+    background:
+      linear-gradient(180deg, var(--ink-3) 0%, var(--ink-2) 100%);
+    border-top: 2px solid rgba(196,154,60,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  .conclusion::after {
+    content: 'TRUST BY PHYSICS';
+    position: absolute;
+    bottom: 40px; right: -10px;
+    font-family: var(--ff-display);
+    font-size: 80px;
+    font-weight: 700;
+    color: rgba(196,154,60,0.04);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    transform: rotate(-4deg);
+    pointer-events: none;
+  }
+
+  /* ═══════════════════════════════════════════
+     APPENDIX
+  ═══════════════════════════════════════════ */
+  .appendix {
+    padding: 56px 72px;
+    background: var(--ink);
+    border-top: 1px solid var(--rule-2);
+  }
+
+  /* ═══════════════════════════════════════════
+     RUNNING FOOTER
+  ═══════════════════════════════════════════ */
+  .running-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    border-top: 1px solid var(--rule-2);
+    background: var(--ink);
+  }
+  .rf-copy {
+    font-size: 10px;
+    color: var(--silver);
+    opacity: 0.5;
+    letter-spacing: 0.06em;
+  }
+  .rf-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .rf-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .rf-brand {
+    font-family: var(--ff-display);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    opacity: 0.6;
+  }
+
+  /* ═══════════════════════════════════════════
+     GLOSSARY
+  ═══════════════════════════════════════════ */
+  .glossary-list { list-style: none; }
+  .glossary-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 24px;
+    align-items: baseline;
+  }
+  .glossary-list .term {
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .glossary-list .def {
+    font-size: 13px;
+    color: var(--silver-2);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* ═══════════════════════════════════════════
+     SECTION DIVIDER
+  ═══════════════════════════════════════════ */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 48px 0 40px;
+  }
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(196,154,60,0.3), transparent);
+  }
+  .section-divider-icon {
+    color: var(--gold);
+    font-size: 12px;
+    opacity: 0.5;
+    letter-spacing: 0.3em;
+  }
+
+  /* ═══════════════════════════════════════════
+     RESPONSIVE TWEAKS
+  ═══════════════════════════════════════════ */
+  @media (max-width: 900px) {
+    .doc-shell { margin: 0; border: none; }
+    .cover, .wp-section, .toc-section, .exec-summary,
+    .appendix, .conclusion, .running-header, .running-footer {
+      padding-left: 28px; padding-right: 28px;
+    }
+    .cover-title { font-size: 38px; }
+    .cover-meta-grid { grid-template-columns: 1fr 1fr; }
+    .reg-matrix { grid-template-columns: 1fr; }
+    .pillars { grid-template-columns: 1fr; }
+    .stack-grid { grid-template-columns: 1fr 1fr; }
+    .fin-flow { flex-direction: column; }
+    .fin-arrow { display: none; }
+    .glossary-list li { grid-template-columns: 1fr; gap: 6px; }
+    .sec-compare-header, .sec-row { grid-template-columns: 1.5fr 1fr 1fr; }
+  }
+
+  @media print {
+    body { background: white; }
+    .doc-shell { box-shadow: none; max-width: 100%; margin: 0; border: none; }
+    :root {
+      --ink: white; --ink-2: #F8F5EE; --ink-3: #EDE8DC; --ink-4: #E0D8C8;
+      --white: #0D1117; --white-2: #1E2535; --silver-2: #333; --silver: #666;
+      --gold: #8B6914;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="doc-shell" id="top">
+
+  <!-- ═══════════════ RUNNING HEADER ═══════════════ -->
+  <header class="running-header">
+    <a href="/" style="text-decoration: none; color: var(--gold); font-size: 10px; display: flex; align-items: center; gap: 8px; border: 1px solid var(--rule); padding: 4px 10px; border-radius: 2px; transition: all 0.2s;" onmouseover="this.style.background='rgba(196,154,60,0.1)'" onmouseout="this.style.background='transparent'">
+      <span>←</span> Voltar para o Site
+    </a>
+    <div class="rh-logo">FoundLab Tecnologia Ltda.</div>
+    <div class="rh-meta">Whitepaper Técnico-Estratégico · Edição 2025/2026 · v1.0</div>
+    <div class="rh-classification">Confidencial</div>
+  </header>
+
+  <!-- ═══════════════ COVER ═══════════════ -->
+  <section class="cover">
+    <div class="cover-bg"></div>
+    <div class="cover-accent"></div>
+
+    <div class="cover-eyebrow">Whitepaper Fundador · Nova Categoria de Infraestrutura</div>
+
+    <h1 class="cover-title">
+      <strong>Trust</strong><br>
+      by Physics
+    </h1>
+
+    <p class="cover-subtitle">
+      Zero Persistence AI Processing: A Nova Arquitetura da Confiança Verificável para Instituições Financeiras Reguladas
+    </p>
+
+    <div class="cover-rule"></div>
+
+    <div class="cover-meta-grid">
+      <div class="cover-meta-item">
+        <label>Empresa</label>
+        <span>FoundLab Tecnologia Ltda.</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Classificação</label>
+        <span>Confidencial — Circulação Controlada</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Versão</label>
+        <span>1.0 · Março 2026</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Localização</label>
+        <span>São Paulo, Brasil</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Produto Central</label>
+        <span>REX Gemini Guard</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Plataforma</label>
+        <span>Google Cloud · southamerica-east1</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ TABLE OF CONTENTS ═══════════════ -->
+  <section class="toc-section">
+    <div class="toc-header">
+      <span class="toc-label">Sumário</span>
+      <div class="toc-rule"></div>
+    </div>
+    <ul class="toc-list">
+      <li onclick="document.getElementById('exec').scrollIntoView({behavior:'smooth'})">
+        <span class="toc-num">00</span>
+        <span class="toc-title">Sumário Executivo</span>
+        <span class="toc-dots"></span>
+        <span class="toc-page">03</span>
+      </li>
+      <li onclick="document.getElementById('s1').scrollIntoView({behavior:'smooth'})">
+        <span class="toc-num">01</span>
+        <span class="toc-title">A Anatomia da Confiança e a Engenharia da Persistência Zero</span>
+        <span class="toc-dots"></span>
+        <span class="toc-page">05</span>
+      </li>
+      <li onclick="document.getElementById('s2').scrollIntoView({behavior:'smooth'})">
+        <span class="toc-num">02</span>
+        <span class="toc-title">O Paradoxo Resolvido — Auditoria vs. Privacidade</span>
+        <span class="toc-dots"></span>
+        <span class="toc-page">09</span>
+      </li>
+      <li onclick="document.getElementById('s3').scrollIntoView({behavior:'smooth'})">
+        <span class="toc-num">03</span>
+        <span class="toc-title">Arbitragem Financeira e o Custo Zero de Conformidade</span>
+        <span class="toc-dots"></span>
+        <span class="toc-page">13</span>
+      </li>
+      <li onclick="document.getElementById('s4').scrollIntoView({behavior:'smooth'})">
+        <span class="toc-num">04</span>
+        <span class="toc-title">Blueprint de Arquitetura Cloud — O Motor da Confiança</span>
+        <span class="toc-dots"></span>
+        <span class="toc-page">16</span>
+      </li>
+      <li onclick="document.getElementById('s5').scrollIntoView({behavior:'smooth'})">
+        <span class="toc-num">05</span>
+        <span class="toc-title">O Efeito Cascata de Visibilidade e a Zona de Perigo</span>
+        <span class="toc-dots"></span>
+        <span class="toc-page">23</span>
+      </li>
+      <li onclick="document.getElementById('conclusion').scrollIntoView({behavior:'smooth'})">
+        <span class="toc-num">06</span>
+        <span class="toc-title">Conclusão — Uma Nova Categoria de Infraestrutura Digital</span>
+        <span class="toc-dots"></span>
+        <span class="toc-page">27</span>
+      </li>
+      <li onclick="document.getElementById('appendix').scrollIntoView({behavior:'smooth'})">
+        <span class="toc-num">A</span>
+        <span class="toc-title">Apêndice Técnico</span>
+        <span class="toc-dots"></span>
+        <span class="toc-page">29</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ═══════════════ EXECUTIVE SUMMARY ═══════════════ -->
+  <section class="exec-summary" id="exec">
+    <div class="section-eyebrow">Sumário Executivo</div>
+    <h2 class="section-title">O Problema que<br><strong>Define uma Era</strong></h2>
+
+    <p>A inteligência artificial deixou de ser uma promessa tecnológica para se tornar infraestrutura operacional crítica. Em 2025, as principais instituições financeiras do Brasil e do mundo processam decisões de crédito, detecção de fraudes, análise de risco e precificação de ativos inteiramente por sistemas algorítmicos. A velocidade dessas decisões, medida em milissegundos, tornou a supervisão humana direta estruturalmente inviável.</p>
+
+    <p>Essa realidade criou uma tensão existencial nos bastidores das maiores organizações financeiras do planeta: <strong>como auditar o que você não pode guardar, e como proteger o que você precisa provar?</strong></p>
+
+    <div class="pull-quote">
+      <p>A FoundLab não pede confiança institucional. Ela oferece garantias verificáveis por matemática e física computacional.</p>
+      <cite>Princípio Fundador · FoundLab</cite>
+    </div>
+
+    <p>De um lado, reguladores exigem rastreabilidade absoluta. A Resolução BCB 538/2025 impõe retenção de evidências sobre decisões algorítmicas. Do outro, a LGPD e seus equivalentes globais exigem o direito ao esquecimento e a eliminação de registros pessoais mediante solicitação. Essas duas forças regulatórias são, na arquitetura de dados convencional, <strong>matematicamente incompatíveis</strong>.</p>
+
+    <h3 class="sub-title">A Resposta FoundLab</h3>
+
+    <p>O paradigma <strong>Trust by Physics</strong> representa uma ruptura epistemológica com a segurança de IA convencional. Em vez de depender de políticas de retenção, controles de acesso ou promessas contratuais, a FoundLab redefine o problema em seu nível mais fundamental: <strong>a física computacional</strong>.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon">⬡</div>
+        <div class="pillar-title">Conformidade Regulatória Imediata</div>
+        <div class="pillar-body">Atendimento nativo a BCB 538/2025, LGPD e frameworks internacionais sem redesenho de arquitetura legada.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">◈</div>
+        <div class="pillar-title">Eliminação Estrutural de Risco</div>
+        <div class="pillar-body">Se os dados não persistem, não existe superfície de ataque para exfiltração pós-processamento.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">◎</div>
+        <div class="pillar-title">Absorção de Custo via Marketplace</div>
+        <div class="pillar-body">CUDs existentes financiam a implementação, transformando compliance em eficiência financeira.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">⬗</div>
+        <div class="pillar-title">Auditoria Verificável Independente</div>
+        <div class="pillar-body">Qualquer auditor verifica independentemente o Veritas Ledger sem depender da palavra da FoundLab.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SECTION 1 ═══════════════ -->
+  <section class="wp-section" id="s1">
+    <div class="section-badge">
+      <span class="section-num">SEÇÃO 01</span>
+      <span class="section-tag">Fundamentos · Didático</span>
+    </div>
+    <h2 class="section-title">A Anatomia da Confiança e a<br><strong>Engenharia da Persistência Zero</strong></h2>
+
+    <p>Toda a arquitetura de segurança digital do século XX foi construída sobre um pressuposto implícito: <strong>a segurança é um problema de acesso</strong>. Se você controla quem pode ver os dados, você controla a segurança dos dados. Essa lógica gerou décadas de firewalls, credenciais, criptografia em trânsito e controles de acesso baseados em roles.</p>
+
+    <p>O paradigma Trust by Physics parte de um axioma radicalmente diferente: <strong>e se os dados não existirem para ser acessados?</strong></p>
+
+    <div class="callout" data-label="Princípio Físico">
+      <ul>
+        <li><strong>Volatilidade da RAM:</strong> A memória RAM é, por definição física, não persistente. Quando o processo que alocou aquela memória é encerrado, o conteúdo desaparece. Não existe mecanismo técnico conhecido para recuperar dados de RAM desalocada de forma controlada.</li>
+        <li><strong>Imutabilidade criptográfica:</strong> Um hash SHA-256 prova que um dado existiu, sem revelar qual era o dado. Combinado com assinatura ECDSA e hash-chaining, cria uma linha do tempo auditável sem expor conteúdo.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub-title">A Analogia da Caixa-Preta</h3>
+
+    <p>Quando um avião é acidentado, investigadores acessam a caixa-preta. Esse dispositivo não grava conversas dos passageiros nem dados pessoais. Ele registra exclusivamente os <strong>parâmetros operacionais do voo</strong>: altitude, velocidade, posição dos comandos. O resultado é um documento de auditoria perfeito — rastreável, verificável — completamente desprovido de qualquer informação pessoalmente identificável.</p>
+
+    <p>O REX Gemini Guard funciona segundo a mesma lógica. Não armazena o prompt do usuário, não armazena a resposta do modelo, não armazena contexto sensível. Ele registra exclusivamente a <strong>prova criptográfica da decisão</strong>.</p>
+
+    <h3 class="sub-title">O Fluxo de Processamento Zero Persistence</h3>
+
+    <!-- ARCHITECTURE DIAGRAM 1 - Zero Persistence Flow -->
+    <div class="arch-diagram" data-title="Diagrama 01 — Fluxo Zero Persistence">
+      <div class="arch-inner">
+
+        <div class="flow-row">
+          <div class="flow-node">
+            <span class="node-label">Origem</span>
+            <span class="node-name">Cliente / Sistema</span>
+            <span class="node-desc">Requisição de Inferência</span>
+          </div>
+        </div>
+        <div class="flow-arrow-down">↓</div>
+
+        <div class="flow-row">
+          <div class="flow-node highlight">
+            <span class="node-label">Fase 1</span>
+            <span class="node-name">REX — Interceptação</span>
+            <span class="node-desc">Proxy transparente na borda</span>
+          </div>
+        </div>
+        <div class="flow-arrow-down">↓</div>
+
+        <div class="flow-row">
+          <div class="flow-node" style="min-width:320px; max-width:360px;">
+            <div class="ram-block">
+              <div class="ram-row">
+                <div class="ram-chip">PROMPT</div>
+                <div class="ram-chip">CONTEXTO</div>
+                <div class="ram-chip">RESPONSE</div>
+              </div>
+              <div style="margin-top:10px; font-size:9px; color:var(--gold); opacity:0.6; letter-spacing:0.16em;">PROCESSAMENTO EXCLUSIVO EM MEMÓRIA VOLÁTIL</div>
+            </div>
+          </div>
+        </div>
+        <div class="flow-arrow-down">↓</div>
+
+        <div class="flow-row" style="gap:32px; align-items:flex-start;">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:4px; flex:1;">
+            <div class="flow-label">Resposta ao Cliente</div>
+            <div class="flow-node">
+              <span class="node-label">Output</span>
+              <span class="node-name">Streaming SSE</span>
+              <span class="node-desc">Tokens para o cliente</span>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:4px; flex:1;">
+            <div class="flow-label">Geração de Prova</div>
+            <div class="flow-node highlight">
+              <span class="node-label">Fase 3</span>
+              <span class="node-name">Hash + Assinatura</span>
+              <span class="node-desc">SHA-256 + ECDSA P-256</span>
+            </div>
+            <div class="flow-arrow-down">↓</div>
+            <div class="flow-node kms">
+              <span class="node-label">Cloud KMS</span>
+              <span class="node-name">HSM Sign</span>
+              <span class="node-desc">ECDSA P-256 via Hardware</span>
+            </div>
+            <div class="flow-arrow-down">↓</div>
+            <div class="flow-node ledger">
+              <span class="node-label">Veritas Ledger</span>
+              <span class="node-name">BigQuery Append</span>
+              <span class="node-desc">Imutável · Hash-chained</span>
+            </div>
+          </div>
+        </div>
+        <div class="flow-arrow-down">↓</div>
+        <div class="flow-row">
+          <div class="flow-node" style="border-color:rgba(224,112,112,0.4); background:rgba(224,112,112,0.06);">
+            <span class="node-label" style="color:#E07070;">Fase 5 — Destruição</span>
+            <span class="node-name">Contexto Encerrado</span>
+            <span class="node-desc">Memória desalocada · Container destruído · Conteúdo inexistente</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <h3 class="sub-title">O Cofre Efêmero</h3>
+    <p>Imagine um cofre de segurança que, após cada operação, se autodestrói completamente — mas deixa um recibo criptograficamente assinado que prova que a operação ocorreu, quando ocorreu, e que foi executada dentro dos parâmetros corretos. O "cofre" nunca acumula conteúdo. Mas o "recibo" — a assinatura ECDSA registrada no Veritas Ledger — é permanente, imutável e publicamente verificável.</p>
+  </section>
+
+  <!-- ═══════════════ SECTION 2 ═══════════════ -->
+  <section class="wp-section" id="s2">
+    <div class="section-badge">
+      <span class="section-num">SEÇÃO 02</span>
+      <span class="section-tag">Regulatório · Estratégico</span>
+    </div>
+    <h2 class="section-title">O Paradoxo Resolvido:<br><strong>Auditoria vs. Privacidade</strong></h2>
+
+    <p>Existe uma conversa que acontece em salas fechadas de todas as grandes instituições financeiras do mundo, e ela sempre termina sem resolução satisfatória. O Chief Compliance Officer apresenta os requisitos do regulador: cada decisão algorítmica deve ser rastreável e justificável. O Data Protection Officer responde com os requisitos da lei de privacidade: dados pessoais devem ser minimizados e eliminados mediante solicitação.</p>
+
+    <p>O departamento jurídico observa que atender plenamente a um conjunto de requisitos significa, em arquitetura convencional, violar o outro. Esse compromisso tem um custo — e o custo maior é invisível: a <strong>paralisia de inovação</strong> causada pela incerteza regulatória.</p>
+
+    <h3 class="sub-title">O Mapa Regulatório da Tensão</h3>
+
+    <div class="reg-matrix">
+      <div class="reg-card">
+        <div class="reg-name">LGPD — Lei 13.709/2018</div>
+        <div class="reg-desc">Dados pessoais devem ser eliminados ao fim da finalidade que justificou seu tratamento. O art. 18 garante ao titular o direito de solicitar a eliminação de seus dados pessoais.</div>
+      </div>
+      <div class="reg-card">
+        <div class="reg-name">BCB 538/2025</div>
+        <div class="reg-desc">Instituições financeiras devem manter registros auditáveis sobre decisões de modelos algorítmicos com impacto em operações financeiras — rastreabilidade, justificabilidade e disponibilidade de evidências.</div>
+      </div>
+      <div class="reg-card">
+        <div class="reg-name">EU Data Act + NIS2</div>
+        <div class="reg-desc">Obrigações de portabilidade, transparência e requisitos de segurança cibernética para infraestruturas críticas, incluindo sistemas de IA em operações de alto risco.</div>
+      </div>
+      <div class="reg-card">
+        <div class="reg-name">FCA / PRA (UK)</div>
+        <div class="reg-desc">Frameworks de governança algorítmica que exigem explainability e audit trail verificável para sistemas de decisão automatizada em contextos financeiros regulados.</div>
+      </div>
+    </div>
+
+    <h3 class="sub-title">Trust by Physics — A Resolução Matemática</h3>
+
+    <p>O paradigma Trust by Physics redefine o problema em seu núcleo lógico. A tensão existe porque a arquitetura convencional confunde dois conceitos fundamentalmente distintos:</p>
+
+    <div class="callout" data-label="Distinção Fundamental">
+      <p><strong>Evidência de Processo</strong> vs. <strong>Conteúdo de Dados</strong> — O regulador não precisa do dado. Ele precisa da prova de que o dado foi processado corretamente. Isso não exige o dado. Exige uma impressão digital criptográfica do evento.</p>
+    </div>
+
+    <table class="wp-table">
+      <thead>
+        <tr>
+          <th>Requisito Regulatório</th>
+          <th>Solução FoundLab</th>
+          <th>Propriedade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Rastreabilidade de decisões (BCB 538)</td>
+          <td style="color:var(--silver-2); font-family:var(--ff-body); font-size:13px;">Hash de entrada + Hash de saída + Assinatura ECDSA</td>
+          <td style="color:#7CB87A; font-size:12px;">Verificável</td>
+        </tr>
+        <tr>
+          <td>Não retenção de dados pessoais (LGPD)</td>
+          <td style="color:var(--silver-2); font-family:var(--ff-body); font-size:13px;">Conteúdo processado exclusivamente em RAM volátil</td>
+          <td style="color:#7CB87A; font-size:12px;">Garantia Física</td>
+        </tr>
+        <tr>
+          <td>Justificabilidade algorítmica</td>
+          <td style="color:var(--silver-2); font-family:var(--ff-body); font-size:13px;">Policy snapshot hash + encadeamento de blocos</td>
+          <td style="color:#7CB87A; font-size:12px;">Imutável</td>
+        </tr>
+        <tr>
+          <td>Direito ao esquecimento</td>
+          <td style="color:var(--silver-2); font-family:var(--ff-body); font-size:13px;">Inexistência de dado persistente = nada a eliminar</td>
+          <td style="color:#7CB87A; font-size:12px;">Arquitetural</td>
+        </tr>
+        <tr>
+          <td>Auditoria regulatória independente</td>
+          <td style="color:var(--silver-2); font-family:var(--ff-body); font-size:13px;">Veritas Ledger publicamente verificável</td>
+          <td style="color:#7CB87A; font-size:12px;">Descentralizado</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pull-quote">
+      <p>A privacidade, neste modelo, não é uma política corporativa que pode ser descumprida, hackeada ou contornada. Ela é uma propriedade física do substrato computacional.</p>
+      <cite>Princípio Trust by Physics · FoundLab</cite>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SECTION 3 ═══════════════ -->
+  <section class="wp-section" id="s3">
+    <div class="section-badge">
+      <span class="section-num">SEÇÃO 03</span>
+      <span class="section-tag">Financeiro · CFO</span>
+    </div>
+    <h2 class="section-title">Arbitragem Financeira e o<br><strong>Custo Zero de Conformidade</strong></h2>
+
+    <p>Existe uma anomalia estrutural nos orçamentos de TI de grandes organizações: a discrepância entre <strong>cloud spend comprometido</strong> e <strong>cloud spend efetivamente utilizado com eficiência</strong>. Instituições financeiras frequentemente possuem Committed Use Discounts (CUDs) com Google Cloud — compromissos plurianuais negociados com descontos de 30% a 70% sobre o preço de lista.</p>
+
+    <p>O problema: uma parcela significativa desses CUDs expira sem ser plenamente utilizada. O dinheiro foi comprometido. O desconto foi obtido. Mas a capacidade cloud comprometida não foi convertida em valor operacional.</p>
+
+    <h3 class="sub-title">Estratégia Alquimia — CUD Arbitrage</h3>
+
+    <div class="fin-flow">
+      <div class="fin-step">
+        <div class="fin-step-num">01</div>
+        <div class="fin-step-title">Diagnóstico de CUD</div>
+        <div class="fin-step-desc">Identificação de Cloud Committed Use Discounts não alocados no ciclo vigente — capital aprovado e comprometido.</div>
+      </div>
+      <div class="fin-arrow">›</div>
+      <div class="fin-step">
+        <div class="fin-step-num">02</div>
+        <div class="fin-step-title">Private Offer</div>
+        <div class="fin-step-desc">FoundLab emite Private Offer via Google Cloud Marketplace, consumível diretamente contra os CUDs da instituição.</div>
+      </div>
+      <div class="fin-arrow">›</div>
+      <div class="fin-step">
+        <div class="fin-step-num">03</div>
+        <div class="fin-step-title">Compliance Zero Cost</div>
+        <div class="fin-step-desc">Conformidade regulatória absorvida por orçamento já aprovado — sem novo processo de procurement ou aprovação incremental.</div>
+      </div>
+    </div>
+
+    <div class="callout" data-label="Argumento do CFO">
+      <p><strong>"Você já comprometeu o orçamento. Você já tem o risco regulatório. Agora pode eliminar o segundo usando o primeiro."</strong></p>
+    </div>
+
+    <h3 class="sub-title">Modelo de Canal</h3>
+
+    <table class="wp-table">
+      <thead>
+        <tr>
+          <th>Canal</th>
+          <th>Produto</th>
+          <th>Modelo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>NetSecurity</td>
+          <td style="color:var(--silver-2); font-family:var(--ff-body); font-size:13px;">REX Gemini Guard — Mercado Financeiro</td>
+          <td style="color:var(--silver-2); font-family:var(--ff-body); font-size:13px;">Rev share 30% · CUD Arbitrage</td>
+        </tr>
+        <tr>
+          <td>Century Data</td>
+          <td style="color:var(--silver-2); font-family:var(--ff-body); font-size:13px;">Umbrella Platform — Compliance Governamental</td>
+          <td style="color:var(--silver-2); font-family:var(--ff-body); font-size:13px;">Rev share 30% · Licenciamento</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═══════════════ SECTION 4 ═══════════════ -->
+  <section class="wp-section" id="s4">
+    <div class="section-badge">
+      <span class="section-num">SEÇÃO 04</span>
+      <span class="section-tag">Arquitetura · Engenharia</span>
+    </div>
+    <h2 class="section-title">Blueprint de Arquitetura Cloud:<br><strong>O Motor da Confiança</strong></h2>
+
+    <h3 class="sub-title">Princípios Arquiteturais</h3>
+
+    <div class="pillars">
+      <div class="pillar">
+        <h4 class="minor-title">Zero Trust by Default</h4>
+        <div class="pillar-body">Nenhum componente confia em outro por padrão. Cada interação é autenticada, autorizada e auditada independentemente.</div>
+      </div>
+      <div class="pillar">
+        <h4 class="minor-title">Ephemeral Compute</h4>
+        <div class="pillar-body">Toda computação sensível ocorre em ambientes efêmeros destruídos ao final de cada ciclo. Não existe estado persistente em nível de aplicação.</div>
+      </div>
+      <div class="pillar">
+        <h4 class="minor-title">Cryptographic Accountability</h4>
+        <div class="pillar-body">Toda decisão é associada a prova criptográfica verificável, assinada por chave gerenciada em KMS soberano com proteção HSM.</div>
+      </div>
+      <div class="pillar">
+        <h4 class="minor-title">Regulatory-Native Design</h4>
+        <div class="pillar-body">A arquitetura não foi retrofitada para compliance. Foi projetada desde o primeiro princípio para satisfazer BCB 538, LGPD e equivalentes.</div>
+      </div>
+    </div>
+
+    <h3 class="sub-title">Arquitetura de Referência — Visão Completa</h3>
+
+    <!-- ARCHITECTURE DIAGRAM 2 - Cloud Architecture -->
+    <div class="arch-diagram" data-title="Diagrama 02 — Arquitetura Cloud FoundLab">
+      <div class="arch-inner" style="gap: 4px;">
+
+        <!-- Internet / Client Layer -->
+        <div class="flow-row" style="gap:16px;">
+          <div class="flow-node" style="min-width:120px;">
+            <span class="node-label">Externos</span>
+            <span class="node-name">Clientes</span>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node highlight" style="min-width:140px;">
+            <span class="node-label">WAF</span>
+            <span class="node-name">Cloud Armor</span>
+            <span class="node-desc">DDoS · Rate Limit</span>
+          </div>
+        </div>
+        <div class="flow-arrow-down">↓</div>
+
+        <!-- VPC Label -->
+        <div style="width:100%; border:1px dashed rgba(196,154,60,0.2); padding: 24px 20px; position:relative; margin-bottom:0;">
+          <div style="position:absolute; top:-10px; left:16px; background:var(--ink); padding:0 8px; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); opacity:0.6; font-weight:500;">VPC — southamerica-east1 — Região São Paulo</div>
+
+          <!-- REX Layer -->
+          <div style="border:1px solid rgba(196,154,60,0.35); background:rgba(196,154,60,0.05); padding:16px; margin-bottom:16px; position:relative;">
+            <div style="position:absolute; top:-9px; left:12px; background:var(--ink-3); padding:0 8px; font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); font-weight:600;">REX Gemini Guard · Cloud Run · Ephemeral Container</div>
+            <div class="flow-row" style="gap:12px; flex-wrap:wrap; margin-top:8px;">
+              <div class="flow-node" style="min-width:130px; flex:1;">
+                <span class="node-label">Interceptação</span>
+                <span class="node-name">Proxy Layer</span>
+                <span class="node-desc">Fastify · Node.js</span>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node" style="min-width:130px; flex:1; border-style:dashed; border-color:rgba(196,154,60,0.4);">
+                <span class="node-label">RAM Volátil</span>
+                <span class="node-name">Processamento</span>
+                <span class="node-desc">Zero Persistence</span>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node" style="min-width:130px; flex:1;">
+                <span class="node-label">Geração</span>
+                <span class="node-name">Hash + Sign</span>
+                <span class="node-desc">SHA-256 · ECDSA</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lower layer: Vertex + KMS + BigQuery -->
+          <div class="flow-row" style="gap:16px; align-items:stretch;">
+            <div class="flow-node" style="flex:1; min-width:140px;">
+              <span class="node-label">IA</span>
+              <span class="node-name">Vertex AI</span>
+              <span class="node-desc">Gemini 2.5 Flash</span>
+            </div>
+            <div class="flow-node kms" style="flex:1; min-width:140px;">
+              <span class="node-label" style="color:#7AB8D4;">Criptografia</span>
+              <span class="node-name">Cloud KMS</span>
+              <span class="node-desc">ECDSA P-256 · HSM</span>
+            </div>
+            <div class="flow-node ledger" style="flex:1; min-width:140px;">
+              <span class="node-label" style="color:#7CB87A;">Ledger</span>
+              <span class="node-name">BigQuery</span>
+              <span class="node-desc">Veritas · Append-only</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-arrow-down" style="margin-top:8px;">↓</div>
+        <div class="flow-row">
+          <div class="flow-node" style="min-width:260px;">
+            <span class="node-label">Auditoria</span>
+            <span class="node-name">Veritas Ledger — Hash Chain</span>
+            <span class="node-desc">Verificável independentemente · Imutável · Soberano</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sub-title">Schema do Veritas Ledger</h3>
+
+    <div class="code-block" data-lang="TypeScript">
+<span class="kw">interface</span> <span class="ty">AuditBlock</span> {
+  transaction_id:       <span class="ty">string</span>;   <span class="cm">// UUID v4 — identificador único da inferência</span>
+  timestamp:            <span class="ty">string</span>;   <span class="cm">// RFC 3339 — alta resolução</span>
+  input_hash:           <span class="ty">string</span>;   <span class="cm">// SHA-256 do payload de entrada</span>
+  output_hash:          <span class="ty">string</span>;   <span class="cm">// SHA-256 do payload de saída</span>
+  policy_snapshot_hash: <span class="ty">string</span>;   <span class="cm">// SHA-256 da política de governança vigente</span>
+  prev_hash:            <span class="ty">string</span>;   <span class="cm">// Hash do bloco anterior (chain integrity)</span>
+  model_version:        <span class="ty">string</span>;   <span class="cm">// Versão do modelo Gemini utilizado</span>
+  signature:            <span class="ty">string</span>;   <span class="cm">// Assinatura ECDSA P-256 — Base64</span>
+  key_version:          <span class="ty">string</span>;   <span class="cm">// Versão da chave KMS utilizada</span>
+  latency_ms:           <span class="ty">number</span>;   <span class="cm">// Latência total da inferência (ms)</span>
+}</div>
+
+    <h3 class="sub-title">Encadeamento Determinístico — Veritas Protocol</h3>
+
+    <div class="code-block" data-lang="Pseudocódigo">
+Block[N].prev_hash  = <span class="nm">SHA256</span>( Block[N-1] )
+
+Block[N].block_hash = <span class="nm">SHA256</span>(
+  Block[N].transaction_id        +
+  Block[N].timestamp             +
+  Block[N].input_hash            +
+  Block[N].output_hash           +
+  Block[N].policy_snapshot_hash  +
+  Block[N].prev_hash
+)</div>
+
+    <p>Uma ruptura em qualquer ponto da cadeia é matematicamente detectável e não pode ser ocultada retroativamente. Qualquer auditor independente pode verificar a integridade da cadeia completa em O(n) — calculando e comparando os hashes de cada bloco sequencialmente.</p>
+  </section>
+
+  <!-- ═══════════════ SECTION 5 ═══════════════ -->
+  <section class="wp-section" id="s5">
+    <div class="section-badge">
+      <span class="section-num">SEÇÃO 05</span>
+      <span class="section-tag">Segurança Avançada · CISO</span>
+    </div>
+    <h2 class="section-title">O Efeito Cascata de Visibilidade<br><strong>e a Zona de Perigo</strong></h2>
+
+    <p>Existe uma categoria de risco que sistematicamente escapa dos frameworks tradicionais de gestão de terceiros: o <strong>efeito cascata de visibilidade</strong>. A lógica de negócio moderna é construída sobre integrações. Uma plataforma de IA financeira tipicamente se conecta a um provedor de modelos, a sistemas de dados de mercado, a plataformas de identity e a múltiplos sistemas legados. Cada vínculo cria um canal pelo qual dados transitam — e cada canal representa uma superfície de ataque.</p>
+
+    <div class="pull-quote">
+      <p>O problema não é a segurança do sistema principal. É a segurança do elo mais fraco da cadeia — e em arquiteturas convencionais, esse elo raramente é visível até que seja tarde demais.</p>
+      <cite>Data Supply Chain Risk Analysis · FoundLab</cite>
+    </div>
+
+    <h3 class="sub-title">Mapa de Vulnerabilidade Convencional</h3>
+
+    <div class="callout" data-label="Pontos de Persistência Involuntária">
+      <ul>
+        <li><strong>Logs de API do provedor de modelo:</strong> Provedores de LLM frequentemente armazenam logs de requisições para debugging e, em alguns casos, treinamento. Os termos de serviço são frequentemente ambíguos quanto ao tratamento desses dados.</li>
+        <li><strong>Cache de gateway de API:</strong> Gateways para controle de rate limiting frequentemente implementam cache de respostas que pode persistir conteúdo sensível de inferências anteriores.</li>
+        <li><strong>Sistemas de observabilidade:</strong> Ferramentas de APM e tracing distribuído podem capturar snippets de payload em traces de performance — criando persistência não intencional.</li>
+        <li><strong>Datastores de sessão:</strong> Sistemas que mantêm contexto de conversação persistem, por definição, o histórico de interações — incluindo potencialmente dados pessoais.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub-title">Comparação de Exposição a Riscos</h3>
+
+    <div class="sec-compare">
+      <div class="sec-compare-header">
+        <div>Vetor de Ataque</div>
+        <div>Arquitetura Convencional</div>
+        <div>Arquitetura FoundLab</div>
+      </div>
+      <div class="sec-row">
+        <div class="vector">Exfiltração pós-processamento</div>
+        <div class="conv">⬛ Alto Risco — dados persistem</div>
+        <div class="found">✓ Inexistente — nada a exfiltrar</div>
+      </div>
+      <div class="sec-row">
+        <div class="vector">Comprometição de parceiro (Supply Chain)</div>
+        <div class="conv">⬛ Alto Risco — efeito cascata</div>
+        <div class="found">✓ Mitigado — zero semântico transmitido</div>
+      </div>
+      <div class="sec-row">
+        <div class="vector">Ataque a backup ou snapshot</div>
+        <div class="conv">⬛ Alto Risco</div>
+        <div class="found">✓ Inexistente — sem backup de conteúdo</div>
+      </div>
+      <div class="sec-row">
+        <div class="vector">Insider threat de operador cloud</div>
+        <div class="conv">⬟ Médio — acesso a logs semânticos</div>
+        <div class="found">✓ Baixo — logs contêm apenas hashes</div>
+      </div>
+      <div class="sec-row">
+        <div class="vector">Resposta a subpoena estrangeira</div>
+        <div class="conv">⬛ Risco legal significativo</div>
+        <div class="found">✓ Sem dado semântico a entregar</div>
+      </div>
+      <div class="sec-row">
+        <div class="vector">Violação de LGPD por retenção indevida</div>
+        <div class="conv">⬛ Risco estrutural permanente</div>
+        <div class="found">✓ Eliminado por design arquitetural</div>
+      </div>
+    </div>
+
+    <h3 class="sub-title">A Zona de Perigo — O Que Ainda Persiste</h3>
+
+    <p>É imperativo que o paradigma Trust by Physics seja comunicado com precisão técnica. A arquitetura FoundLab elimina a persistência de <strong>conteúdo semântico</strong>. Ela não afirma eliminar toda persistência de dados do sistema.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <h4 class="minor-title" style="color:#7CB87A;">O Que Persiste (Por Design)</h4>
+        <div class="pillar-body">Hashes SHA-256 de inputs e outputs · Assinaturas ECDSA · Metadados operacionais (timestamp, latência, versão) · Encadeamento prev_hash · Hash da política de governança</div>
+      </div>
+      <div class="pillar">
+        <h4 class="minor-title" style="color:#E07070;">O Que Não Persiste (Por Física)</h4>
+        <div class="pillar-body">Conteúdo do prompt do usuário · Conteúdo da resposta do modelo · Dados pessoais do usuário · Contexto semântico da interação · Qualquer identificador de conteúdo reversível</div>
+      </div>
+    </div>
+
+    <p>Essa distinção é a fundação da resolução regulatória: o auditor obtém o que precisa (prova verificável de processo), e o titular de dados obtém o que a lei garante (ausência de dados pessoais em forma persistente). Não como concessão — como consequência matemática inevitável da arquitetura.</p>
+  </section>
+
+  <!-- ═══════════════ CONCLUSION ═══════════════ -->
+  <section class="conclusion" id="conclusion">
+    <div class="section-eyebrow">Conclusão</div>
+    <h2 class="section-title">Uma Nova Categoria de<br><strong>Infraestrutura Digital</strong></h2>
+
+    <p>A história da segurança digital pode ser descrita como uma corrida armamentista perpétua: para cada nova defesa, uma nova técnica de ataque. Para cada firewall, um novo vetor de infiltração. Essa dinâmica é inerente a sistemas cujo modelo de segurança depende de controle de acesso — porque controle de acesso sempre pressupõe a existência de algo a ser acessado.</p>
+
+    <p>O paradigma <strong>Trust by Physics</strong> rompe com essa dinâmica em um nível mais fundamental. Não é uma defesa melhor contra os mesmos vetores de ataque. É a <strong>eliminação estrutural de determinadas categorias de vulnerabilidade</strong> através da não-existência do dado.</p>
+
+    <p>A FoundLab não é uma empresa de segurança. É uma empresa de <strong>infraestrutura de confiança verificável para IA</strong>. A distinção importa: empresas de segurança vendem proteção contra ameaças. A FoundLab vende a certeza matemática de que determinadas ameaças são estruturalmente impossíveis.</p>
+
+    <div class="section-divider"><span class="section-divider-icon">◆ ◆ ◆</span></div>
+
+    <h3 class="sub-title">Capacidade de Atendimento Regulatório Global</h3>
+
+    <div class="reg-matrix">
+      <div class="reg-card">
+        <div class="reg-name">🇧🇷  Brasil</div>
+        <div class="reg-desc">BCB 538/2025 · LGPD · CMN 4.557 — Atendimento nativo com soberania de dados em southamerica-east1.</div>
+      </div>
+      <div class="reg-card">
+        <div class="reg-name">🇪🇺  União Europeia</div>
+        <div class="reg-desc">EU Data Act · NIS2 · GDPR — Zero Persistence elimina estruturalmente as obrigações de tratamento de dados pessoais.</div>
+      </div>
+      <div class="reg-card">
+        <div class="reg-name">🇬🇧  Reino Unido</div>
+        <div class="reg-desc">FCA / PRA — Prova criptográfica satisfaz exigências de explainability e audit trail para sistemas de decisão automatizada.</div>
+      </div>
+      <div class="reg-card">
+        <div class="reg-name">🌐  Global</div>
+        <div class="reg-desc">Para qualquer jurisdição onde convivam obrigações de auditabilidade e proteção de dados, o paradoxo regulatório e sua resolução matemática são estruturalmente idênticos.</div>
+      </div>
+    </div>
+
+    <div class="pull-quote" style="margin-top:48px;">
+      <p>Não pedimos confiança.<br>Oferecemos verificabilidade.</p>
+      <cite>Trust by Physics · Compliance as Mathematics · FoundLab Tecnologia Ltda.</cite>
+    </div>
+  </section>
+
+  <!-- ═══════════════ APPENDIX ═══════════════ -->
+  <section class="appendix" id="appendix">
+    <div class="section-badge">
+      <span class="section-num">APÊNDICE A</span>
+      <span class="section-tag">Especificação Técnica</span>
+    </div>
+    <h2 class="section-title" style="font-size:28px;">Especificação Técnica<br><strong>e Glossário</strong></h2>
+
+    <h3 class="sub-title">A.1 — Especificação Criptográfica</h3>
+
+    <table class="wp-table">
+      <thead>
+        <tr>
+          <th>Componente</th>
+          <th>Especificação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Algoritmo de Hash</td><td style="color:var(--silver-2); font-family:var(--ff-body); font-size:13px;">SHA-256 (FIPS 180-4)</td></tr>
+        <tr><td>Algoritmo de Assinatura</td><td style="color:var(--silver-2); font-family:var(--ff-body); font-size:13px;">ECDSA P-256 (FIPS 186-4)</td></tr>
+        <tr><td>Curva Elíptica</td><td style="color:var(--silver-2); font-family:var(--ff-body); font-size:13px;">NIST P-256 (secp256r1)</td></tr>
+        <tr><td>KMS Provider</td><td style="color:var(--silver-2); font-family:var(--ff-body); font-size:13px;">Google Cloud KMS — HSM Protection Level</td></tr>
+        <tr><td>Encoding de Assinatura</td><td style="color:var(--silver-2); font-family:var(--ff-body); font-size:13px;">Base64 URL-safe</td></tr>
+        <tr><td>Timestamp</td><td style="color:var(--silver-2); font-family:var(--ff-body); font-size:13px;">RFC 3339 — resolução de microssegundos</td></tr>
+        <tr><td>Ledger Storage</td><td style="color:var(--silver-2); font-family:var(--ff-body); font-size:13px;">BigQuery Storage Write API — COMMITTED mode</td></tr>
+        <tr><td>Região de Dados</td><td style="color:var(--silver-2); font-family:var(--ff-body); font-size:13px;">southamerica-east1 (São Paulo, Brasil)</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub-title">A.2 — Stack Tecnológico de Referência</h3>
+
+    <div class="stack-grid">
+      <div class="stack-item"><div class="stack-key">Runtime</div><div class="stack-val">Node.js 20 LTS + TypeScript 5.x</div></div>
+      <div class="stack-item"><div class="stack-key">Framework</div><div class="stack-val">Fastify 4.x</div></div>
+      <div class="stack-item"><div class="stack-key">Compute</div><div class="stack-val">Google Cloud Run (serverless)</div></div>
+      <div class="stack-item"><div class="stack-key">AI Model</div><div class="stack-val">Vertex AI — Gemini 2.5 Flash</div></div>
+      <div class="stack-item"><div class="stack-key">KMS</div><div class="stack-val">Cloud KMS — ECDSA P-256 / HSM</div></div>
+      <div class="stack-item"><div class="stack-key">Ledger</div><div class="stack-val">BigQuery Storage Write API</div></div>
+      <div class="stack-item"><div class="stack-key">IaC</div><div class="stack-val">Terraform (Google Cloud provider)</div></div>
+      <div class="stack-item"><div class="stack-key">CI/CD</div><div class="stack-val">Cloud Build</div></div>
+      <div class="stack-item"><div class="stack-key">Secrets</div><div class="stack-val">Secret Manager</div></div>
+      <div class="stack-item"><div class="stack-key">WAF</div><div class="stack-val">Cloud Armor</div></div>
+      <div class="stack-item"><div class="stack-key">Observabilidade</div><div class="stack-val">Cloud Monitoring + Logging</div></div>
+      <div class="stack-item"><div class="stack-key">Região</div><div class="stack-val">southamerica-east1 · São Paulo</div></div>
+    </div>
+
+    <h3 class="sub-title">A.3 — Glossário</h3>
+
+    <ul class="glossary-list">
+      <li>
+        <span class="term">Zero Persistence AI Processing</span>
+        <span class="def">Paradigma de processamento de inferências de IA onde o conteúdo semântico nunca é gravado em substrato persistente, existindo exclusivamente em memória RAM volátil durante o ciclo de vida da requisição.</span>
+      </li>
+      <li>
+        <span class="term">Trust by Physics</span>
+        <span class="def">Filosofia de segurança que substitui garantias baseadas em políticas e promessas por propriedades emergentes da física computacional e da matemática criptográfica.</span>
+      </li>
+      <li>
+        <span class="term">Veritas Ledger</span>
+        <span class="def">Ledger auditável imutável construído sobre BigQuery, contendo provas criptográficas hash-chained de todas as inferências processadas, sem conteúdo semântico.</span>
+      </li>
+      <li>
+        <span class="term">ECDSA P-256</span>
+        <span class="def">Elliptic Curve Digital Signature Algorithm sobre a curva NIST P-256. Padrão FIPS 186-4. Utilizado para assinatura de blocos de auditoria via Cloud KMS HSM.</span>
+      </li>
+      <li>
+        <span class="term">Hash-Chaining</span>
+        <span class="def">Técnica criptográfica onde cada bloco de dados inclui o hash do bloco anterior, criando uma cadeia onde qualquer adulteração retroativa é matematicamente detectável.</span>
+      </li>
+      <li>
+        <span class="term">CUD Arbitrage</span>
+        <span class="def">Mecanismo comercial (Estratégia Alquimia) onde Committed Use Discounts não utilizados são redirecionados via Google Cloud Marketplace Private Offers para financiar infraestrutura de compliance.</span>
+      </li>
+      <li>
+        <span class="term">CMEK</span>
+        <span class="def">Customer-Managed Encryption Keys — modalidade onde o cliente mantém controle soberano sobre as chaves criptográficas armazenadas em seu próprio projeto Google Cloud KMS.</span>
+      </li>
+      <li>
+        <span class="term">REX Gemini Guard</span>
+        <span class="def">Middleware criptográfico de alta performance que atua como proxy reverso entre clientes e a API Vertex AI / Gemini, implementando Zero Persistence e geração de provas ECDSA.</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ═══════════════ RUNNING FOOTER ═══════════════ -->
+  <footer class="running-footer">
+    <div class="rf-copy">© 2025–2026 FoundLab Tecnologia Ltda. · Todos os direitos reservados · foundlab.com.br</div>
+    <div class="rf-badge">
+      <div class="rf-dot"></div>
+      <span class="rf-brand">FoundLab</span>
+    </div>
+  </footer>
+
+</div><!-- /doc-shell -->
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.wp-section, .exec-summary, .conclusion, .appendix').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+    observer.observe(el);
+  });
+
+  // Pillar hover depth
+  document.querySelectorAll('.pillar, .reg-card, .stack-item').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      el.style.boxShadow = '0 8px 24px rgba(0,0,0,0.35)';
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.boxShadow = '';
+    });
+  });
+</script>
+</body>
+</html>
