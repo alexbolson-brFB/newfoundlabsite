@@ -16,6 +16,30 @@ export default defineConfig(({ mode }) => {
         },
       },
       plugins: [react()],
+      build: {
+        minify: 'esbuild',
+        rollupOptions: {
+          output: {
+            manualChunks(id) {
+              if (id.includes('node_modules')) {
+                if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
+                  return 'vendor-react';
+                }
+                if (id.includes('framer-motion')) {
+                  return 'vendor-framer';
+                }
+                if (id.includes('lucide-react')) {
+                  return 'vendor-icons';
+                }
+                return 'vendor'; // all other dependencies
+              }
+            }
+          }
+        }
+      },
+      esbuild: mode === 'production' ? {
+        drop: ['console', 'debugger'],
+      } : undefined,
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
         'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)

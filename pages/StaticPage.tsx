@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { StaticPageKey } from '../routes/pageRoutes';
 import { motion } from 'framer-motion';
@@ -12,6 +12,13 @@ const StaticPage: React.FC<StaticPageProps> = ({ pageKey }) => {
   const content = t.pages[pageKey];
   const isLegal = pageKey === 'privacy' || pageKey === 'terms' || pageKey === 'sla';
   const category = isLegal ? t.footer.headers.legal : t.footer.headers.company;
+
+  useEffect(() => {
+    document.title = `${content.title} | FoundLab`;
+    return () => {
+      document.title = 'FoundLab | Auditable Trust Infrastructure';
+    };
+  }, [content.title]);
 
   return (
     <section className="min-h-screen bg-slate-50 pt-32 pb-24 border-t border-slate-200">

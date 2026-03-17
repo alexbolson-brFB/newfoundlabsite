@@ -33,10 +33,27 @@ const Header: React.FC = () => {
       { rootMargin: '-40% 0px -40% 0px' } // Trigger when section is in middle of viewport
     );
 
-    const sections = document.querySelectorAll('section[id], footer[id]');
-    sections.forEach((section) => observer.observe(section));
+    let observedElements = new Set();
 
-    return () => sections.forEach((section) => observer.unobserve(section));
+    const observeSections = () => {
+      const sections = document.querySelectorAll('section[id], footer[id]');
+      sections.forEach((section) => {
+        if (!observedElements.has(section)) {
+          observer.observe(section);
+          observedElements.add(section);
+        }
+      });
+    };
+
+    observeSections();
+
+    // Check periodically for lazy-loaded sections instead of a heavy MutationObserver
+    const intervalId = setInterval(observeSections, 1000);
+
+    return () => {
+      observer.disconnect();
+      clearInterval(intervalId);
+    };
   }, []);
 
   useEffect(() => {

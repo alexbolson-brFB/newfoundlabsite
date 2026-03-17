@@ -13,6 +13,11 @@
   input, select, textarea {
     font-size: 16px;
   }
+  
+  /* Focus outlines for Accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-gold ring-offset-2 ring-offset-white transition-shadow;
+  }
 }
 
 /* Respect user preference for reduced motion */

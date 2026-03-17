@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useEffect } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 interface MagneticButtonProps {
   children: React.ReactNode;
   className?: string;
-  strength?: number; // How strong the pull is (default 0.5)
+  strength?: number; // How strong the pull is (default 0.3)
   onClick?: () => void;
   href?: string;
 }
@@ -18,10 +18,17 @@ const MagneticButton: React.FC<MagneticButtonProps> = ({
 }) => {
   // Use HTMLElement to allow the ref to be used on both <a> and <div> elements via casting
   const ref = useRef<HTMLElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 15, stiffness: 150, mass: 0.1 };
+  const x = useSpring(mouseX, springConfig);
+  const y = useSpring(mouseY, springConfig);
 
   const reset = () => {
-    setPosition({ x: 0, y: 0 });
+    mouseX.set(0);
+    mouseY.set(0);
   };
 
   const isTouchDevice = () => {
@@ -38,14 +45,14 @@ const MagneticButton: React.FC<MagneticButtonProps> = ({
     const middleX = clientX - (left + width / 2);
     const middleY = clientY - (top + height / 2);
 
-    setPosition({ x: middleX * strength, y: middleY * strength });
+    mouseX.set(middleX * strength);
+    mouseY.set(middleY * strength);
   };
 
   const Content = (
     <motion.div
       className={className}
-      animate={{ x: position.x, y: position.y }}
-      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+      style={{ x, y }}
     >
       {children}
     </motion.div>
