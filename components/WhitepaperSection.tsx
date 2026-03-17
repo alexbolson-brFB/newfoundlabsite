@@ -71,12 +71,6 @@ const WhitepaperSection: React.FC = () => {
                       >
                           {t.whitepaper.ctaPrimary}
                       </a>
-                      <a
-                          href="#contact"
-                          className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white border border-slate-300 text-navy-900 text-[10px] font-bold tracking-[0.2em] uppercase rounded-sm transition-colors"
-                      >
-                          {t.whitepaper.ctaSecondary}
-                      </a>
                       </div>
                   </motion.div>
 
