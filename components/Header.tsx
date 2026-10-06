@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Terminal, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 import { useLanguage } from '../contexts/LanguageContext';
-import PrivateOfferModal from './PrivateOfferModal';
 
 const Header: React.FC = () => {
   const { t, language, setLanguage } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
-  const [privateOfferOpen, setPrivateOfferOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -64,18 +63,20 @@ const Header: React.FC = () => {
   }, [menuOpen]);
 
   const navLinks = [
-    { label: 'Gemini Guard', hash: '#gemini-guard' },
-    { label: t.nav.paradox, hash: '#the-paradox' },
-    { label: t.nav.enclave, hash: '#tech-stack' },
+    { label: t.nav.product, hash: '#rex-guard' },
+    { label: t.nav.paradox, hash: '#authority-gap' },
+    { label: t.nav.howItWorks, hash: '#how-it-works' },
     { label: t.nav.architecture, hash: '#architecture' },
-    { label: t.nav.roi, hash: '#roi-case-study' },
-    { label: t.nav.marketplace, hash: '#marketplace' }
+    { label: t.nav.evidence, hash: '#evidence' },
+    { label: t.nav.enterprise, hash: '#enterprise' }
   ];
 
   const handleNav = (hash: string) => {
     const target = document.querySelector(hash);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      navigate(`/${hash}`);
     }
     setMenuOpen(false);
   };
@@ -130,13 +131,13 @@ const Header: React.FC = () => {
         </div>
 
         {/* Desktop Nav Grid */}
-        <div className="hidden lg:flex flex-1 items-stretch justify-end">
+        <div className="hidden xl:flex flex-1 items-stretch justify-end">
             <nav className="flex items-stretch divide-x divide-slate-200 border-l border-slate-200">
                 {navLinks.map((item) => (
                 <button
                     key={item.label}
                     onClick={() => handleNav(item.hash)}
-                    className={`flex items-center px-6 text-[11px] font-bold uppercase tracking-[0.25em] transition-colors relative group min-h-[44px] ${
+                    className={`flex items-center px-3 text-[10px] font-bold uppercase tracking-[0.12em] transition-colors relative group min-h-[44px] ${
                       activeSection === item.hash ? 'text-navy-900' : 'text-slate-500 hover:text-navy-900 hover:bg-slate-50'
                     }`}
                     aria-current={activeSection === item.hash ? 'true' : undefined}
@@ -167,12 +168,12 @@ const Header: React.FC = () => {
                  {/* CTA */}
                  <div className="flex items-center px-6">
                     <motion.button
-                        onClick={() => setPrivateOfferOpen(true)}
+                        onClick={() => handleNav('#contact-form')}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         className="inline-flex items-center gap-3 px-6 py-3 bg-navy-900 text-white text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm hover:bg-navy-800 transition-all border border-navy-900"
                     >
-                        {t.nav.privateOffer}
+                        {t.nav.evaluation}
                         <ArrowRight className="w-3.5 h-3.5" />
                     </motion.button>
                  </div>
@@ -180,7 +181,7 @@ const Header: React.FC = () => {
         </div>
 
         {/* Mobile Header Right */}
-        <div className="flex lg:hidden flex-1 items-center justify-end px-4 gap-4">
+        <div className="flex xl:hidden flex-1 items-center justify-end px-4 gap-4">
              <button
                 onClick={triggerCommandMenu}
                 className="p-3 text-slate-500 hover:text-navy-900 min-w-[44px] min-h-[44px] flex items-center justify-center"
@@ -205,7 +206,7 @@ const Header: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[130] lg:hidden"
+            className="fixed inset-0 z-[130] xl:hidden"
           >
             <div
               className="absolute inset-0 bg-navy-950/80 backdrop-blur-sm"
@@ -267,11 +268,11 @@ const Header: React.FC = () => {
                     <motion.button
                         onClick={() => {
                             setMenuOpen(false);
-                            setPrivateOfferOpen(true);
+                            handleNav('#contact-form');
                         }}
                         className="w-full flex items-center justify-center gap-3 px-6 py-3 bg-navy-900 text-white text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm hover:bg-navy-800 transition-all border border-navy-900"
                     >
-                        {t.nav.privateOffer}
+                        {t.nav.evaluation}
                         <ArrowRight className="w-3.5 h-3.5" />
                     </motion.button>
                  </div>
@@ -289,8 +290,6 @@ const Header: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      
-      <PrivateOfferModal isOpen={privateOfferOpen} onClose={() => setPrivateOfferOpen(false)} />
     </header>
   );
 };

@@ -237,7 +237,7 @@ const TechStackSection: React.FC = () => {
                         </li>
                         <li className="flex items-start gap-3 text-xs text-slate-400">
                             <div className="w-1.5 h-1.5 rounded-full bg-[#76b900] mt-1.5 shadow-[0_0_5px_#76b900]"></div>
-                            <span>Foundational to the 'Trust by Physics' paradigm.</span>
+                            <span>{t.techStack.quote}</span>
                         </li>
                     </ul>
                 </motion.div>

@@ -94,8 +94,7 @@ const WhitepaperSection: React.FC = () => {
                       </ul>
                       
                       <div className="mt-8 p-4 bg-white border border-slate-200 text-[10px] text-slate-400 font-mono leading-relaxed">
-                          <span className="block mb-2 font-bold text-slate-500 uppercase tracking-wider">Abstract ID:</span>
-                          SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+                          <a href="#rex-guard" className="font-bold text-navy-900 underline underline-offset-4">{t.whitepaper.ctaSecondary}</a>
                       </div>
                   </motion.div>
               </div>

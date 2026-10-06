@@ -49,10 +49,10 @@ const CommandMenu: React.FC = () => {
     {
       category: "Navigation",
       items: [
-        { icon: Monitor, label: t.nav.paradox, action: () => handleNav('#the-paradox') },
+        { icon: Monitor, label: t.nav.paradox, action: () => handleNav('#authority-gap') },
         { icon: Cpu, label: t.nav.architecture, action: () => handleNav('#architecture') },
-        { icon: ShieldAlert, label: t.nav.enclave, action: () => handleNav('#tech-stack') },
-        { icon: FileText, label: t.nav.roi, action: () => handleNav('#roi-case-study') },
+        { icon: ShieldAlert, label: t.nav.howItWorks, action: () => handleNav('#how-it-works') },
+        { icon: FileText, label: t.nav.evidence, action: () => handleNav('#evidence') },
       ]
     },
     {

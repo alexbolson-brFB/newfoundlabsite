@@ -6,7 +6,6 @@ import {
   Database,
   BrainCircuit,
   LucideIcon,
-  ArrowUpRight,
 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -86,97 +85,105 @@ const featureCopy: Record<
   Locale,
   Record<FeatureKey, Omit<Feature, 'icon' | 'accent'>>
 > = {
-  en: {
-    trust: {
-      title: 'Infrastructure for Trust',
-      description:
-        'Precision ingestion, validation, scoring, and evidence generation through the Veritas Protocol.',
-      detail: 'Deterministic scoring trail for regulators and auditors.',
-      badge: 'Veritas Stack',
+  "en": {
+    "trust": {
+      "title": "Banking & Payments",
+      "description": "Evaluate the boundary before releasing a payment or changing a financial instruction.",
+      "detail": "Action-specific authorization.",
+      "badge": "Financial actions"
     },
-    zero: {
-      title: 'Zero-Persistence Architecture',
-      description:
-        'Sensitive data stays in volatile memory and never lands on disk, eliminating custody risk.',
-      detail: 'Ephemeral enclaves guarantee zero stored bytes post-inference.',
-      badge: 'Ephemeral Compute',
+    "zero": {
+      "title": "Insurance",
+      "description": "Define who may propose and authorize actions on claims and policies.",
+      "detail": "Purpose, scope and authority separate from inference.",
+      "badge": "Insurance operations"
     },
-    score: {
-      title: 'Explainable Score',
-      description:
-        'AI-generated scores with narrative justifications ensure auditability.',
-      detail: 'Every decision is paired with human-readable context.',
-      badge: 'Explainability',
+    "score": {
+      "title": "Enterprise Systems",
+      "description": "Protect consequential changes to records, permissions and processes.",
+      "detail": "Connectors enforce control before the destination.",
+      "badge": "Integration"
     },
-    philosophy: {
-      title: 'AI Philosophy',
-      description:
-        'Explainability, bias mitigation, and robust governance layered over Google Gemini.',
-      detail: 'Ethical guardrails embedded from design to deployment.',
-      badge: 'Governance',
-    },
+    "philosophy": {
+      "title": "Technical Evaluation",
+      "description": "Map the authority source, policy, adapter and required evidence.",
+      "detail": "Integration scope is defined with the institution.",
+      "badge": "REX Guard"
+    }
   },
-  pt: {
-    trust: {
-      title: 'Infraestrutura para Confianca',
-      description:
-        'Ingestao, validacao, score e evidencia auditavel conduzidos pelo Protocolo Veritas.',
-      detail: 'Trilha deterministica para reguladores e auditorias.',
-      badge: 'Stack Veritas',
+  "pt": {
+    "trust": {
+      "title": "Bancos e pagamentos",
+      "description": "Avalie a fronteira antes de liberar um pagamento ou alterar uma instrução financeira.",
+      "detail": "Autorização específica por ação.",
+      "badge": "Ações financeiras"
     },
-    zero: {
-      title: 'Arquitetura Zero-Persistencia',
-      description:
-        'Dados sensiveis vivem em memoria volatil e nunca tocam disco, removendo risco de custodia.',
-      detail: 'Enclaves efemeros garantem zero bytes armazenados.',
-      badge: 'Compute Efemero',
+    "zero": {
+      "title": "Seguros",
+      "description": "Delimite quem pode propor e autorizar ações sobre sinistros e apólices.",
+      "detail": "Finalidade, escopo e autoridade separados da inferência.",
+      "badge": "Operações de seguros"
     },
-    score: {
-      title: 'Score Explicavel',
-      description:
-        'Pontuacoes com narrativas naturais entregam transparencia auditavel.',
-      detail: 'Cada decisao vem acompanhada de contexto legivel.',
-      badge: 'Explainability',
+    "score": {
+      "title": "Sistemas corporativos",
+      "description": "Proteja alterações com efeito real em registros, permissões e processos.",
+      "detail": "Conectores aplicam o controle antes do destino.",
+      "badge": "Integração"
     },
-    philosophy: {
-      title: 'Filosofia de IA',
-      description:
-        'Explainability, mitigacao de vieses e governanca robusta alavancando Google Gemini.',
-      detail: 'Trilhos eticos integrados do design ao deploy.',
-      badge: 'Governanca',
-    },
-  },
+    "philosophy": {
+      "title": "Avaliação técnica",
+      "description": "Mapeie a fonte de autoridade, a política, o adaptador e a evidência necessária.",
+      "detail": "O escopo de integração é definido com a instituição.",
+      "badge": "REX Guard"
+    }
+  }
 };
 
 const sectionCopy: Record<Locale, { eyebrow: string; heading: string; subheading: string }> = {
-  en: {
-    eyebrow: 'Trust-native primitives',
-    heading: "Foundlab's Umbrella Platform",
-    subheading:
-      'A cinematic, serverless infrastructure engineered for computational trust, low-latency inference, and institutional certainty across regulated industries.',
+  "en": {
+    "eyebrow": "Enterprise context",
+    "heading": "Institutional control for consequential actions.",
+    "subheading": "Architecture intended for regulated environments and enterprise systems. Technical evaluation defines authority boundaries and evidence requirements, without assuming automatic compliance."
   },
-  pt: {
-    eyebrow: 'Primitivos nativos de confianca',
-    heading: 'Plataforma Umbrella da FoundLab',
-    subheading:
-      'Infraestrutura serverless cinematografica desenhada para confianca computacional, inferencia de baixa latencia e certeza institucional em mercados regulados.',
-  },
+  "pt": {
+    "eyebrow": "Contexto enterprise",
+    "heading": "Controle institucional para ações com consequência.",
+    "subheading": "Arquitetura destinada a ambientes regulados e sistemas corporativos. A avaliação técnica define os limites de autoridade e os requisitos de evidência, sem pressupor conformidade automática."
+  }
 };
 
 const statsCopy: Record<Locale, { label: string; value: string }[]> = {
-  en: [
-    { label: 'Cold-start SLA', value: '< 50 ms' },
-    { label: 'Custody Risk', value: '0 stored bytes' },
-    { label: 'Explainability Coverage', value: '100% of decisions' },
+  "en": [
+    {
+      "label": "Institution",
+      "value": "Defines authority"
+    },
+    {
+      "label": "REX Guard",
+      "value": "Enforces policy"
+    },
+    {
+      "label": "Audit",
+      "value": "Verifies evidence"
+    }
   ],
-  pt: [
-    { label: 'SLA de cold-start', value: '< 50 ms' },
-    { label: 'Risco de custodia', value: '0 bytes armazenados' },
-    { label: 'Cobertura de XAI', value: '100% das decisoes' },
-  ],
+  "pt": [
+    {
+      "label": "Instituição",
+      "value": "Define autoridade"
+    },
+    {
+      "label": "REX Guard",
+      "value": "Aplica política"
+    },
+    {
+      "label": "Auditoria",
+      "value": "Verifica evidência"
+    }
+  ]
 };
 
-const UmbrellaSection: React.FC = () => {
+const EnterpriseSection: React.FC = () => {
   const { language } = useLanguage();
   const locale: Locale = language === 'pt' ? 'pt' : 'en';
   const section = sectionCopy[locale];
@@ -188,7 +195,7 @@ const UmbrellaSection: React.FC = () => {
   }));
 
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden bg-slate-50 border-t border-slate-200">
+    <section id="enterprise" className="relative py-24 lg:py-32 overflow-hidden bg-slate-50 border-t border-slate-200">
       {/* Background with Audit Grid */}
       <div 
         className="absolute inset-0 opacity-[0.03] pointer-events-none border-b border-slate-200"
@@ -286,4 +293,4 @@ const UmbrellaSection: React.FC = () => {
   );
 };
 
-export default UmbrellaSection;
+export default EnterpriseSection;

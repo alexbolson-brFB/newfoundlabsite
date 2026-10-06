@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { motion, Variants, useScroll, useTransform, useAnimation } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import MagneticButton from './MagneticButton';
 import heroVisual from '../images/hero_visual.webp';
 
 // --- Animation Variants ---
@@ -13,8 +12,8 @@ const titleContainerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1, // Word stagger
-      delayChildren: 0.2
+      staggerChildren: 0.02, // Word stagger
+      delayChildren: 0
     }
   }
 };
@@ -25,8 +24,8 @@ const subtitleContainerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.03, // Word stagger
-      delayChildren: 1.0    // Start after title
+      staggerChildren: 0.003, // Word stagger
+      delayChildren: 0.1   // Start with the title
     }
   }
 };
@@ -37,7 +36,7 @@ const titleWordVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.04, // Letter stagger
+      staggerChildren: 0.005, // Letter stagger
     }
   }
 };
@@ -79,7 +78,7 @@ const buttonContainerVariants: Variants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 2.2
+      delayChildren: 0.3
     }
   }
 };
@@ -244,7 +243,7 @@ const NewHero: React.FC = () => {
               style={{ y: textY, opacity: textOpacity }}
               className="text-center lg:text-left lg:col-span-3"
             >
-                <h1 className="font-serif text-[clamp(2.5rem,6vw,4.5rem)] text-navy-900 leading-[1.1] mb-8 font-medium tracking-tight break-words">
+                <h1 aria-label={`${t.hero.title1} ${t.hero.title2}`} className="font-serif text-[clamp(2.5rem,6vw,4.5rem)] text-navy-900 leading-[1.1] mb-8 font-medium tracking-tight break-words">
                     <span className="block">
                       <AnimatedText 
                           key={`title1-${language}`}
@@ -252,7 +251,7 @@ const NewHero: React.FC = () => {
                           containerVariants={titleContainerVariants} 
                           wordVariants={titleWordVariants}
                           mode="letter"
-                          enableGlitch={true}
+                          enableGlitch={false}
                        />
                     </span>
                     <span className="block mt-1">
@@ -263,7 +262,7 @@ const NewHero: React.FC = () => {
                             containerVariants={titleContainerVariants} 
                             wordVariants={titleWordVariants}
                             mode="letter"
-                            enableGlitch={true}
+                            enableGlitch={false}
                          />
                        </span>
                     </span>
@@ -294,7 +293,7 @@ const NewHero: React.FC = () => {
                   </a>
                   
                   <a 
-                    href="#whitepaper" 
+                    href="#architecture"
                     className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent border border-slate-300 text-navy-900 font-sans text-[11px] font-bold uppercase tracking-[0.2em] rounded-sm focus:outline-none focus:ring-2 focus:ring-gold"
                   >
                     {t.hero.cta2}
@@ -327,11 +326,11 @@ const NewHero: React.FC = () => {
         {/* Scroll Indicator */}
         <motion.a 
           aria-label={t.hero.scroll}
-          href="#the-paradox"
+          href="#authority-gap"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, y: [0, 5, 0] }}
           transition={{ 
-              opacity: { delay: 3, duration: 1 },
+              opacity: { delay: 0.5, duration: 0.5 },
               y: { repeat: Infinity, duration: 2, ease: "easeInOut" }
           }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 cursor-pointer group"
