@@ -62,7 +62,7 @@ const VeoVideoModal: React.FC<VeoVideoModalProps> = ({ isOpen, onClose }) => {
       // 3. Start Video Generation
       if (isMountedRef.current) setStatusMessage(t.video.generating);
       
-      // FoundLab specific prompt for Veo: Visualizing Zero-Persistence
+      // FoundLab specific prompt for Veo: Visualizing protected execution boundaries
       const prompt = "Cinematic 3d render of a high-tech digital bank vault. Data appears as streams of golden light entering a glowing translucent cube container suspended in void. The processing happens inside. Then, effectively demonstrating 'Zero-Persistence', the container instantly shatters into fine dust and vanishes completely, leaving absolutely no trace. Green and Navy blue corporate color scheme. High tech, futuristic, highly detailed, photorealistic, 8k, unreal engine 5 style, volumetric lighting.";
       
       // Show prompt to user for transparency (logging to console or could set state to display)
@@ -153,7 +153,7 @@ const VeoVideoModal: React.FC<VeoVideoModalProps> = ({ isOpen, onClose }) => {
                      <Play className="w-8 h-8 text-white ml-1" />
                   </div>
                   <h4 className="text-white font-serif text-xl mb-2">Generate Explainer</h4>
-                  <p className="text-slate-400 mb-8 max-w-md mx-auto text-sm">Use Google Veo to generate a unique architectural visualization of FoundLab's Zero-Persistence model.</p>
+                  <p className="text-slate-400 mb-8 max-w-md mx-auto text-sm">Use Google Veo to generate an illustrative visualization of FoundLab's protected execution boundary.</p>
                   
                   <button
                     onClick={generateVideo}

@@ -280,7 +280,7 @@ export const translations: Record<Language, Translations> = {
       title: "Inside the FoundLab Sovereign Stack",
       generateBtn: "Render AI Overview (Veo)",
       generating: "Preparing infrastructure visualization...",
-      waiting: "Calibrating Zero-Persistence lattice...",
+      waiting: "Calibrating protected execution boundary...",
       error: "Sequence interrupted. Please try again.",
       disclaimer: "Generated live with Google Veo. No assets are pre-rendered."
     },
@@ -331,7 +331,7 @@ export const translations: Record<Language, Translations> = {
 },
     whitepaper: {
   "badge": "Research archive",
-  "title": "Zero-Persistence Research",
+  "title": "Historical Privacy Research",
   "subtitle": "Historical research on privacy and retention. It preserves terminology and assumptions from its publication; it does not define the current category or REX Guard specification.",
   "highlights": [
     "Explores data minimization and separation of content from evidence.",
@@ -402,20 +402,20 @@ export const translations: Record<Language, Translations> = {
     roi: {
       eyebrow: "Proof in Production",
       title: "The 16-Minute Resolution.",
-      subtitle: "Inside a Tier-1 Global Investment Bank we mitigated a Shadow IT breach exposing $20M+ in liabilities. Zero-Persistence collapsed 21 hours of manual playbooks into minutes.",
+      subtitle: "A historical incident pattern illustrating why AI proposals need explicit authority, deterministic policy and verifiable execution evidence.",
       incident: {
         label: "Incident Detected",
         desc: "Unauthorized client data upload into a consumer AI assistant."
       },
       timeline: {
         legacy: "21 Hours (Manual Playbooks)",
-        foundlab: "16 Minutes (Zero-Persistence Runbook)",
+        foundlab: "REX Guard evaluation (illustrative)",
         label: "Response Time"
       },
       metrics: {
-        saved: "$ 20M+",
+        saved: "DecisionID",
         savedLabel: "Liability Averted",
-        reduction: "98.7%",
+        reduction: "Fail closed",
         reductionLabel: "Faster Containment"
       }
     },
@@ -502,7 +502,7 @@ export const translations: Record<Language, Translations> = {
         title: "Privacy Policy",
         description: "Our policy is simple: We don't want your data.",
         body: [
-          "FoundLab operates on a Zero-Trust, Zero-Persistence model. We do not ingest, store, or train on client data. All processing occurs within your sovereign VPC.",
+          "FoundLab documents the product boundary and data handling in the applicable agreement. REX Guard is designed to keep authority evaluation separate from model output; deployment-specific retention and processing terms must be verified for each environment.",
           "Any telemetry collected is strictly for system health (uptime, latency) and contains no PII or financial secrets. We are architecturally designed to not retain what we never held."
         ]
       },
@@ -511,14 +511,14 @@ export const translations: Record<Language, Translations> = {
         description: "The rules of engagement for sovereign infrastructure.",
         body: [
           "Services are provided under a Master Service Agreement (MSA) executed via Google Cloud Marketplace Private Offer.",
-          "You own the enclave. You own the keys. You own the liability for what you build. We own the guarantee that the physics of the system hold true."
+          "The institution defines authority and remains responsible for its deployment. REX Guard verifies the configured boundary and records the authorization outcome; deployment terms are defined in the applicable agreement."
         ]
       },
       sla: {
         title: "Service Level Agreement",
-        description: "99.95% Uptime. 15-Minute Response. No Excuses.",
+        description: "Service terms and operational targets are defined in the applicable agreement.",
         body: [
-          "Our SLA is backed by financial penalties, not credits. We guarantee sub-50ms cold-starts for inference and 99.95% availability for control plane API.",
+          "Operational targets, support windows and remedies are defined in the applicable agreement; no universal latency or availability claim is made here.",
           "Critical incidents (P1) trigger an immediate swarm response from our engineering core, not a support ticket queue."
         ]
       }
@@ -585,8 +585,8 @@ export const translations: Record<Language, Translations> = {
         terms: "Terms of Service",
         sla: "SLA"
       },
-      rights: "FoundLab Inc. All rights reserved.",
-      locations: "New York / Sao Paulo"
+      rights: "FoundLab. All rights reserved.",
+      locations: "Auditable Trust Infrastructure"
     },
     socialProof: {
       eyebrow: "Trusted By Leaders",
@@ -675,7 +675,7 @@ export const translations: Record<Language, Translations> = {
       title: "Dentro da Stack Soberana da FoundLab",
       generateBtn: "Renderizar Visão com IA (Veo)",
       generating: "Preparando visualização de infraestrutura...",
-      waiting: "Calibrando a malha de Zero-Persistência...",
+      waiting: "Calibrando a fronteira de execução protegida...",
       error: "Sequência interrompida. Tente novamente.",
       disclaimer: "Gerado ao vivo com Google Veo. Nenhum ativo é pré-renderizado."
     },
@@ -726,7 +726,7 @@ export const translations: Record<Language, Translations> = {
 },
     whitepaper: {
   "badge": "Arquivo de pesquisa",
-  "title": "Pesquisa sobre Zero-Persistência",
+  "title": "Pesquisa histórica sobre privacidade",
   "subtitle": "Documento histórico sobre privacidade e retenção. Preserva terminologia e hipóteses da época; não define a categoria atual nem a especificação do REX Guard.",
   "highlights": [
     "Explora minimização de dados e separação entre conteúdo e evidência.",
@@ -797,20 +797,20 @@ export const translations: Record<Language, Translations> = {
     roi: {
       eyebrow: "Prova em Produção",
       title: "A Resolução de 16 Minutos.",
-      subtitle: "Dentro de um Banco de Investimento Tier-1 mitigamos um vazamento de Shadow IT que expunha milhões em passivos. Zero-Persistência condensou 21 horas de runbooks manuais em minutos.",
+      subtitle: "Um padrão histórico de incidente que ilustra por que propostas de IA precisam de autoridade explícita, política determinística e evidência verificável de execução.",
       incident: {
         label: "Incidente Detectado",
         desc: "Upload não autorizado de dados de clientes em um assistente de IA público."
       },
       timeline: {
         legacy: "21 Horas (Playbooks Manuais)",
-        foundlab: "16 Minutos (Runbook Zero-Persistência)",
+        foundlab: "Avaliação REX Guard (ilustrativa)",
         label: "Tempo de Resposta"
       },
       metrics: {
-        saved: "R$ 100M+",
+        saved: "DecisionID",
         savedLabel: "Passivo Evitado",
-        reduction: "98.7%",
+        reduction: "Fail closed",
         reductionLabel: "Contenção Mais Rápida"
       }
     },
@@ -897,7 +897,7 @@ export const translations: Record<Language, Translations> = {
         title: "Política de Privacidade",
         description: "Nossa política é simples: Não queremos seus dados.",
         body: [
-          "A FoundLab opera em um modelo Zero-Trust e Zero-Persistência. Não ingerimos, armazenamos ou treinamos com dados de clientes. Todo o processamento ocorre dentro da sua VPC soberana.",
+          "A FoundLab documenta os limites do produto e o tratamento de dados no contrato aplicável. O REX Guard separa a avaliação de autoridade da saída do modelo; retenção e processamento devem ser verificados para cada ambiente.",
           "Qualquer telemetria coletada é estritamente para saúde do sistema (uptime, latência) e não contém PII ou segredos financeiros. Somos arquiteturalmente desenhados para não reter o que nunca tivemos."
         ]
       },
@@ -911,9 +911,9 @@ export const translations: Record<Language, Translations> = {
       },
       sla: {
         title: "Acordo de Nível de Serviço",
-        description: "99.95% Uptime. Resposta em 15 Minutos. Sem Desculpas.",
+        description: "Termos de serviço e metas operacionais são definidos no contrato aplicável.",
         body: [
-          "Nosso SLA é garantido por penalidades financeiras, não créditos. Garantimos cold-starts de inferência abaixo de 50ms e 99.95% de disponibilidade para o control plane.",
+          "Metas operacionais, janelas de suporte e remédios são definidos no contrato aplicável; nenhuma afirmação universal de latência ou disponibilidade é feita aqui.",
           "Incidentes críticos (P1) acionam uma resposta imediata do nosso núcleo de engenharia, não uma fila de suporte."
         ]
       }
@@ -980,8 +980,8 @@ export const translations: Record<Language, Translations> = {
         terms: "Terms of Service",
         sla: "SLA"
       },
-      rights: "FoundLab Inc. Todos os direitos reservados.",
-      locations: "Nova York / São Paulo"
+      rights: "FoundLab. Todos os direitos reservados.",
+      locations: "Auditable Trust Infrastructure"
     },
     socialProof: {
       eyebrow: "Confiança Comprovada",

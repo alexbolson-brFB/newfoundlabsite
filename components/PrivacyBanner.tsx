@@ -21,8 +21,8 @@ const PrivacyBanner: React.FC = () => {
               <EyeOff className="w-4 h-4 text-emerald-500" />
             </div>
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-300">Zero-Tracking Active</p>
-              <p className="text-[10px] text-slate-400">No cookies. No pixels. Just physics.</p>
+<p className="text-[10px] font-bold uppercase tracking-widest text-slate-300">Privacy controls active</p>
+<p className="text-[10px] text-slate-400">Review the applicable privacy policy and terms.</p>
             </div>
           </div>
           
