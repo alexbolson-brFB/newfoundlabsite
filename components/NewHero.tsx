@@ -320,12 +320,13 @@ const NewHero: React.FC = () => {
     loop
     muted
     playsInline
-    preload="metadata"
+    preload="auto"
     onError={() => setVideoFailed(true)}
+    onLoadedData={() => setVideoFailed(false)}
     className="w-full h-auto object-contain drop-shadow-2xl"
   >
-    <source src="/hero_visual.webm" type="video/webm" />
     <source src="/hero_video.webm" type="video/webm" />
+    <source src="/hero_visual.webm" type="video/webm" />
   </video>
 )}
             </motion.div>
