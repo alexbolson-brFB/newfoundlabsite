@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, Variants, useScroll, useTransform, useAnimation, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-const heroVisual = '/hero_visual.png';
-const heroVideo = '/hero_video.webm';
-const heroVideoFallback = '/hero_visual.webm';
+import heroVisual from '../images/hero_visual.webp';
 
 // --- Animation Variants ---
 
@@ -322,13 +320,12 @@ const NewHero: React.FC = () => {
     loop
     muted
     playsInline
-    preload="auto"
+    preload="metadata"
     onError={() => setVideoFailed(true)}
-    onLoadedData={() => setVideoFailed(false)}
     className="w-full h-auto object-contain drop-shadow-2xl"
   >
-    <source src={heroVideo} type="video/webm" />
-    <source src={heroVideoFallback} type="video/webm" />
+    <source src="/hero_visual.webm" type="video/webm" />
+    <source src="/hero_video.webm" type="video/webm" />
   </video>
 )}
             </motion.div>
