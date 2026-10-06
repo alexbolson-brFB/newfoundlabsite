@@ -224,6 +224,7 @@ export interface ContactFormTranslations {
   submit: string;
   submitting: string;
   error: string;
+  privacyNotice: string;
   success: { title: string; desc: string; another: string };
 }
 
@@ -643,8 +644,9 @@ export const translations: Record<Language, Translations> = {
       },
       submit: "Send Message",
       submitting: "Transmitting...",
-      error: "Failed to send. Please try again or email us directly.",
-      success: {
+  error: "Failed to send. Please try again or email us directly.",
+  privacyNotice: "By submitting this form, you provide your contact details so FoundLab can respond to your request. See",
+  success: {
         title: "Message Transmitted",
         desc: "Your inquiry has been securely queued. A specialist from our engineering core will respond within 24 hours.",
         another: "Send Another Message"
@@ -1038,8 +1040,9 @@ export const translations: Record<Language, Translations> = {
       },
       submit: "Enviar Mensagem",
       submitting: "Transmitindo...",
-      error: "Falha ao enviar. Tente novamente ou envie um email diretamente.",
-      success: {
+  error: "Falha ao enviar. Tente novamente ou envie um email diretamente.",
+  privacyNotice: "Ao enviar este formulário, você fornece seus dados de contato para que a FoundLab possa responder à solicitação. Consulte",
+  success: {
         title: "Mensagem Transmitida",
         desc: "Sua consulta foi enfileirada com seguranca. Um especialista do nosso nucleo de engenharia respondera em ate 24 horas.",
         another: "Enviar Outra Mensagem"

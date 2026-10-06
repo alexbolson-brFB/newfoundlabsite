@@ -14,6 +14,7 @@ const ContactForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
   const [message, setMessage] = useState('');
+  const [website, setWebsite] = useState('');
   const [status, setStatus] = useState<FormStatus>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -21,7 +22,7 @@ const ContactForm: React.FC = () => {
     e.preventDefault();
     
     if (!name.trim() || !email.trim() || !message.trim()) return;
-    if (!email.includes('@') || !email.includes('.')) return;
+    if (name.trim().length > 120 || email.trim().length > 254 || company.trim().length > 160 || message.trim().length > 5000) return;
 
     setStatus('submitting');
     setErrorMsg('');
@@ -30,7 +31,7 @@ const ContactForm: React.FC = () => {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, company, message, type: 'contact' }),
+        body: JSON.stringify({ name, email, company, message, type: 'contact', website }),
       });
 
       if (!response.ok) {
@@ -43,6 +44,7 @@ const ContactForm: React.FC = () => {
       setEmail('');
       setCompany('');
       setMessage('');
+      setWebsite('');
     } catch (err) {
       setStatus('error');
       setErrorMsg(err instanceof Error ? err.message : 'An unexpected error occurred.');
@@ -126,6 +128,8 @@ const ContactForm: React.FC = () => {
                       type="text"
                       required
                       value={name}
+                      maxLength={120}
+                      autoComplete="name"
                       onChange={(e) => setName(e.target.value)}
                       className="w-full border border-slate-200 text-navy-900 px-4 py-3 text-base focus:outline-none focus:border-navy-900 transition-colors rounded-sm bg-slate-50 placeholder:text-slate-400"
                       placeholder={cf.placeholders.name}
@@ -143,6 +147,8 @@ const ContactForm: React.FC = () => {
                       type="email"
                       required
                       value={email}
+                      maxLength={254}
+                      autoComplete="email"
                       onChange={(e) => setEmail(e.target.value)}
                       className="w-full border border-slate-200 text-navy-900 px-4 py-3 text-base focus:outline-none focus:border-navy-900 transition-colors rounded-sm bg-slate-50 placeholder:text-slate-400"
                       placeholder={cf.placeholders.email}
@@ -160,6 +166,8 @@ const ContactForm: React.FC = () => {
                     id="contact-company"
                     type="text"
                     value={company}
+                    maxLength={160}
+                    autoComplete="organization"
                     onChange={(e) => setCompany(e.target.value)}
                     className="w-full border border-slate-200 text-navy-900 px-4 py-3 text-base focus:outline-none focus:border-navy-900 transition-colors rounded-sm bg-slate-50 placeholder:text-slate-400"
                     placeholder={cf.placeholders.company}
@@ -176,6 +184,7 @@ const ContactForm: React.FC = () => {
                     id="contact-message"
                     required
                     rows={5}
+                    maxLength={5000}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     className="w-full border border-slate-200 text-navy-900 px-4 py-3 text-base focus:outline-none focus:border-navy-900 transition-colors rounded-sm bg-slate-50 placeholder:text-slate-400 resize-none"
@@ -183,7 +192,15 @@ const ContactForm: React.FC = () => {
                   />
                 </div>
 
-                {/* Error message */}
+                <input
+                  aria-hidden="true"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                  className="absolute -left-[9999px] h-px w-px opacity-0"
+                />
+
                 {status === 'error' && (
                   <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-100 text-red-700 text-sm rounded-sm">
                     <AlertCircle className="w-4 h-4 shrink-0" />
@@ -191,7 +208,11 @@ const ContactForm: React.FC = () => {
                   </div>
                 )}
 
-                {/* Submit */}
+                <p className="text-xs leading-relaxed text-slate-500">
+                  {cf.privacyNotice}{' '}
+                  <a href="/privacy" className="underline underline-offset-2 hover:text-navy-900">{t.pages.privacy.title}</a>
+                </p>
+
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
