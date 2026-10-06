@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, Variants, useScroll, useTransform, useAnimation, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -200,6 +200,7 @@ const NewHero: React.FC = () => {
   const { scrollY } = useScroll();
   const shouldReduceMotion = useReducedMotion();
   const { t, language } = useLanguage();
+  const [videoFailed, setVideoFailed] = useState(false);
   
   const backgroundY = useTransform(scrollY, [0, 1000], [0, 150]);
   const backgroundOpacity = useTransform(scrollY, [0, 500], [1, 0.3]);
@@ -310,19 +311,22 @@ const NewHero: React.FC = () => {
               transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
               className="relative w-full max-w-md mx-auto lg:col-span-2"
             >
-{shouldReduceMotion ? (
+{shouldReduceMotion || videoFailed ? (
   <img src={heroVisual} alt="REX Guard visual" className="w-full h-auto object-contain drop-shadow-2xl" />
 ) : (
   <video
-    src="/hero_visual.webm"
     poster={heroVisual}
     autoPlay
     loop
     muted
     playsInline
     preload="metadata"
+    onError={() => setVideoFailed(true)}
     className="w-full h-auto object-contain drop-shadow-2xl"
-  />
+  >
+    <source src="/hero_visual.webm" type="video/webm" />
+    <source src="/hero_video.webm" type="video/webm" />
+  </video>
 )}
             </motion.div>
           </div>
