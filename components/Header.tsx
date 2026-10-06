@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Terminal, ArrowRight } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -11,6 +11,8 @@ const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const navigate = useNavigate();
+  const menuTriggerRef = useRef<HTMLButtonElement>(null);
+  const menuPanelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -46,19 +48,32 @@ const Header: React.FC = () => {
 
     observeSections();
 
-    // Check periodically for lazy-loaded sections instead of a heavy MutationObserver
-    const intervalId = setInterval(observeSections, 1000);
+    const mutationObserver = new MutationObserver(() => {
+      observeSections();
+      if (observedElements.size >= 7) mutationObserver.disconnect();
+    });
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
 
     return () => {
       observer.disconnect();
-      clearInterval(intervalId);
+      mutationObserver.disconnect();
     };
   }, []);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
+    if (menuOpen) {
+      requestAnimationFrame(() => menuPanelRef.current?.querySelector<HTMLElement>('button, a')?.focus());
+    } else {
+      menuTriggerRef.current?.focus();
+    }
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false);
+    };
+    if (menuOpen) document.addEventListener('keydown', handleEscape);
     return () => {
       document.body.style.overflow = '';
+      document.removeEventListener('keydown', handleEscape);
     };
   }, [menuOpen]);
 
@@ -89,6 +104,7 @@ const Header: React.FC = () => {
   const LangSwitch = ({ variant }: { variant: 'desktop' | 'mobile' }) => (
     <button
       onClick={() => setLanguage(language === 'en' ? 'pt' : 'en')}
+      aria-label={language === 'en' ? 'Mudar idioma para Português' : 'Switch language to English'}
       className={`relative group flex items-center justify-center gap-2 transition-all overflow-hidden ${
         variant === 'desktop' 
           ? 'h-full px-6 hover:bg-slate-50' 
@@ -134,9 +150,10 @@ const Header: React.FC = () => {
         <div className="hidden xl:flex flex-1 items-stretch justify-end">
             <nav className="flex items-stretch divide-x divide-slate-200 border-l border-slate-200">
                 {navLinks.map((item) => (
-                <button
+                <a
                     key={item.label}
-                    onClick={() => handleNav(item.hash)}
+                    href={item.hash}
+                    onClick={() => setMenuOpen(false)}
                     className={`flex items-center px-3 text-[10px] font-bold uppercase tracking-[0.12em] transition-colors relative group min-h-[44px] ${
                       activeSection === item.hash ? 'text-navy-900' : 'text-slate-500 hover:text-navy-900 hover:bg-slate-50'
                     }`}
@@ -148,7 +165,7 @@ const Header: React.FC = () => {
                         activeSection === item.hash ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                       }`} 
                     />
-                </button>
+                </a>
                 ))}
             </nav>
             
@@ -158,6 +175,7 @@ const Header: React.FC = () => {
                     onClick={triggerCommandMenu}
                     className="flex items-center justify-center px-6 text-slate-400 hover:text-emerald-600 hover:bg-slate-50 transition-colors group"
                     title="Command Interface (Cmd+K)"
+                    aria-label="Open command interface"
                  >
                     <Terminal className="w-4 h-4" />
                  </button>
@@ -190,7 +208,10 @@ const Header: React.FC = () => {
                 <Terminal className="w-5 h-5" />
               </button>
              <button
+                ref={menuTriggerRef}
                 onClick={() => setMenuOpen(true)}
+                aria-expanded={menuOpen}
+                aria-controls="mobile-navigation"
                 className="p-3 text-navy-900 min-w-[44px] min-h-[44px] flex items-center justify-center"
                 aria-label="Open menu"
              >
@@ -213,6 +234,11 @@ const Header: React.FC = () => {
               onClick={() => setMenuOpen(false)}
             />
             <motion.div
+              ref={menuPanelRef}
+              id="mobile-navigation"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -251,14 +277,15 @@ const Header: React.FC = () => {
 
                  <div className="flex flex-col gap-0 divide-y divide-slate-100 border-y border-slate-100">
                     {navLinks.map((item) => (
-                        <button
+                        <a
                         key={item.hash}
+                        href={item.hash}
                         onClick={() => handleNav(item.hash)}
                         className="py-5 text-sm font-serif font-medium text-navy-900 hover:text-gold-600 transition-colors flex items-center justify-between group"
                         >
                         {item.label}
                         <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-gold-500" />
-                        </button>
+                        </a>
                     ))}
                  </div>
 
@@ -280,11 +307,8 @@ const Header: React.FC = () => {
 
               {/* Mobile Menu Footer */}
               <div className="p-8 border-t border-slate-200 bg-slate-50">
-                 <div className="flex items-center gap-3 mb-2">
-                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-700">System Operational</span>
-                 </div>
-                 <p className="text-[10px] text-slate-400 font-mono">FoundLab Infrastructure v2.4</p>
+                 <p className="text-[10px] font-mono uppercase tracking-widest text-slate-500">Auditable Trust Infrastructure</p>
+                 <p className="text-[10px] text-slate-400 font-mono mt-2">REX Guard</p>
               </div>
             </motion.div>
           </motion.div>
