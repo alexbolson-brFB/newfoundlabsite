@@ -99,7 +99,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <div className="min-h-screen bg-white text-slate-800 relative overflow-x-hidden">
       <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:bg-navy-900 focus:px-4 focus:py-3 focus:text-sm focus:text-white">
-        {useLocation().pathname === '/' ? 'Skip to main content' : 'Skip to main content'}
+        {useLocation().pathname === '/' ? 'Skip to main content' : 'Pular para o conteúdo principal'}
       </a>
       <PrivacyBlur />
       <CursorSpotlight />

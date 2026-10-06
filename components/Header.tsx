@@ -13,6 +13,7 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
   const menuTriggerRef = useRef<HTMLButtonElement>(null);
   const menuPanelRef = useRef<HTMLDivElement>(null);
+  const wasMenuOpenRef = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -64,11 +65,25 @@ const Header: React.FC = () => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
     if (menuOpen) {
       requestAnimationFrame(() => menuPanelRef.current?.querySelector<HTMLElement>('button, a')?.focus());
-    } else {
+    } else if (wasMenuOpenRef.current) {
       menuTriggerRef.current?.focus();
     }
+    wasMenuOpenRef.current = menuOpen;
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setMenuOpen(false);
+      if (event.key === 'Tab' && menuPanelRef.current) {
+        const focusable = Array.from(menuPanelRef.current.querySelectorAll<HTMLElement>('button, a, [tabindex]:not([tabindex="-1"])'));
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     };
     if (menuOpen) document.addEventListener('keydown', handleEscape);
     return () => {
@@ -157,7 +172,7 @@ const Header: React.FC = () => {
                     className={`flex items-center px-3 text-[10px] font-bold uppercase tracking-[0.12em] transition-colors relative group min-h-[44px] ${
                       activeSection === item.hash ? 'text-navy-900' : 'text-slate-500 hover:text-navy-900 hover:bg-slate-50'
                     }`}
-                    aria-current={activeSection === item.hash ? 'true' : undefined}
+                    aria-current={activeSection === item.hash ? 'location' : undefined}
                 >
                     {item.label}
                     <span 

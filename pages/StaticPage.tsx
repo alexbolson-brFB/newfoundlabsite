@@ -14,11 +14,42 @@ const StaticPage: React.FC<StaticPageProps> = ({ pageKey }) => {
   const category = isLegal ? t.footer.headers.legal : t.footer.headers.company;
 
   useEffect(() => {
-    document.title = `${content.title} | FoundLab`;
+    const baseUrl = 'https://www.foundlab.com.br';
+    const canonicalUrl = `${baseUrl}${window.location.pathname}`;
+    const title = `${content.title} | FoundLab`;
+    const description = content.description;
+    document.title = title;
+
+    const setMeta = (selector: string, attribute: 'name' | 'property', value: string) => {
+      let element = document.head.querySelector<HTMLMetaElement>(selector);
+      if (!element) {
+        element = document.createElement('meta');
+        element.setAttribute(attribute, selector.match(/\"([^\"]+)\"/)?.[1] || '');
+        document.head.appendChild(element);
+      }
+      element.content = value;
+    };
+    const setLink = (rel: string, href: string) => {
+      let element = document.head.querySelector<HTMLLinkElement>(`link[rel=\"${rel}\"]`);
+      if (!element) {
+        element = document.createElement('link');
+        element.rel = rel;
+        document.head.appendChild(element);
+      }
+      element.href = href;
+    };
+
+    setMeta('meta[name=\"description\"]', 'name', description);
+    setMeta('meta[property=\"og:title\"]', 'property', title);
+    setMeta('meta[property=\"og:description\"]', 'property', description);
+    setMeta('meta[property=\"og:url\"]', 'property', canonicalUrl);
+    setLink('canonical', canonicalUrl);
+
     return () => {
       document.title = 'FoundLab | Auditable Trust Infrastructure';
+      setLink('canonical', `${baseUrl}/`);
     };
-  }, [content.title]);
+  }, [content.description, content.title]);
 
   return (
     <section className="min-h-screen bg-slate-50 pt-32 pb-24 border-t border-slate-200">
@@ -49,29 +80,6 @@ const StaticPage: React.FC<StaticPageProps> = ({ pageKey }) => {
         {/* Content Block - Document Style */}
         <div className="grid lg:grid-cols-12 gap-8 items-start">
             
-            {/* Sidebar Metadata (Visible on Desktop) */}
-            <div className="hidden lg:block col-span-3 sticky top-32">
-                <div className="border border-slate-200 bg-white p-6">
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4 font-mono">Document Info</p>
-                    <div className="space-y-4 text-xs">
-                        <div className="flex justify-between border-b border-slate-100 pb-2">
-                            <span className="text-slate-500">Last Updated</span>
-                            <span className="font-mono text-navy-900">2026-01-17</span>
-                        </div>
-                        <div className="flex justify-between border-b border-slate-100 pb-2">
-                            <span className="text-slate-500">Version</span>
-                            <span className="font-mono text-navy-900">v2.4.0</span>
-                        </div>
-                        <div className="flex justify-between pb-2">
-                            <span className="text-slate-500">Classification</span>
-                            <span className={`font-mono font-bold ${isLegal ? 'text-navy-900' : 'text-emerald-600'}`}>
-                                {isLegal ? 'PUBLIC LEGAL' : 'CORPORATE'}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             {/* Main Body Text */}
             <motion.div 
               className="lg:col-span-9 bg-white border border-slate-200 p-8 md:p-16 shadow-sm"

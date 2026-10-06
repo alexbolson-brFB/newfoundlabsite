@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { motion, Variants, useScroll, useTransform, useAnimation } from 'framer-motion';
+import { motion, Variants, useScroll, useTransform, useAnimation, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import heroVisual from '../images/hero_visual.webp';
@@ -198,12 +198,14 @@ const AnimatedText = React.memo<AnimatedTextProps>(({
 
 const NewHero: React.FC = () => {
   const { scrollY } = useScroll();
+  const shouldReduceMotion = useReducedMotion();
   const { t, language } = useLanguage();
   
   const backgroundY = useTransform(scrollY, [0, 1000], [0, 150]);
   const backgroundOpacity = useTransform(scrollY, [0, 500], [1, 0.3]);
-  const textY = useTransform(scrollY, [0, 500], [0, 50]); // Subtle parallax for text
-  const textOpacity = useTransform(scrollY, [0, 300], [1, 0]); // Fade text out on scroll
+  const textY = useTransform(scrollY, [0, 500], [0, 50]);
+  const textOpacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const parallaxStyle = shouldReduceMotion ? undefined : { y: textY, opacity: textOpacity };
 
   return (
     <>
@@ -240,7 +242,7 @@ const NewHero: React.FC = () => {
             
             {/* --- Text Content --- */}
             <motion.div 
-              style={{ y: textY, opacity: textOpacity }}
+              style={parallaxStyle}
               className="text-center lg:text-left lg:col-span-3"
             >
                 <h1 aria-label={`${t.hero.title1} ${t.hero.title2}`} className="font-serif text-[clamp(2.5rem,6vw,4.5rem)] text-navy-900 leading-[1.1] mb-8 font-medium tracking-tight break-words">
@@ -308,17 +310,20 @@ const NewHero: React.FC = () => {
               transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
               className="relative w-full max-w-md mx-auto lg:col-span-2"
             >
-               <video 
-                  src="/hero_visual.webm" 
-                  poster={heroVisual}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  className="w-full h-auto object-contain drop-shadow-2xl" 
-                  aria-label="FoundLab infrastructure visualization"
-               />
+{shouldReduceMotion ? (
+  <img src={heroVisual} alt="REX Guard visual" className="w-full h-auto object-contain drop-shadow-2xl" />
+) : (
+  <video
+    src="/hero_visual.webm"
+    poster={heroVisual}
+    autoPlay
+    loop
+    muted
+    playsInline
+    preload="metadata"
+    className="w-full h-auto object-contain drop-shadow-2xl"
+  />
+)}
             </motion.div>
           </div>
         </div>
@@ -328,11 +333,11 @@ const NewHero: React.FC = () => {
           aria-label={t.hero.scroll}
           href="#authority-gap"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1, y: [0, 5, 0] }}
-          transition={{ 
-              opacity: { delay: 0.5, duration: 0.5 },
-              y: { repeat: Infinity, duration: 2, ease: "easeInOut" }
-          }}
+animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: [0, 5, 0] }}
+  transition={shouldReduceMotion ? { duration: 0 } : {
+  opacity: { delay: 0.5, duration: 0.5 },
+  y: { repeat: Infinity, duration: 2, ease: "easeInOut" }
+  }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 cursor-pointer group"
         >
           <span className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold group-hover:text-navy-900 transition-colors">{t.hero.scroll}</span>
