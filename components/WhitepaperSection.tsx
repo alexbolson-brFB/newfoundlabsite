@@ -30,7 +30,7 @@ const WhitepaperSection: React.FC = () => {
               </span>
             </div>
             <a 
-              href="/whitepaper.html" 
+              href="https://ati.foundlab.com.br"
               target="_blank" 
               rel="noopener noreferrer"
               className="group block"
@@ -64,7 +64,7 @@ const WhitepaperSection: React.FC = () => {
 
                       <div className="flex flex-col sm:flex-row gap-4">
                       <a
-                          href="/whitepaper.html"
+                          href="https://ati.foundlab.com.br"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-navy-900 text-white text-[10px] font-bold tracking-[0.2em] uppercase rounded-sm transition-all"

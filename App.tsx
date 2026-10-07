@@ -16,7 +16,6 @@ const EnterpriseSection = React.lazy(() => import('./components/EnterpriseSectio
 const ArchitectureSection = React.lazy(() => import('./components/ArchitectureSection'));
 const TerminalSection = React.lazy(() => import('./components/TerminalSection'));
 const ContactForm = React.lazy(() => import('./components/ContactForm'));
-const WhitepaperSection = React.lazy(() => import('./components/WhitepaperSection'));
 const Footer = React.lazy(() => import('./components/Footer'));
 
 // Loading fallback with proper CLS-safe dimensions
@@ -63,11 +62,6 @@ const HomeContent: React.FC = () => (
     <ErrorBoundary>
       <Suspense fallback={<SectionLoader />}>
         <ContactForm />
-      </Suspense>
-    </ErrorBoundary>
-    <ErrorBoundary>
-      <Suspense fallback={<SectionLoader />}>
-        <WhitepaperSection />
       </Suspense>
     </ErrorBoundary>
   </>
