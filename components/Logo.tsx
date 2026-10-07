@@ -37,7 +37,7 @@ const Logo: React.FC<LogoProps> = ({
         <span className={`font-serif font-bold text-xl md:text-2xl tracking-tight leading-none ${classNameText}`}>
           FoundLab
         </span>
-        <span className={`text-[10px] uppercase tracking-[0.25em] font-bold mt-1 group-hover:text-gold-500 transition-colors duration-300 ${classNameSubtitle}`}>
+        <span className={`text-[10px] uppercase tracking-[0.25em] font-bold mt-1 ${classNameSubtitle} transition-colors duration-300 ease-out group-hover:text-gold-600 hover:text-gold-500`}>
           Infrastructure
         </span>
       </div>

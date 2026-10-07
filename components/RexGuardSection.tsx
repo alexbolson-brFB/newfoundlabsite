@@ -327,9 +327,15 @@ const RexGuardSection: React.FC = () => {
               <div className="h-px bg-white/10 flex-1" />
             </div>
             <div className="text-center">
-              <h3 className="font-serif text-3xl md:text-4xl text-white mb-4 text-balance">
+              <motion.h3
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="font-serif text-3xl md:text-4xl text-white mb-4 text-balance"
+              >
                 {t.archTitle}
-              </h3>
+              </motion.h3>
               <p className="text-slate-500 text-lg font-light max-w-2xl mx-auto text-pretty">
                 {t.archSubtitle}
               </p>
