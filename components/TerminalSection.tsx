@@ -101,7 +101,7 @@ const TerminalSection: React.FC = () => {
 
 
   return (
-    <section id="evidence" ref={ref} className="py-24 lg:py-32 bg-navy-950 relative overflow-hidden border-t border-navy-800">
+    <section id="evidence" ref={ref} className="py-20 lg:py-28 bg-navy-950 relative overflow-hidden border-t border-navy-800">
       
       {/* Technical Grid Overlay */}
       <div 
@@ -112,7 +112,7 @@ const TerminalSection: React.FC = () => {
         }}
       ></div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 grid lg:grid-cols-2 gap-10 lg:gap-14 xl:gap-16 items-center relative z-10">
         
         {/* Left: Explanation */}
         <motion.div 
@@ -120,14 +120,14 @@ const TerminalSection: React.FC = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
         >
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-navy-900 border border-navy-700 rounded-full mb-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-navy-900 border border-navy-700 rounded-full mb-5">
                 <Terminal className="w-3 h-3 text-emerald-500" />
                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-500 font-mono">
                   {terminalCopy.eyebrow}
                 </span>
             </div>
             
-            <h2 className="font-serif text-4xl md:text-5xl text-white mb-8 leading-tight">
+            <h2 className="font-serif text-4xl md:text-5xl text-white mb-6 leading-tight">
                 {terminalCopy.title.line1.pre}{' '}
                 <span className="text-emerald-400 border-b-2 border-emerald-500/30 pb-1">{terminalCopy.title.line1.highlight}</span>
                 {terminalCopy.title.line1.post}<br/>
@@ -135,7 +135,7 @@ const TerminalSection: React.FC = () => {
                 <span className="text-emerald-400 border-b-2 border-emerald-500/30 pb-1">{terminalCopy.title.line2.highlight}</span>
                 {terminalCopy.title.line2.post}
             </h2>
-            <p className="text-slate-400 text-lg leading-relaxed mb-10 font-light border-l-2 border-navy-800 pl-6">
+            <p className="text-slate-400 text-lg leading-relaxed mb-8 font-light border-l-2 border-navy-800 pl-6">
                 {terminalCopy.description.pre}{' '}
                 <strong className="text-white font-semibold">
                   {terminalCopy.description.strong}
@@ -143,7 +143,7 @@ const TerminalSection: React.FC = () => {
                 {terminalCopy.description.post}
             </p>
 
-            <ul className="space-y-6">
+            <ul className="space-y-4 md:space-y-5">
                 {terminalCopy.bullets.map((bullet, index) => {
                   const Icon = bulletIcons[index] ?? ShieldCheck;
                   return (

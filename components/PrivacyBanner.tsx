@@ -1,48 +1,85 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants, useReducedMotion } from 'framer-motion';
 import { ShieldCheck, EyeOff, X } from 'lucide-react';
 
 const PrivacyBanner: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [showDetails, setShowDetails] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+
+  const containerVariants: Variants = {
+    hidden: { 
+      opacity: 0, 
+      y: shouldReduceMotion ? 0 : 30 
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.16, 1, 0.3, 1],
+        staggerChildren: 0.1,
+        delayChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { 
+      opacity: 0, 
+      y: shouldReduceMotion ? 0 : 16 
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.45,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
 
   if (!isOpen) return null;
 
   return (
     <>
-      <motion.div
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+      <div
         className="fixed bottom-4 right-4 z-50 max-w-sm w-full"
       >
-        <div className="bg-navy-925 border border-slate-800 shadow-2xl p-4 rounded-sm flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-emerald-900/30 rounded-full border border-emerald-500/30">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="bg-navy-925 border border-slate-800 shadow-2xl p-4 rounded-sm flex items-center justify-between gap-4"
+        >
+          <motion.div variants={itemVariants} className="flex items-center gap-3">
+            <motion.div variants={itemVariants} className="p-2 bg-emerald-900/30 rounded-full border border-emerald-500/30 flex-shrink-0">
               <EyeOff className="w-4 h-4 text-emerald-500" />
-            </div>
-            <div>
-<p className="text-[10px] font-bold uppercase tracking-widest text-slate-300">Privacy controls active</p>
-<p className="text-[10px] text-slate-400">Review the applicable privacy policy and terms.</p>
-            </div>
-          </div>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-300">Privacy controls active</p>
+              <p className="text-[10px] text-slate-400">Review the applicable privacy policy and terms.</p>
+            </motion.div>
+          </motion.div>
           
-          <div className="flex gap-2">
+          <motion.div variants={itemVariants} className="flex gap-2 items-center flex-shrink-0">
             <button 
                 onClick={() => setShowDetails(!showDetails)}
-                className="text-[9px] font-mono text-emerald-500 hover:text-emerald-400 underline decoration-emerald-500/30 underline-offset-4 transition-colors"
+                className="text-[9px] font-mono text-emerald-500 hover:text-emerald-400 underline decoration-emerald-500/30 underline-offset-4 transition-colors cursor-pointer"
             >
                 VERIFY
             </button>
             <button 
                 onClick={() => setIsOpen(false)}
-                className="text-slate-600 hover:text-slate-400 transition-colors"
+                className="text-slate-600 hover:text-slate-400 transition-colors cursor-pointer"
                 aria-label="Close banner"
             >
                 <X className="w-3 h-3" />
             </button>
-          </div>
-        </div>
-      </motion.div>
+          </motion.div>
+        </motion.div>
+      </div>
 
       {/* Details Terminal Modal */}
       <AnimatePresence>

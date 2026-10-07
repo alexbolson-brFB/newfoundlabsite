@@ -195,7 +195,7 @@ const EnterpriseSection: React.FC = () => {
   }));
 
   return (
-    <section id="enterprise" className="relative py-24 lg:py-32 overflow-hidden bg-slate-50 border-t border-slate-200">
+    <section id="enterprise" className="relative py-20 lg:py-28 overflow-hidden bg-slate-50 border-t border-slate-100">
       {/* Background with Audit Grid */}
       <div 
         className="absolute inset-0 opacity-[0.03] pointer-events-none border-b border-slate-200"
@@ -208,32 +208,32 @@ const EnterpriseSection: React.FC = () => {
       {/* Cinematic Gradient overlay */}
       <div className="absolute inset-x-0 top-0 h-[420px] bg-gradient-to-b from-white via-white/50 to-transparent" />
 
-      <div className="relative max-w-7xl mx-auto">
-        <div className="px-6 md:px-10 mb-20 text-center">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12">
+        <div className="mb-12 md:mb-16 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200 rounded-full mb-5">
                <span className="w-1.5 h-1.5 rounded-full bg-navy-900 animate-pulse" />
                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-navy-900">
                  {section.eyebrow}
                </span>
             </div>
             
-            <h2 className="text-4xl md:text-6xl font-serif text-navy-900 leading-tight mb-6">
+            <h2 className="text-4xl md:text-6xl font-serif text-navy-900 leading-tight mb-5 md:mb-6">
               {section.heading}
             </h2>
-            <p className="text-lg md:text-xl text-slate-600 mx-auto leading-relaxed font-light">
+            <p className="text-lg md:text-xl text-slate-600 mx-auto leading-relaxed font-light max-w-3xl">
               {section.subheading}
             </p>
           </motion.div>
 
           {/* KPI Bar - Rigid Style */}
-          <div className="mt-12 inline-flex flex-col md:flex-row border border-slate-200 bg-white shadow-sm divide-y md:divide-y-0 md:divide-x divide-slate-200 max-w-4xl mx-auto w-full">
+          <div className="mt-8 md:mt-10 inline-flex flex-col md:flex-row border border-slate-200 bg-white shadow-sm divide-y md:divide-y-0 md:divide-x divide-slate-200 max-w-4xl mx-auto w-full">
              {stats.map((stat, index) => (
-                <div key={stat.label} className="flex-1 p-6 flex flex-col items-center justify-center group hover:bg-slate-50 transition-colors">
+                <div key={stat.label} className="flex-1 p-5 md:p-6 flex flex-col items-center justify-center group hover:bg-slate-50 transition-colors">
                    <p className="text-[9px] uppercase tracking-[0.2em] text-slate-400 font-mono mb-2">{stat.label}</p>
                    <p className="text-2xl font-serif text-navy-900">{stat.value}</p>
                 </div>
@@ -242,14 +242,14 @@ const EnterpriseSection: React.FC = () => {
         </div>
 
         {/* Feature Grid - The "Audit Layout" */}
-        <div className="border-y border-slate-200 bg-white">
+        <div className="border border-slate-200 bg-white shadow-lg">
            <div className="grid md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-200">
               {features.map((feature, index) => {
                 const Icon = feature.icon;
                 return (
                   <motion.div
                     key={feature.title}
-                    className="relative group p-8 lg:p-10 flex flex-col h-full hover:bg-slate-50/50 transition-colors duration-500"
+                    className="relative group p-6 sm:p-8 lg:p-10 flex flex-col h-full hover:bg-slate-50/50 transition-colors duration-500"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}

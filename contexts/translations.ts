@@ -237,6 +237,23 @@ export interface SocialProofTranslations {
   badges: string[];
 }
 
+export interface FAQItem {
+  question: string;
+  answer: string;
+  tag: string;
+}
+
+export interface FAQTranslations {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  items: FAQItem[];
+  supportPrompt: {
+    question: string;
+    action: string;
+  };
+}
+
 export interface Translations {
   nav: NavTranslations;
   hero: HeroTranslations;
@@ -254,6 +271,7 @@ export interface Translations {
   footer: FooterTranslations;
   socialProof: SocialProofTranslations;
   contactForm: ContactFormTranslations;
+  faq: FAQTranslations;
 }
 
 export const translations: Record<Language, Translations> = {
@@ -651,6 +669,47 @@ export const translations: Record<Language, Translations> = {
         desc: "Your inquiry has been securely queued. A specialist from our engineering core will respond within 24 hours.",
         another: "Send Another Message"
       }
+    },
+    faq: {
+      eyebrow: "Frequently Asked Questions",
+      title: "Auditable Trust Infrastructure & REX Guard.",
+      subtitle: "Deterministic runtime verification, cryptographic proof generation, and boundary execution for consequential AI deployments.",
+      supportPrompt: {
+        question: "Have specific architecture or compliance requirements?",
+        action: "Speak with our engineering core"
+      },
+      items: [
+        {
+          tag: "ATI Core",
+          question: "What is Auditable Trust Infrastructure (ATI)?",
+          answer: "Auditable Trust Infrastructure is a deterministic architectural layer that validates authority, scope, and purpose in runtime before consequential AI actions reach downstream systems. Rather than relying on statistical output filtering or heuristics, ATI enforces a verifiable cryptographic boundary between agentic models and protected enterprise systems."
+        },
+        {
+          tag: "REX Guard",
+          question: "How does REX Guard differ from traditional LLM guardrails?",
+          answer: "Traditional guardrails rely on probabilistic heuristics or secondary model judges that remain susceptible to prompt injection, latency spikes, and non-deterministic behavior. REX Guard intercepts tool executions directly at the network boundary with deterministic policy enforcement: if authority is unverified or out-of-scope, the action is blocked at the protocol level before external side effects occur."
+        },
+        {
+          tag: "Policy & Security",
+          question: "What does Fail-Closed Policy Enforcement mean in practice?",
+          answer: "Fail-closed guarantees that any evaluation anomaly, policy server disconnection, scope ambiguity, or expired credential defaults immediately to a strict DENY. Consequential operations (such as financial transactions or data modifications) are never permitted implicitly or on timeout."
+        },
+        {
+          tag: "Privacy & Compliance",
+          question: "How does REX Guard ensure Zero-Persistence of sensitive data?",
+          answer: "REX Guard does not store user prompts, model activations, or sensitive transaction payloads at rest. It generates only deterministic DecisionIDs and cryptographically signed receipts containing audit metadata and cryptographic hashes, satisfying LGPD, GDPR, and tier-1 banking confidentiality mandates."
+        },
+        {
+          tag: "Integration",
+          question: "How does it integrate with sovereign clouds and existing enterprise VPCs?",
+          answer: "REX Guard deploys as a high-performance proxy or sidecar inside your sovereign VPC (Google Cloud, NVIDIA NIM, or private Kubernetes clusters). Existing agents and adapters connect via standard mTLS and gRPC/REST APIs without requiring rewrites of existing backend microservices."
+        },
+        {
+          tag: "Auditability",
+          question: "What is a DecisionID and how are receipts audited?",
+          answer: "Every evaluated action receives a deterministic DecisionID bound to a tamper-evident, cryptographically signed receipt. Internal compliance officers and regulators can verify the evidence chain independently to establish cryptographic proof of exactly which policy authorized or rejected each action."
+        }
+      ]
     }
   },
   pt: {
@@ -1047,6 +1106,47 @@ export const translations: Record<Language, Translations> = {
         desc: "Sua consulta foi enfileirada com seguranca. Um especialista do nosso nucleo de engenharia respondera em ate 24 horas.",
         another: "Enviar Outra Mensagem"
       }
+    },
+    faq: {
+      eyebrow: "Perguntas Frequentes",
+      title: "Auditable Trust Infrastructure & REX Guard.",
+      subtitle: "Verificação determinística em tempo de execução, evidência criptográfica e fronteira de execução para IA em ambientes regulados.",
+      supportPrompt: {
+        question: "Precisa de detalhes de arquitetura ou conformidade para o seu ambiente?",
+        action: "Fale com nosso núcleo de engenharia"
+      },
+      items: [
+        {
+          tag: "ATI Core",
+          question: "O que é Auditable Trust Infrastructure (ATI)?",
+          answer: "A Infraestrutura de Confiança Auditável (ATI) é uma camada arquitetural determinística que valida autoridade, escopo e finalidade em tempo de execução antes que qualquer ação de IA consequencial seja despachada para sistemas corporativos ou bancários. Em vez de confiar em filtros estatísticos de saída de modelos, a ATI estabelece uma fronteira de execução criptográfica verificável."
+        },
+        {
+          tag: "REX Guard",
+          question: "Como o REX Guard difere de guardrails tradicionais baseados em LLM?",
+          answer: "Guardrails tradicionais utilizam heurísticas estatísticas ou julgamento por outros modelos que continuam vulneráveis a jailbreaks, alucinações e latência imprevisível. O REX Guard intercepta chamadas de ferramentas e APIs na fronteira de rede com aplicação determinística de políticas: se a autoridade não for comprovada ou estiver fora do escopo, a ação é vetada no protocolo antes de produzir qualquer efeito colateral externo."
+        },
+        {
+          tag: "Política & Segurança",
+          question: "O que significa o princípio Fail-Closed na prática?",
+          answer: "Fail-closed garante que qualquer falha na avaliação de políticas, perda de conectividade com serviços de validação, ambiguidade de escopo ou credencial expirada resulte imediatamente em negação estrita (DENY). Operações críticas nunca são liberadas implicitamente ou por timeout."
+        },
+        {
+          tag: "Privacidade & LGPD",
+          question: "Como o REX Guard assegura Zero-Persistência de dados sensíveis?",
+          answer: "O REX Guard não armazena prompts de usuários, ativações de modelos ou cargas úteis transacionais confidenciais em repouso. O sistema emite unicamente DecisionIDs e recibos assinados digitalmente contendo metadados de auditoria e hashes de verificação, cumprindo integralmente as exigências da LGPD e normas bancárias."
+        },
+        {
+          tag: "Integração",
+          question: "Como funciona a integração com nuvens soberanas e VPCs corporativas?",
+          answer: "O REX Guard é implantado como proxy ou sidecar de alto desempenho dentro da sua própria VPC soberana (Google Cloud, NVIDIA NIM ou clusters Kubernetes privados). Agentes e adaptadores existentes integram-se via mTLS e gRPC/REST padrão, sem a necessidade de reescrever a lógica de microsserviços legados."
+        },
+        {
+          tag: "Auditoria",
+          question: "O que é um DecisionID e como os recibos são auditados?",
+          answer: "Cada ação avaliada recebe um identificador determinístico (DecisionID) vinculado a um recibo assinado digitalmente com prova de integridade. Auditores internos e órgãos reguladores podem verificar a cadeia de evidências de forma independente para comprovar com exatidão qual política, solicitante e escopo regeram cada decisão."
+        }
+      ]
     }
   }
 };

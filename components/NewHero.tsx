@@ -210,7 +210,7 @@ const NewHero: React.FC = () => {
 
   return (
     <>
-      <section className="relative isolate min-h-screen flex flex-col justify-center bg-slate-50 pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden">
+      <section className="relative isolate min-h-screen flex flex-col justify-center bg-slate-50 pt-28 pb-20 md:pt-36 md:pb-28 lg:pt-40 lg:pb-32 overflow-hidden">
         
         {/* === BACKGROUND === */}
         <div 
@@ -238,15 +238,19 @@ const NewHero: React.FC = () => {
         </div>
         
         {/* === CONTENT === */}
-        <div className="container mx-auto px-6 md:px-12 relative z-10 w-full">
-          <div className="grid lg:grid-cols-5 gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 relative z-10 w-full">
+          <motion.div 
+            whileHover={shouldReduceMotion ? undefined : { scale: 1.008 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="grid lg:grid-cols-5 gap-10 lg:gap-12 xl:gap-16 items-center"
+          >
             
             {/* --- Text Content --- */}
             <motion.div 
               style={parallaxStyle}
               className="text-center lg:text-left lg:col-span-3"
             >
-                <h1 aria-label={`${t.hero.title1} ${t.hero.title2}`} className="font-serif text-[clamp(2.5rem,6vw,4.5rem)] text-navy-900 leading-[1.1] mb-8 font-medium tracking-tight break-words">
+                <h1 aria-label={`${t.hero.title1} ${t.hero.title2}`} className="font-serif text-[clamp(2.5rem,6vw,4.5rem)] text-navy-900 leading-[1.1] mb-6 md:mb-8 font-medium tracking-tight break-words">
                     <span className="block">
                       <AnimatedText 
                           key={`title1-${language}`}
@@ -271,7 +275,11 @@ const NewHero: React.FC = () => {
                     </span>
                 </h1>
 
-                <div className="max-w-xl mx-auto lg:mx-0 mb-10 text-base md:text-lg text-slate-600 font-light leading-relaxed">
+                <motion.div 
+                  whileHover={shouldReduceMotion ? undefined : { scale: 1.02, y: -1 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="max-w-xl mx-auto lg:mx-0 mb-8 md:mb-10 text-base md:text-lg text-slate-600 font-light leading-relaxed cursor-default"
+                >
                    <AnimatedText 
                       key={`subtitle-${language}`}
                       text={t.hero.subtitle} 
@@ -279,10 +287,10 @@ const NewHero: React.FC = () => {
                       mode="word" 
                       enableGlitch={false}
                    />
-                </div>
+                </motion.div>
 
                 <motion.div
-                  className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+                  className="flex flex-col sm:flex-row gap-3.5 sm:gap-4 justify-center lg:justify-start"
                   variants={buttonContainerVariants}
                   initial="hidden"
                   animate="visible"
@@ -309,17 +317,20 @@ const NewHero: React.FC = () => {
               initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
               transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-              className="relative w-full max-w-md mx-auto lg:col-span-2"
+              className="relative w-full max-w-md mx-auto lg:col-span-2 group"
             >
 {shouldReduceMotion || videoFailed ? (
   <img
     src={heroVisual}
     alt="REX Guard visual"
-    className="w-full h-auto object-contain drop-shadow-2xl"
+    onError={(e) => {
+      (e.currentTarget as HTMLImageElement).src = '/hero_visual.gif';
+    }}
+    className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-500 ease-out group-hover:scale-[1.02] group-hover:-translate-y-1.5 will-change-transform"
   />
 ) : (
   <video
-    poster={heroVisual}
+    poster="/hero-poster.jpg"
     autoPlay
     loop
     muted
@@ -327,14 +338,26 @@ const NewHero: React.FC = () => {
     preload="metadata"
     onError={() => setVideoFailed(true)}
     onLoadedData={() => setVideoFailed(false)}
-    className="w-full h-auto object-contain drop-shadow-2xl"
+    className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-500 ease-out group-hover:scale-[1.02] group-hover:-translate-y-1.5 will-change-transform"
   >
+    <source src="/hero-compatible.mp4" type="video/mp4" />
     <source src="/hero_video.webm" type="video/webm" />
-    <source src="/hero_visual.webm" type="video/webm" />
   </video>
 )}
+              {/* Subtle glass-like reflection & glare overlay */}
+              <div 
+                className="pointer-events-none absolute inset-0 rounded-2xl overflow-hidden transition-opacity duration-500 group-hover:opacity-100 opacity-80" 
+                aria-hidden="true"
+              >
+                {/* Diagonal specular glare sheen */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.08] to-white/[0.18] mix-blend-overlay" />
+                {/* Angular light reflection beam */}
+                <div className="absolute -top-1/2 -left-1/4 w-[150%] h-[200%] rotate-[25deg] bg-gradient-to-b from-white/[0.12] via-transparent to-transparent pointer-events-none opacity-60" />
+                {/* Subtle top glare rim */}
+                <div className="absolute top-0 inset-x-8 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+              </div>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Scroll Indicator */}
@@ -347,7 +370,7 @@ animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: [0, 5, 0] }}
   opacity: { delay: 0.5, duration: 0.5 },
   y: { repeat: Infinity, duration: 2, ease: "easeInOut" }
   }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 cursor-pointer group"
+          className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 cursor-pointer group"
         >
           <span className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold group-hover:text-navy-900 transition-colors">{t.hero.scroll}</span>
           <ChevronDown className="w-4 h-4 text-slate-400 opacity-70 group-hover:text-navy-900 transition-colors" />

@@ -52,13 +52,13 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <section id="contact-form" className="py-20 lg:py-28 bg-white border-t border-slate-200">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section id="contact-form" className="py-20 lg:py-28 bg-white border-t border-slate-100">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12">
         <div className="grid lg:grid-cols-5 gap-0 border border-slate-200 bg-white shadow-xl">
           {/* Left Column: Info */}
-          <div className="lg:col-span-2 bg-navy-900 p-8 md:p-12 flex flex-col justify-between">
+          <div className="lg:col-span-2 bg-navy-900 p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between">
             <div>
-              <span className="inline-flex items-center gap-2 px-3 py-1 bg-navy-800 border border-slate-700 rounded-full mb-8">
+              <span className="inline-flex items-center gap-2 px-3 py-1 bg-navy-800 border border-slate-700 rounded-full mb-6 md:mb-8">
                 <span className="w-1.5 h-1.5 rounded-full bg-gold-500" />
                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
                   {cf.badge}
@@ -68,11 +68,11 @@ const ContactForm: React.FC = () => {
               <h2 className="font-serif text-3xl md:text-4xl text-white leading-tight mb-4">
                 {cf.title}
               </h2>
-              <p className="text-slate-400 text-base font-light leading-relaxed mb-10">
+              <p className="text-slate-400 text-base font-light leading-relaxed mb-8 md:mb-10">
                 {cf.subtitle}
               </p>
 
-              <div className="space-y-6">
+              <div className="space-y-5 md:space-y-6">
                 {cf.channels.map((ch: { label: string; value: string }, i: number) => (
                   <div key={i} className="flex items-start gap-3">
                     <Mail className="w-4 h-4 text-gold-500 mt-0.5 shrink-0" />
@@ -87,7 +87,7 @@ const ContactForm: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-10 pt-8 border-t border-slate-700">
+            <div className="mt-8 md:mt-10 pt-6 md:pt-8 border-t border-slate-700">
               <p className="text-[10px] font-mono uppercase tracking-[0.15em] text-slate-600">
                 {cf.responseTime}
               </p>
@@ -95,7 +95,7 @@ const ContactForm: React.FC = () => {
           </div>
 
           {/* Right Column: Form */}
-          <div className="lg:col-span-3 p-8 md:p-12">
+          <div className="lg:col-span-3 p-6 sm:p-8 md:p-10 lg:p-12">
             {status === 'success' ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}

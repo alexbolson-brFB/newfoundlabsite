@@ -1,6 +1,7 @@
 import React, { Suspense, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
+import ScrollProgressBar from './components/ScrollProgressBar';
 import NewHero from './components/NewHero';
 import CommandMenu from './components/CommandMenu';
 import StaticPage from './pages/StaticPage';
@@ -15,13 +16,14 @@ const RexGuardSection = React.lazy(() => import('./components/RexGuardSection'))
 const EnterpriseSection = React.lazy(() => import('./components/EnterpriseSection'));
 const ArchitectureSection = React.lazy(() => import('./components/ArchitectureSection'));
 const TerminalSection = React.lazy(() => import('./components/TerminalSection'));
+const FAQSection = React.lazy(() => import('./components/FAQSection'));
 const ContactForm = React.lazy(() => import('./components/ContactForm'));
 const Footer = React.lazy(() => import('./components/Footer'));
 
 // Loading fallback with proper CLS-safe dimensions
 const SectionLoader = () => (
-  <div className="py-24 lg:py-32 bg-white" aria-hidden="true">
-    <div className="max-w-7xl mx-auto px-6 md:px-12">
+  <div className="py-20 lg:py-28 bg-white border-t border-slate-100" aria-hidden="true">
+    <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12">
       <div className="animate-pulse space-y-6">
         <div className="h-3 w-24 bg-slate-100 rounded" />
         <div className="h-10 w-80 max-w-full bg-slate-100 rounded" />
@@ -61,6 +63,11 @@ const HomeContent: React.FC = () => (
     </ErrorBoundary>
     <ErrorBoundary>
       <Suspense fallback={<SectionLoader />}>
+        <FAQSection />
+      </Suspense>
+    </ErrorBoundary>
+    <ErrorBoundary>
+      <Suspense fallback={<SectionLoader />}>
         <ContactForm />
       </Suspense>
     </ErrorBoundary>
@@ -95,6 +102,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:bg-navy-900 focus:px-4 focus:py-3 focus:text-sm focus:text-white">
         {useLocation().pathname === '/' ? 'Skip to main content' : 'Pular para o conteúdo principal'}
       </a>
+      <ScrollProgressBar />
       <PrivacyBlur />
       <CursorSpotlight />
       <Header />

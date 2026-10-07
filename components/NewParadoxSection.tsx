@@ -156,7 +156,7 @@ const NewParadoxSection: React.FC = () => {
   }));
 
   return (
-    <section id="authority-gap" className="relative py-24 lg:py-32 overflow-hidden bg-slate-50 border-t border-slate-200">
+    <section id="authority-gap" className="relative py-20 lg:py-28 overflow-hidden bg-slate-50 border-t border-slate-100">
       
       {/* Rigid Grid Background */}
       <div 
@@ -169,25 +169,25 @@ const NewParadoxSection: React.FC = () => {
       
       <div className="absolute inset-x-0 top-0 h-[320px] bg-gradient-to-b from-white via-white/80 to-transparent" />
 
-      <div className="relative max-w-7xl mx-auto px-6 md:px-10">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12">
         <motion.div
-          className="text-center mx-auto mb-20"
+          className="text-center mx-auto mb-12 md:mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200 rounded-full mb-5">
                <span className="w-1.5 h-1.5 rounded-full bg-navy-900" />
                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-navy-900">
                  {t.paradox.eyebrow}
                </span>
           </div>
           
-          <h2 className="font-serif text-4xl md:text-6xl text-navy-900 leading-tight mb-8">
+          <h2 className="font-serif text-4xl md:text-6xl text-navy-900 leading-tight mb-6">
             {t.paradox.titleMain}{' '}
             <span className="block italic font-light text-slate-400 mt-2">{t.paradox.titleItalic}</span>
           </h2>
-          <div className="space-y-4 text-lg md:text-xl text-slate-600 font-light leading-relaxed max-w-2xl mx-auto">
+          <div className="space-y-3.5 text-lg md:text-xl text-slate-600 font-light leading-relaxed max-w-2xl mx-auto">
             <p>{t.paradox.p1}</p>
             <p>{t.paradox.p2}</p>
           </div>
@@ -202,7 +202,7 @@ const NewParadoxSection: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               className={`
-                 relative p-8 md:p-12 lg:p-16 flex flex-col justify-between min-h-[400px]
+                 relative p-6 sm:p-8 md:p-10 lg:p-14 flex flex-col justify-between min-h-[380px]
                  ${card.color} ${idx === 0 ? 'border-b md:border-b-0 md:border-r border-slate-200' : ''}
                  ${card.labelKey === 'erasure' ? 'text-white' : 'text-navy-900'}
               `}
@@ -214,14 +214,14 @@ const NewParadoxSection: React.FC = () => {
               <div className="absolute bottom-4 right-4 border-b border-r w-4 h-4 border-current opacity-20"></div>
 
               <div>
-                <div className={`inline-block px-3 py-1 mb-6 text-[10px] font-bold uppercase tracking-widest rounded-sm ${card.pill}`}>
+                <div className={`inline-block px-3 py-1 mb-5 text-[10px] font-bold uppercase tracking-widest rounded-sm ${card.pill}`}>
                   {card.eyebrow}
                 </div>
-                <h3 className="text-3xl font-serif mb-2">{card.detail}</h3>
+                <h3 className="text-2xl sm:text-3xl font-serif mb-2">{card.detail}</h3>
               </div>
               
-              <div className="mt-8 border-t border-current/10 pt-8">
-                 <p className={`text-lg font-light leading-relaxed ${card.labelKey === 'erasure' ? 'text-slate-300' : 'text-slate-600'}`}>
+              <div className="mt-6 sm:mt-8 border-t border-current/10 pt-6 sm:pt-8">
+                 <p className={`text-base sm:text-lg font-light leading-relaxed ${card.labelKey === 'erasure' ? 'text-slate-300' : 'text-slate-600'}`}>
                    "{card.copy}"
                  </p>
               </div>
@@ -230,14 +230,14 @@ const NewParadoxSection: React.FC = () => {
         </div>
 
         {/* Timeline as "System Process" */}
-        <div className="mt-24 mx-auto">
-           <div className="flex items-center gap-4 mb-12">
+        <div className="mt-16 md:mt-20 mx-auto">
+           <div className="flex items-center gap-4 mb-8 md:mb-10">
               <div className="h-px bg-slate-200 flex-1"></div>
               <span className="text-[10px] uppercase tracking-widest text-slate-400 font-mono">{copy.flowTitle}</span>
               <div className="h-px bg-slate-200 flex-1"></div>
            </div>
 
-           <div className="relative border-l border-slate-200 ml-4 md:ml-0 space-y-12">
+           <div className="relative border-l border-slate-200 ml-4 md:ml-0 space-y-8 md:space-y-10">
               {copy.timeline.map((step, idx) => (
                  <motion.div 
                     key={idx}
@@ -265,7 +265,7 @@ const NewParadoxSection: React.FC = () => {
         </div>
 
         {/* Console / Terminal Preview (Safeguards) */}
-        <div className="mt-24 border border-slate-200 bg-white shadow-xl max-w-3xl mx-auto overflow-hidden rounded-sm">
+        <div className="mt-16 md:mt-20 border border-slate-200 bg-white shadow-xl max-w-3xl mx-auto overflow-hidden rounded-sm">
            <div className="bg-slate-50 border-b border-slate-200 px-4 py-2 flex items-center gap-2">
               <div className="flex gap-1.5">
                  <div className="w-2.5 h-2.5 rounded-full bg-slate-300"></div>

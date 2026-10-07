@@ -216,7 +216,7 @@ const RexGuardSection: React.FC = () => {
     <section id="rex-guard" className="relative overflow-hidden">
 
       {/* ====== PART 1: HERO — WHITE (matches site aesthetic) ====== */}
-      <div className="relative py-24 lg:py-32 bg-white border-t border-slate-200 overflow-hidden">
+      <div className="relative py-20 lg:py-28 bg-white border-t border-slate-100 overflow-hidden">
         {/* Grid background */}
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -227,8 +227,8 @@ const RexGuardSection: React.FC = () => {
           }}
         />
 
-        <div className="relative max-w-7xl mx-auto px-6 md:px-12">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+        <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-16 items-center">
             {/* Left: Text */}
             <div className="lg:col-span-7">
               <motion.div
@@ -238,7 +238,7 @@ const RexGuardSection: React.FC = () => {
                 transition={{ duration: 0.6 }}
               >
                 {/* Badge — same as rest of site */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200 rounded-full mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200 rounded-full mb-5">
                   <span className="w-1.5 h-1.5 rounded-full bg-gold-500 animate-pulse" />
                   <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-navy-900">
                     {t.badge}
@@ -246,18 +246,18 @@ const RexGuardSection: React.FC = () => {
                 </div>
 
                 {/* Title — serif, same scale as NewParadoxSection */}
-                <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl text-navy-900 leading-[1.05] tracking-tight mb-4">
+                <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl text-navy-900 leading-[1.05] tracking-tight mb-5">
                   {t.title}
                   <span className="block italic font-light text-slate-400 mt-2">{t.titleItalic}</span>
                 </h2>
 
                 {/* Subtitle */}
-                <p className="text-slate-600 text-lg md:text-xl font-light leading-relaxed max-w-xl mb-10 text-pretty">
+                <p className="text-slate-600 text-lg md:text-xl font-light leading-relaxed max-w-xl mb-8 md:mb-10 text-pretty">
                   {t.subtitle}
                 </p>
 
                 {/* CTAs — matching Hero CTA style */}
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col sm:flex-row gap-3.5 sm:gap-4">
                   <a
                     href="#contact-form"
                     className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-navy-900 text-white text-[11px] font-bold uppercase tracking-[0.2em] transition-all rounded-sm min-h-[48px]"
@@ -308,20 +308,20 @@ const RexGuardSection: React.FC = () => {
       </div>
 
       {/* ====== PART 2: PIPELINE — DARK (matches ROI dark card) ====== */}
-      <div id="how-it-works" className="relative scroll-mt-24 bg-navy-950 py-20 lg:py-28 border-t border-slate-200 overflow-hidden">
+      <div id="how-it-works" className="relative scroll-mt-24 bg-navy-950 py-18 lg:py-24 border-t border-slate-200 overflow-hidden">
         {/* Grid bg */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px]" />
 
-        <div className="relative max-w-7xl mx-auto px-6 md:px-12">
+        <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12">
           {/* Section header */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-16"
+            className="mb-12 md:mb-14"
           >
-            <div className="flex items-center gap-4 mb-12">
+            <div className="flex items-center gap-4 mb-8 md:mb-10">
               <div className="h-px bg-white/10 flex-1" />
               <span className="text-[10px] uppercase tracking-widest text-slate-500 font-mono">{t.archEyebrow}</span>
               <div className="h-px bg-white/10 flex-1" />
@@ -368,7 +368,7 @@ const RexGuardSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-12 border border-navy-800 bg-navy-900/50 max-w-3xl mx-auto overflow-hidden"
+            className="mt-10 md:mt-12 border border-navy-800 bg-navy-900/50 max-w-3xl mx-auto overflow-hidden"
           >
             {/* Toolbar */}
             <div className="bg-navy-900 border-b border-navy-800 px-4 py-2 flex items-center gap-2">
@@ -413,7 +413,7 @@ const RexGuardSection: React.FC = () => {
       </div>
 
       {/* ====== PART 3: DIFFERENTIALS — WHITE (matches WhitepaperSection) ====== */}
-      <div className="relative py-20 lg:py-28 bg-white border-t border-slate-200 overflow-hidden">
+      <div className="relative py-18 lg:py-24 bg-white border-t border-slate-100 overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
           aria-hidden="true"
@@ -423,16 +423,16 @@ const RexGuardSection: React.FC = () => {
           }}
         />
 
-        <div className="relative max-w-7xl mx-auto px-6 md:px-12">
+        <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12">
           {/* Eyebrow + Title */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl mb-16"
+            className="max-w-3xl mb-12 md:mb-14"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200 rounded-full mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-navy-900" />
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-navy-900">
                 {t.diffEyebrow}
@@ -455,7 +455,7 @@ const RexGuardSection: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className="relative p-8 lg:p-12 flex flex-col"
+                    className="relative p-6 sm:p-8 lg:p-10 xl:p-12 flex flex-col"
                   >
                     {/* Tag pill */}
                     <div className="inline-block self-start px-3 py-1 text-[10px] font-bold uppercase tracking-widest bg-slate-100 text-slate-600 border border-slate-200 rounded-sm mb-6">
