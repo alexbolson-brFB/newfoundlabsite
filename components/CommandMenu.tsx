@@ -174,8 +174,8 @@ const CommandMenu: React.FC = () => {
         categoryLabel: isPt ? 'Seção Principal' : 'Main Section',
         title: isPt ? 'Arquitetura e Módulos do Sistema' : 'Architecture & System Modules',
         subtitle: isPt
-          ? 'Camadas da infraestrutura, adaptadores protegidos e motores de conformidade.'
-          : 'Infrastructure layers, protected downstream adapters, and compliance engines.',
+          ? 'Camadas da infraestrutura, adaptadores protegidos e motores de política.'
+          : 'Infrastructure layers, protected downstream adapters, and policy engines.',
         badge: '#architecture',
         keywords: ['arquitetura', 'architecture', 'modulos', 'engines', 'adapters', 'infra', 'specs', 'sistemas'],
         icon: Cpu,
@@ -188,8 +188,8 @@ const CommandMenu: React.FC = () => {
         categoryLabel: isPt ? 'Seção Principal' : 'Main Section',
         title: isPt ? 'Terminal Interativo e Evidência Assinada' : 'Interactive Terminal & Signed Evidence',
         subtitle: isPt
-          ? 'Demonstração em tempo real de logs, DecisionID criptográfico e resposta de autorização.'
-          : 'Real-time execution logs, cryptographic DecisionID signatures, and authorization receipts.',
+          ? 'Demonstração ilustrativa de logs, DecisionID e resultado de autorização.'
+          : 'Illustrative execution logs, DecisionID, and authorization outcome records.',
         badge: '#evidence',
         keywords: ['terminal', 'evidencia', 'evidence', 'logs', 'assinatura', 'signature', 'decision id', 'console', 'bash', 'auditoria'],
         icon: Terminal,
@@ -200,12 +200,12 @@ const CommandMenu: React.FC = () => {
         id: 'sec-enterprise',
         category: 'section',
         categoryLabel: isPt ? 'Seção Principal' : 'Main Section',
-        title: isPt ? 'Prontidão Corporativa & Escala (Enterprise)' : 'Enterprise Scale & Compliance',
+        title: isPt ? 'Avaliação Enterprise' : 'Enterprise Evaluation',
         subtitle: isPt
-          ? 'Latência sub-milissegundo, conformidade LGPD/SOC2 e fronteiras de isolamento multitenant.'
-          : 'Sub-millisecond verification latency, LGPD/SOC2 compliance, and multitenant isolation boundaries.',
+          ? 'Integração, fronteiras de execução, isolamento e requisitos operacionais para ambientes enterprise.'
+          : 'Integration, execution boundaries, isolation, and operational requirements for enterprise environments.',
         badge: '#enterprise',
-        keywords: ['enterprise', 'corporativo', 'escala', 'scale', 'latencia', 'latency', 'lgpd', 'soc2', 'iso 27001', 'performance', 'kpi'],
+        keywords: ['enterprise', 'corporativo', 'escala', 'scale', 'isolamento', 'isolation', 'performance', 'kpi'],
         icon: Building2,
         action: () => handleNavSection('#enterprise'),
         shortcut: 'G E'
@@ -216,8 +216,8 @@ const CommandMenu: React.FC = () => {
         categoryLabel: isPt ? 'Seção Principal' : 'Main Section',
         title: isPt ? 'Perguntas Frequentes (FAQ)' : 'Frequently Asked Questions (FAQ)',
         subtitle: isPt
-          ? 'Respostas detalhadas sobre implantação, conformidade regulatória e integração com GCP/Vertex.'
-          : 'Comprehensive answers on ATI deployment, regulatory compliance, and GCP/Vertex integration.',
+          ? 'Respostas sobre arquitetura, integração, autoridade em runtime e evidência do REX Guard.'
+          : 'Answers on architecture, integration, runtime authority, and REX Guard evidence.',
         badge: '#faq',
         keywords: ['faq', 'perguntas', 'duvidas', 'questions', 'answers', 'ajuda', 'suporte', 'compliance'],
         icon: HelpCircle,
@@ -288,8 +288,8 @@ const CommandMenu: React.FC = () => {
         categoryLabel: isPt ? 'Página Legal' : 'Legal Page',
         title: isPt ? 'Política de Privacidade & LGPD' : 'Privacy Policy & LGPD',
         subtitle: isPt
-          ? 'Diretrizes de proteção de dados, não retenção e privacidade por padrão.'
-          : 'Data protection standards, zero persistent storage, and privacy by design.',
+          ? 'Diretrizes de privacidade e tratamento de dados descritas para o contexto aplicável.'
+          : 'Privacy and data-handling guidance described for the applicable context.',
         badge: '/privacy',
         keywords: ['privacidade', 'privacy', 'lgpd', 'gdpr', 'dados', 'data', 'termos', 'seguranca'],
         icon: Shield,
@@ -316,10 +316,10 @@ const CommandMenu: React.FC = () => {
         categoryLabel: isPt ? 'Página Legal' : 'Legal Page',
         title: isPt ? 'Acordo de Nível de Serviço (SLA Enterprise)' : 'Enterprise Service Level Agreement (SLA)',
         subtitle: isPt
-          ? 'Compromisso de 99,99% de disponibilidade, janelas de resposta e garantias de latência.'
-          : '99.99% uptime commitment, incident response windows, and latency bounds.',
+          ? 'Metas operacionais, suporte e níveis de serviço definidos no contrato aplicável.'
+          : 'Operational targets, support, and service levels defined in the applicable agreement.',
         badge: '/sla',
-        keywords: ['sla', 'disponibilidade', 'uptime', 'suporte', 'garantias', 'contrato', 'latencia'],
+        keywords: ['sla', 'disponibilidade', 'uptime', 'suporte', 'contrato', 'latencia'],
         icon: FileText,
         action: () => handleNavPage(STATIC_PAGE_ROUTES.sla),
         shortcut: 'P S'
