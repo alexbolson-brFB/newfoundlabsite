@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { motion, Variants, useScroll, useTransform, useAnimation, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import heroVisual from '../images/hero_visual.webp';
 
 // --- Animation Variants ---
 
@@ -312,21 +311,24 @@ const NewHero: React.FC = () => {
               className="relative w-full max-w-md mx-auto lg:col-span-2"
             >
 {shouldReduceMotion || videoFailed ? (
-  <img src={heroVisual} alt="REX Guard visual" className="w-full h-auto object-contain drop-shadow-2xl" />
+  <img src="/hero-poster.jpg" width={928} height={1376} alt="REX Guard visual" className="w-full h-auto object-contain drop-shadow-2xl" />
 ) : (
   <video
-    poster={heroVisual}
+    poster="/hero-poster.jpg"
+    width={928}
+    height={1376}
+    aria-label={language === 'pt' ? 'Vídeo de apresentação do REX Guard' : 'REX Guard presentation video'}
     autoPlay
+    controls
     loop
     muted
     playsInline
     preload="metadata"
     onError={() => setVideoFailed(true)}
-    onLoadedData={() => setVideoFailed(false)}
     className="w-full h-auto object-contain drop-shadow-2xl"
   >
-    <source src="/hero_video.webm" type="video/webm" />
-    <source src="/hero_visual.webm" type="video/webm" />
+    <source src="/hero-compatible.mp4" type="video/mp4" />
+    <source src="/hero_video.webm" type="video/webm" onError={() => setVideoFailed(true)} />
   </video>
 )}
             </motion.div>
