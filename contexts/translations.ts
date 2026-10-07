@@ -5,12 +5,13 @@ export interface Glossary {
 }
 
 export interface NavTranslations {
+  product: string;
   paradox: string;
-  enclave: string;
+  howItWorks: string;
   architecture: string;
-  roi: string;
-  marketplace: string;
-  privateOffer: string;
+  evidence: string;
+  enterprise: string;
+  evaluation: string;
 }
 
 export interface HeroTranslations {
@@ -223,6 +224,7 @@ export interface ContactFormTranslations {
   submit: string;
   submitting: string;
   error: string;
+  privacyNotice: string;
   success: { title: string; desc: string; another: string };
 }
 
@@ -257,28 +259,29 @@ export interface Translations {
 export const translations: Record<Language, Translations> = {
   en: {
     nav: {
-      paradox: "The Paradox",
-      enclave: "Sovereign Enclave",
-      architecture: "Architecture",
-      roi: "Case Study",
-      marketplace: "Marketplace",
-      privateOffer: "Private Offer"
-    },
+  "product": "REX Guard",
+  "paradox": "Authority Gap",
+  "howItWorks": "How It Works",
+  "architecture": "Architecture",
+  "evidence": "Evidence",
+  "enterprise": "Enterprise",
+  "evaluation": "Evaluate REX Guard"
+},
     hero: {
-      badge: "Layer 0: Programmable Trust",
-      title1: "Auditable Trust",
-      title2: "Infrastructure.",
-      subtitle: "We don't build apps. We engineer the Programmable Trust Layer. Transforming manual compliance into physics-based guarantees.",
-      cta1: "Initialize Layer 0",
-      cta2: "Protocol Manifesto",
-      ctaVideo: "View Simulation",
-      scroll: "Decrypt"
-    },
+  "badge": "Auditable Trust Infrastructure",
+  "title1": "AI can propose.",
+  "title2": "Authority must be verified.",
+  "subtitle": "REX Guard is Auditable Trust Infrastructure for consequential AI actions. It verifies authority, enforces deterministic policy, and produces cryptographically verifiable evidence before execution.",
+  "cta1": "Evaluate REX Guard",
+  "cta2": "View Architecture",
+  "ctaVideo": "View Simulation",
+  "scroll": "Understand the problem"
+},
     video: {
       title: "Inside the FoundLab Sovereign Stack",
       generateBtn: "Render AI Overview (Veo)",
-      generating: "Synthesizing Sovereign Enclave Sequence...",
-      waiting: "Calibrating Zero-Persistence lattice...",
+      generating: "Preparing infrastructure visualization...",
+      waiting: "Calibrating protected execution boundary...",
       error: "Sequence interrupted. Please try again.",
       disclaimer: "Generated live with Google Veo. No assets are pre-rendered."
     },
@@ -290,112 +293,130 @@ export const translations: Record<Language, Translations> = {
       "Toxic Data Assets": "Records banks must retain for regulators yet are penalized for keeping under privacy statutes."
     },
     paradox: {
-      eyebrow: "The Existential Crisis",
-      titleMain: "The Retention",
-      titleItalic: "Paradox.",
-      p1: "The Sector demands 'Retain All' (BACEN/SOX). The Law demands 'Forget All' (LGPD/GDPR). This conflict creates the Retention Paradox.",
-      p2: "FoundLab resolves this via Cryptographic Decoupling. We destroy the key (Logical Erasure) while preserving the cipher (Physical Retention). A mathematical truce.",
-      retention: "Audit: Retain",
-      erasure: "Privacy: Erase",
-      quote: "\"We don't sell compute, we sell Auditable Decisions. The irrefutable proof that a specific process occurred.\""
-    },
+  "eyebrow": "The authority gap",
+  "titleMain": "Generating an action",
+  "titleItalic": "is not authorizing it.",
+  "p1": "Probabilistic systems propose increasingly consequential actions. Institutional authority remains explicit, scoped, revocable and attributable — not a property of the model.",
+  "p2": "Authenticating a user, workload, network or model is not enough. At the execution boundary, authorization must be checked for that action, purpose and context, at that moment.",
+  "retention": "Probabilistic proposal",
+  "erasure": "Institutional authority",
+  "quote": "Is this actor authorized to perform this action, for this purpose, in this context, now?"
+},
     techStack: {
-      eyebrow: "Powered by NVIDIA NIMs",
-      title: "The Truth Machine.",
-      subtitle: "Traditional RegTech runs as an application on top of legacy rails. FoundLab is the new rail. A programmable trust layer that turns compliance into code.",
-      challenge: {
-        title: "The Challenge",
-        desc: "Banks must run multi-billion parameter models in sub-20ms without copying client telemetry into a public API. Compliance, sovereignty, and GPU performance rarely coexist."
-      },
-      solution: {
-        title: "The Solution",
-        desc: "NVIDIA Inference Microservices (NIMs) supply bare-metal acceleration with sovereign custody. They power every Zero-Persistence enclave."
-      },
-      quote: "The 'Trust by Physics' doctrine scales because NVIDIA lets us place GPUs inside regulated perimeters. It is the inevitable substrate of finance.",
-      features: [
-        { title: "NVIDIA NIMs", desc: "Sovereign inference fabric with deterministic latency inside your VPC." },
-        { title: "Google Cloud Run", desc: "Ephemeral containers with enforced Zero-Persistence kill switches at deploy time." },
-        { title: "VPC Service Controls", desc: "Layered egress boundaries that make data exfiltration physically impractical." }
-      ]
+  "eyebrow": "Integration context",
+  "title": "Models propose. REX Guard verifies.",
+  "subtitle": "Model infrastructure does not grant authority. REX Guard enforces the execution boundary independently of the model that originated the intent.",
+  "challenge": {
+    "title": "Intent source",
+    "desc": "Gemini via Vertex AI and NVIDIA NIM services can form the inference layer. Their outputs remain proposals."
+  },
+  "solution": {
+    "title": "Execution boundary",
+    "desc": "The institution defines who may act, for what purpose and within which scope. The protected connector receives only authorized actions."
+  },
+  "quote": "The model proposes. The institution retains authority.",
+  "features": [
+    {
+      "title": "NVIDIA NIM",
+      "desc": "Inference infrastructure"
     },
+    {
+      "title": "Google Cloud Run",
+      "desc": "Execution substrate"
+    },
+    {
+      "title": "VPC Service Controls",
+      "desc": "Perimeter controls"
+    }
+  ]
+},
     whitepaper: {
-      badge: "Executive Research",
-      title: "Zero-Persistence Assurance Whitepaper",
-      subtitle: "A 46-page dossier detailing how FoundLab reconciles regulator retention mandates with LGPD/GDPR erasure requirements.",
-      highlights: [
-        "Maps BACEN 4.893, SOX, and LGPD/GDPR clauses to Zero-Persistence controls.",
-        "Dissects Protocol Veritas, CMEK burn patterns, and NVIDIA NIM enclave topology.",
-        "Includes Tier-1 Bank incident case study, ROI data, and implementation checklist."
-      ],
-      ctaPrimary: "Access here",
-      ctaSecondary: "Access here",
-      detailsLabel: "Key Details",
-      meta: [
-        { label: "Length", value: "46 pages" },
-        { label: "Revision", value: "Q4 2025" },
-        { label: "Audience", value: "CIO · CRO · CISO" }
-      ]
+  "badge": "Research archive",
+  "title": "Historical Privacy Research",
+  "subtitle": "Historical research on privacy and retention. It preserves terminology and assumptions from its publication; it does not define the current category or REX Guard specification.",
+  "highlights": [
+    "Explores data minimization and separation of content from evidence.",
+    "Zero-Persistence is an architecture and privacy topic, not the central product thesis.",
+    "For runtime authority and protected actions, refer to the current REX Guard architecture."
+  ],
+  "ctaPrimary": "Read historical research",
+  "ctaSecondary": "View REX Guard",
+  "detailsLabel": "Document context",
+  "meta": [
+    {
+      "label": "Type",
+      "value": "Historical research"
     },
+    {
+      "label": "Topic",
+      "value": "Privacy"
+    },
+    {
+      "label": "Current product",
+      "value": "REX Guard"
+    }
+  ]
+},
     architecture: {
-      eyebrow: "Infrastructure Stack",
-      title: "Sovereign by Design.",
-      subtitle: "FoundLab's infrastructure is designed on the premise of Zero Trust. It operates 100% within your Google Cloud project, guaranteeing total sovereignty over your data with no vendor lock-in. The ecosystem is sustained by six fundamental modules:",
-      products: [
-        {
-          title: "Edge Security",
-          subtitle: "Cloud Load Balancing & Cloud Armor",
-          description: "Global Anycast routing with TLS termination and edge threat mitigation. Traffic is filtered before any processing occurs.",
-          tag: "Edge & Security"
-        },
-        {
-          title: "Zero-Trust Proxy",
-          subtitle: "Cloud Run",
-          description: "The interception engine. A stateless, RAM-only environment that isolates every request, generates cryptographic hashes in memory, and guarantees zero disk writes.",
-          tag: "Stateless Interception"
-        },
-        {
-          title: "Signing Authority",
-          subtitle: "Cloud KMS",
-          description: "Mathematical certification. Generates an ECDSA P-256 signature bound to the exact moment of decision, without the private key ever leaving the hardware security module (HSM).",
-          tag: "Cryptography & HSM"
-        },
-        {
-          title: "Immutable Ledger",
-          subtitle: "BigQuery WORM",
-          description: "The \"Quantum Notary\". An append-only database that exclusively stores mathematical evidence, making it physically impossible to tamper with the record or reconstruct the original data.",
-          tag: "Immutable Storage"
-        },
-        {
-          title: "Secret Store",
-          subtitle: "Secret Manager",
-          description: "Centralized and isolated management of keys and environment variables, featuring an integrated kill-switch for immediate system-wide revocation.",
-          tag: "Key Management"
-        },
-        {
-          title: "AI Core & Observability",
-          subtitle: "Vertex AI & Cloud Monitoring",
-          description: "Fluid streaming integration with Gemini models, monitored in real-time by DORA metrics and latency alerts to guarantee maximum performance without compromising compliance.",
-          tag: "AI & Observability"
-        }
-      ]
+  "eyebrow": "REX Guard architecture",
+  "title": "Control at the execution boundary.",
+  "subtitle": "Between AI-generated intent and the enterprise system, REX Guard verifies authority and enforces deterministic policy. These conceptual modules separate proposal, authorization, execution and evidence; the cloud provider is substrate, not the product.",
+  "products": [
+    {
+      "title": "Identity & Authority",
+      "subtitle": "Caller · tenant · context",
+      "description": "Verifies caller identity and institutional authority context at runtime. Authentication does not replace authorization.",
+      "tag": "Authority"
     },
+    {
+      "title": "Purpose & Action Binding",
+      "subtitle": "Scope · time · revocation",
+      "description": "Binds authorization to the institution-defined purpose, action and scope, accounting for temporal validity and revocation.",
+      "tag": "Context binding"
+    },
+    {
+      "title": "Deterministic Policy Engine",
+      "subtitle": "Rules-as-Code · fail closed",
+      "description": "Evaluates explicit rules. If required authority cannot be proven, the protected action does not execute.",
+      "tag": "Policy enforcement"
+    },
+    {
+      "title": "Protected Execution",
+      "subtitle": "Connector · adapter · replay",
+      "description": "The adapter verifies authorization before reaching the downstream system. Execution-context binding supports rejection of improper reuse.",
+      "tag": "Execution boundary"
+    },
+    {
+      "title": "DecisionID & Receipt",
+      "subtitle": "Cryptographic evidence",
+      "description": "Identifies the authorization outcome and associates it with a signed receipt. Verification proves properties of the record, not the substantive correctness of a decision.",
+      "tag": "Auditable evidence"
+    },
+    {
+      "title": "Reconciliation & Observability",
+      "subtitle": "Outbox · execution state",
+      "description": "Correlates authorization, execution attempt and observed outcome. Outbox and reconciliation address pending delivery without equating authorization with completion.",
+      "tag": "Traceability"
+    }
+  ]
+},
     roi: {
       eyebrow: "Proof in Production",
       title: "The 16-Minute Resolution.",
-      subtitle: "Inside a Tier-1 Global Investment Bank we mitigated a Shadow IT breach exposing $20M+ in liabilities. Zero-Persistence collapsed 21 hours of manual playbooks into minutes.",
+      subtitle: "A historical incident pattern illustrating why AI proposals need explicit authority, deterministic policy and verifiable execution evidence.",
       incident: {
         label: "Incident Detected",
         desc: "Unauthorized client data upload into a consumer AI assistant."
       },
       timeline: {
         legacy: "21 Hours (Manual Playbooks)",
-        foundlab: "16 Minutes (Zero-Persistence Runbook)",
+        foundlab: "REX Guard evaluation (illustrative)",
         label: "Response Time"
       },
       metrics: {
-        saved: "$ 20M+",
+        saved: "DecisionID",
         savedLabel: "Liability Averted",
-        reduction: "98.7%",
+        reduction: "Fail closed",
         reductionLabel: "Faster Containment"
       }
     },
@@ -406,7 +427,7 @@ export const translations: Record<Language, Translations> = {
       alchemy: {
         input: "Liability (Unused CUDs)",
         process: "Arbitrage Execution",
-        output: "Asset (Layer 0 Trust)"
+        output: "REX Guard evaluation"
       },
       cards: [
         {
@@ -455,10 +476,10 @@ export const translations: Record<Language, Translations> = {
     pages: {
       about: {
         title: "About FoundLab",
-        description: "We are the sovereign engineering core for regulated finance.",
+        description: "We build Auditable Trust Infrastructure for consequential AI actions.",
         body: [
-          "FoundLab isn't a consultancy or a SaaS vendor. We are a deep-tech laboratory composed of former regulatory lawyers, risk architects, and critical infrastructure engineers.",
-          "We exist to solve one problem: How to innovate at the speed of AI without breaking the physics of banking secrecy. We don't sell software; we sell the mathematical certainty that your data never left your perimeter."
+          "FoundLab develops REX Guard: infrastructure that verifies authority and enforces deterministic policy at the enterprise execution boundary.",
+          "AI may interpret, recommend and propose actions. Institutional authority remains outside the model. REX Guard connects protected execution with identifiable, cryptographically verifiable evidence."
         ]
       },
       careers: {
@@ -482,7 +503,7 @@ export const translations: Record<Language, Translations> = {
         title: "Privacy Policy",
         description: "Our policy is simple: We don't want your data.",
         body: [
-          "FoundLab operates on a Zero-Trust, Zero-Persistence model. We do not ingest, store, or train on client data. All processing occurs within your sovereign VPC.",
+          "FoundLab documents the product boundary and data handling in the applicable agreement. REX Guard is designed to keep authority evaluation separate from model output; deployment-specific retention and processing terms must be verified for each environment.",
           "Any telemetry collected is strictly for system health (uptime, latency) and contains no PII or financial secrets. We are architecturally designed to not retain what we never held."
         ]
       },
@@ -491,62 +512,64 @@ export const translations: Record<Language, Translations> = {
         description: "The rules of engagement for sovereign infrastructure.",
         body: [
           "Services are provided under a Master Service Agreement (MSA) executed via Google Cloud Marketplace Private Offer.",
-          "You own the enclave. You own the keys. You own the liability for what you build. We own the guarantee that the physics of the system hold true."
+          "The institution defines authority and remains responsible for its deployment. REX Guard verifies the configured boundary and records the authorization outcome; deployment terms are defined in the applicable agreement."
         ]
       },
       sla: {
         title: "Service Level Agreement",
-        description: "99.95% Uptime. 15-Minute Response. No Excuses.",
+        description: "Service terms and operational targets are defined in the applicable agreement.",
         body: [
-          "Our SLA is backed by financial penalties, not credits. We guarantee sub-50ms cold-starts for inference and 99.95% availability for control plane API.",
+          "Operational targets, support windows and remedies are defined in the applicable agreement; no universal latency or availability claim is made here.",
           "Critical incidents (P1) trigger an immediate swarm response from our engineering core, not a support ticket queue."
         ]
       }
     },
     terminal: {
-      eyebrow: "Guardian AI Console",
-      title: {
-        line1: { pre: "Expose the", highlight: "Invisible", post: "." },
-        line2: { pre: "Interrogate the", highlight: "Code", post: "." }
-      },
-      description: {
-        pre: "We don't ship black boxes. The",
-        strong: "Real-time Rationale Extraction (REX)",
-        post: "engine logs every interdiction in plain English inside your perimeter."
-      },
-      bullets: [
-        "Zero-Data Exfiltration (VPC Locked)",
-        "Sub-20ms Interdiction Latency",
-        "Cryptographic Evidence Ledger"
-      ],
-      logSequence: [
-        "> INITIATING GUARDIAN AI PROTOCOL...",
-        "> ESTABLISHING SECURE HANDSHAKE...",
-        "> CONNECTION SECURE",
-        "> LOADING MODEL: FRAUD-DEFENSE-L...",
-        "> ALLOCATION: GPU 0 - 100% DEDICATED",
-        "> STREAMING TRANSACTION BATCH...",
-        "> ANALYZING... [LATENCY: 12ms]",
-        "> ...",
-        "> ALERT: ANOMALY DETECTED",
-        "> REASON: VELOCITY_CHECK_FAIL",
-        "> RISK SCORE: 99.8/100 [CRITICAL]",
-        "> ACTION: INTERDICTION_IMMEDIATE",
-        "> EXECUTING BURN_PROTOCOL...",
-        "> SESSION REVOKED.",
-        "> GENERATING RATIONALE... DONE.",
-        "> LOGGING EVIDENCE...",
-        "> SUCCESS. THREAT NEUTRALIZED.",
-        "> AWAITING NEXT BATCH..."
-      ],
-      statusBar: {
-        status: "Status: ONLINE",
-        memory: "Mem: 12GB / 80GB (RAM DISK)",
-        nim: "NIM: ACTIVE"
-      }
+  "eyebrow": "REX Guard · illustrative demo",
+  "title": {
+    "line1": {
+      "pre": "Verify",
+      "highlight": "authority",
+      "post": "."
     },
+    "line2": {
+      "pre": "Inspect",
+      "highlight": "evidence",
+      "post": "."
+    }
+  },
+  "description": {
+    "pre": "In this illustrative flow,",
+    "strong": "REX Guard",
+    "post": "evaluates authorization before execution. DecisionID and a signed receipt identify the outcome; they do not represent storage of complete model inputs and outputs."
+  },
+  "bullets": [
+    "Authorization bound to purpose and context",
+    "Denied actions do not reach the protected system",
+    "A signature verifies the record, not the truth of the decision"
+  ],
+  "logSequence": [
+    "> DEMO — not a live execution",
+    "> INTENT: payment.release | caller=agent-07 | tenant=bank-demo",
+    "> PURPOSE: approved_invoice | scope=invoice-042",
+    "> AUTHORITY: identity, scope and validity evaluated",
+    "> POLICY: invoice-release/v3 | outcome=ALLOW",
+    "> DecisionID=demo-allow-001 | illustrative signed receipt",
+    "> PROTECTED EXECUTION: forwarded to adapter",
+    "> RECONCILIATION: outcome linked to DecisionID",
+    "> REPLAY: grant already consumed | outcome=DENY",
+    "> NEW INTENT: unauthorized purpose | outcome=DENY",
+    "> DecisionID=demo-deny-002 | illustrative denial receipt",
+    "> FAIL CLOSED: protected system not invoked"
+  ],
+  "statusBar": {
+    "status": "Mode: demonstration",
+    "memory": "Policy: fail closed",
+    "nim": "REX Guard"
+  }
+},
     footer: {
-      desc: "Layer 0 Deep Tech redefining financial trust with inverted sovereignty and physics-grade security.",
+      desc: "FoundLab builds Auditable Trust Infrastructure (ATI). REX Guard verifies runtime authority, protects consequential actions and produces auditable evidence.",
       headers: {
         platform: "Platform",
         company: "Company",
@@ -554,8 +577,8 @@ export const translations: Record<Language, Translations> = {
       },
       links: {
         arch: "Architecture",
-        proto: "Protocol Veritas",
-        market: "Marketplace",
+        proto: "REX Guard",
+        market: "Enterprise",
         about: "About Us",
         careers: "Careers",
         contact: "Contact",
@@ -563,8 +586,8 @@ export const translations: Record<Language, Translations> = {
         terms: "Terms of Service",
         sla: "SLA"
       },
-      rights: "FoundLab Inc. All rights reserved.",
-      locations: "New York / Sao Paulo"
+      rights: "FoundLab. All rights reserved.",
+      locations: "Auditable Trust Infrastructure"
     },
     socialProof: {
       eyebrow: "Trusted By Leaders",
@@ -599,8 +622,8 @@ export const translations: Record<Language, Translations> = {
     },
     contactForm: {
       badge: "Direct Channel",
-      title: "Initiate Handshake.",
-      subtitle: "Institutional partners and enterprise inquiries. Our engineering core responds within 24 hours.",
+      title: "Evaluate REX Guard.",
+      subtitle: "Request a technical evaluation. Tell us which consequential actions, authority sources and enterprise systems need an execution boundary.",
       channels: [
         { label: "Commercial & Private Offers", value: "commercial@foundlab.com.br" },
         { label: "Regulatory Affairs", value: "legal@foundlab.com.br" },
@@ -617,12 +640,13 @@ export const translations: Record<Language, Translations> = {
         name: "John Doe",
         email: "name@institution.com",
         company: "Acme Corporation",
-        message: "Describe your compliance challenge or infrastructure requirement..."
+        message: "Describe the action, caller, purpose and downstream system..."
       },
       submit: "Send Message",
       submitting: "Transmitting...",
-      error: "Failed to send. Please try again or email us directly.",
-      success: {
+  error: "Failed to send. Please try again or email us directly.",
+  privacyNotice: "By submitting this form, you provide your contact details so FoundLab can respond to your request. See",
+  success: {
         title: "Message Transmitted",
         desc: "Your inquiry has been securely queued. A specialist from our engineering core will respond within 24 hours.",
         another: "Send Another Message"
@@ -631,28 +655,29 @@ export const translations: Record<Language, Translations> = {
   },
   pt: {
     nav: {
-      paradox: "O Paradoxo",
-      enclave: "Enclave Soberano",
-      architecture: "Arquitetura",
-      roi: "Estudo de Caso",
-      marketplace: "Marketplace",
-      privateOffer: "Oferta Privada"
-    },
+  "product": "REX Guard",
+  "paradox": "Autoridade",
+  "howItWorks": "Como funciona",
+  "architecture": "Arquitetura",
+  "evidence": "Evidências",
+  "enterprise": "Enterprise",
+  "evaluation": "Avaliar REX Guard"
+},
     hero: {
-      badge: "Layer 0: Confiança Programável",
-      title1: "Auditable Trust",
-      title2: "Infrastructure.",
-      subtitle: "Não criamos apps. Arquitetamos a Camada de Confiança Programável. Transformando compliance manual em garantias baseadas na física.",
-      cta1: "Inicializar Layer 0",
-      cta2: "Ler Manifesto",
-      ctaVideo: "Ver Simulação",
-      scroll: "Decriptar"
-    },
+  "badge": "Auditable Trust Infrastructure",
+  "title1": "A IA pode propor.",
+  "title2": "A autoridade precisa ser verificada.",
+  "subtitle": "REX Guard é uma Infraestrutura de Confiança Auditável para ações de IA com consequência real. Verifica autoridade, aplica políticas determinísticas e produz evidência criptograficamente verificável antes da execução.",
+  "cta1": "Avaliar REX Guard",
+  "cta2": "Ver Arquitetura",
+  "ctaVideo": "Ver Simulação",
+  "scroll": "Entenda o problema"
+},
     video: {
       title: "Dentro da Stack Soberana da FoundLab",
       generateBtn: "Renderizar Visão com IA (Veo)",
-      generating: "Sintetizando sequência do enclave soberano...",
-      waiting: "Calibrando a malha de Zero-Persistência...",
+      generating: "Preparando visualização de infraestrutura...",
+      waiting: "Calibrando a fronteira de execução protegida...",
       error: "Sequência interrompida. Tente novamente.",
       disclaimer: "Gerado ao vivo com Google Veo. Nenhum ativo é pré-renderizado."
     },
@@ -664,112 +689,130 @@ export const translations: Record<Language, Translations> = {
       "Toxic Data Assets": "Registros que bancos são obrigados a manter para reguladores, mas penalizados por reter segundo leis de privacidade."
     },
     paradox: {
-      eyebrow: "A Crise Existencial",
-      titleMain: "O Paradoxo",
-      titleItalic: "da Retenção.",
-      p1: "O Setor exige 'Reter Tudo' (BACEN/SOX). A Lei exige 'Esquecer Tudo' (LGPD). Este conflito é o Paradoxo da Retenção.",
-      p2: "A FoundLab resolve isso via Desacoplamento Criptográfico. Destruímos a chave (Apagamento Lógico) mantendo a cifra (Retenção Física). Uma trégua matemática.",
-      retention: "Auditoria: Reter",
-      erasure: "Privacidade: Apagar",
-      quote: "\"Não vendemos computação, vendemos Decisões Auditáveis. A prova irrefutável de que um processo ocorreu.\""
-    },
+  "eyebrow": "A lacuna de autoridade",
+  "titleMain": "Gerar uma ação",
+  "titleItalic": "não é autorizá-la.",
+  "p1": "Sistemas probabilísticos propõem ações cada vez mais relevantes. A autoridade institucional continua sendo explícita, delimitada, revogável e atribuível — não uma propriedade do modelo.",
+  "p2": "Autenticar um usuário, workload, rede ou modelo não basta. Na fronteira de execução, é preciso verificar a autorização para aquela ação, finalidade e contexto, naquele momento.",
+  "retention": "Proposta probabilística",
+  "erasure": "Autoridade institucional",
+  "quote": "Este ator está autorizado a executar esta ação, para esta finalidade, neste contexto, agora?"
+},
     techStack: {
-      eyebrow: "Impulsionado por NVIDIA NIMs",
-      title: "A Máquina da Verdade.",
-      subtitle: "Interdição de fraude, AML, risco intradia e orquestração de consentimento exigem latência determinística com controle soberano. É isso que entregamos.",
-      challenge: {
-        title: "O Desafio",
-        desc: "Bancos precisam rodar modelos com bilhões de parâmetros em menos de 20 ms sem copiar telemetria do cliente para uma API pública. Compliance, soberania e performance de GPU raramente coexistem."
-      },
-      solution: {
-        title: "A Solução",
-        desc: "Os NVIDIA Inference Microservices (NIMs) fornecem aceleração bare-metal sob custódia soberana. Eles energizam cada enclave Zero-Persistência."
-      },
-      quote: "O dogma 'trust by physics' da FoundLab escala porque a NVIDIA permite posicionar GPUs dentro de perímetros regulados. É o substrato inevitável das finanças.",
-      features: [
-        { title: "NVIDIA NIMs", desc: "Malha de inferência soberana com latência determinística dentro da sua VPC." },
-        { title: "Google Cloud Run", desc: "Contêineres efêmeros com kill switch de Zero-Persistência em cada deploy." },
-        { title: "VPC Service Controls", desc: "Camadas de bloqueio de egress que tornam exfiltração fisicamente impraticável." }
-      ]
+  "eyebrow": "Contexto de integração",
+  "title": "Modelos propõem. REX Guard verifica.",
+  "subtitle": "A infraestrutura de modelos não concede autoridade. REX Guard aplica a fronteira de execução independentemente do modelo que originou a intenção.",
+  "challenge": {
+    "title": "Origem da intenção",
+    "desc": "Gemini via Vertex AI e serviços NVIDIA NIM podem compor a camada de inferência. Suas saídas continuam sendo propostas."
+  },
+  "solution": {
+    "title": "Fronteira de execução",
+    "desc": "A instituição define quem pode agir, com qual finalidade e em qual escopo. O conector protegido recebe apenas ações autorizadas."
+  },
+  "quote": "O modelo propõe. A instituição mantém a autoridade.",
+  "features": [
+    {
+      "title": "NVIDIA NIM",
+      "desc": "Infraestrutura de inferência"
     },
+    {
+      "title": "Google Cloud Run",
+      "desc": "Substrato de execução"
+    },
+    {
+      "title": "VPC Service Controls",
+      "desc": "Controles de perímetro"
+    }
+  ]
+},
     whitepaper: {
-      badge: "Pesquisa Executiva",
-      title: "Whitepaper Zero-Persistência Assurance",
-      subtitle: "Dossiê de 46 páginas detalhando como a FoundLab concilia mandatos de retenção do BACEN/SOX com o direito ao esquecimento da LGPD/GDPR.",
-      highlights: [
-        "Mapeia BACEN 4.893, SOX e LGPD/GDPR para controles de Zero-Persistência.",
-        "Explica o Protocolo Veritas, a queima de CMEK e a topologia dos enclaves NVIDIA NIM.",
-        "Traz o case de Banco Tier-1, métricas de ROI e um checklist de implementação."
-      ],
-      ctaPrimary: "Acesse aqui",
-      ctaSecondary: "Acesse aqui",
-      detailsLabel: "Detalhes",
-      meta: [
-        { label: "Extensão", value: "46 páginas" },
-        { label: "Revisão", value: "Q4 2025" },
-        { label: "Audiência", value: "CIO · CRO · CISO" }
-      ]
+  "badge": "Arquivo de pesquisa",
+  "title": "Pesquisa histórica sobre privacidade",
+  "subtitle": "Documento histórico sobre privacidade e retenção. Preserva terminologia e hipóteses da época; não define a categoria atual nem a especificação do REX Guard.",
+  "highlights": [
+    "Explora minimização de dados e separação entre conteúdo e evidência.",
+    "Zero-Persistência é um tema de arquitetura e privacidade, não a tese central do produto.",
+    "Para avaliar autoridade em runtime e ações protegidas, consulte a arquitetura atual do REX Guard."
+  ],
+  "ctaPrimary": "Ler pesquisa histórica",
+  "ctaSecondary": "Ver REX Guard",
+  "detailsLabel": "Contexto do documento",
+  "meta": [
+    {
+      "label": "Tipo",
+      "value": "Pesquisa histórica"
     },
+    {
+      "label": "Tema",
+      "value": "Privacidade"
+    },
+    {
+      "label": "Produto atual",
+      "value": "REX Guard"
+    }
+  ]
+},
     architecture: {
-      eyebrow: "Stack de Infraestrutura",
-      title: "Soberano por Design.",
-      subtitle: "A infraestrutura da FoundLab foi desenhada sob a premissa de Zero Trust. Ela opera 100% dentro do seu projeto Google Cloud, garantindo soberania total sobre seus dados sem vendor lock-in. O ecossistema é sustentado por seis módulos fundamentais:",
-      products: [
-        {
-          title: "Edge Security",
-          subtitle: "Cloud Load Balancing & Cloud Armor",
-          description: "Roteamento global Anycast com terminação TLS e mitigação de ameaças na borda. O tráfego é filtrado antes de qualquer processamento.",
-          tag: "Borda & Segurança"
-        },
-        {
-          title: "Zero-Trust Proxy",
-          subtitle: "Cloud Run",
-          description: "O motor de interceptação. Um ambiente stateless e RAM-only que isola cada requisição, gera os hashes criptográficos em memória e garante zero escrita em disco.",
-          tag: "Interceptação Stateless"
-        },
-        {
-          title: "Signing Authority",
-          subtitle: "Cloud KMS",
-          description: "A certificação matemática. Gera uma assinatura ECDSA P-256 vinculada ao momento exato da decisão, sem que a chave privada jamais saia do cofre de hardware (HSM).",
-          tag: "Criptografia & HSM"
-        },
-        {
-          title: "Immutable Ledger",
-          subtitle: "BigQuery WORM",
-          description: "O \"Cartório Quântico\". Um banco de dados append-only que armazena exclusivamente as evidências matemáticas, tornando fisicamente impossível adulterar o registro ou reconstruir o dado original.",
-          tag: "Armazenamento Imutável"
-        },
-        {
-          title: "Secret Store",
-          subtitle: "Secret Manager",
-          description: "Gestão centralizada e isolada de chaves e variáveis de ambiente, com kill-switch integrado para revogação imediata em todo o sistema.",
-          tag: "Gestão de Chaves"
-        },
-        {
-          title: "AI Core & Observability",
-          subtitle: "Vertex AI & Cloud Monitoring",
-          description: "Integração fluida via streaming com modelos Gemini, monitorada em tempo real por métricas DORA e alertas de latência para garantir máxima performance sem comprometer a conformidade.",
-          tag: "IA & Monitoramento"
-        }
-      ]
+  "eyebrow": "Arquitetura do REX Guard",
+  "title": "Controle na fronteira de execução.",
+  "subtitle": "Entre a intenção gerada por IA e o sistema corporativo, REX Guard verifica autoridade e aplica política determinística. Estes módulos conceituais separam proposta, autorização, execução e evidência; o provedor de nuvem é substrato, não o produto.",
+  "products": [
+    {
+      "title": "Identidade e autoridade",
+      "subtitle": "Solicitante · tenant · contexto",
+      "description": "Verifica a identidade do solicitante e o contexto de autoridade institucional em tempo de execução. Autenticação não substitui autorização.",
+      "tag": "Autoridade"
     },
+    {
+      "title": "Finalidade e ação",
+      "subtitle": "Escopo · tempo · revogação",
+      "description": "Vincula a autorização à finalidade, à ação e ao escopo definidos pela instituição, considerando validade temporal e revogação.",
+      "tag": "Vínculo de contexto"
+    },
+    {
+      "title": "Política determinística",
+      "subtitle": "Rules-as-Code · fail closed",
+      "description": "Avalia regras explícitas. Se a autoridade exigida não puder ser comprovada, a ação protegida não é executada.",
+      "tag": "Aplicação de política"
+    },
+    {
+      "title": "Execução protegida",
+      "subtitle": "Conector · adaptador · replay",
+      "description": "O adaptador verifica a autorização antes de alcançar o sistema de destino. O vínculo ao contexto de execução permite rejeitar reutilizações indevidas.",
+      "tag": "Fronteira de execução"
+    },
+    {
+      "title": "DecisionID e recibo",
+      "subtitle": "Evidência criptográfica",
+      "description": "Identifica o resultado da autorização e o associa a um recibo assinado. A verificação comprova propriedades do registro, não a correção substantiva da decisão.",
+      "tag": "Evidência auditável"
+    },
+    {
+      "title": "Reconciliação e observabilidade",
+      "subtitle": "Outbox · estado de execução",
+      "description": "Correlaciona autorização, tentativa de execução e resultado observado. Outbox e reconciliação tratam entregas pendentes sem confundir autorização com conclusão.",
+      "tag": "Rastreabilidade"
+    }
+  ]
+},
     roi: {
       eyebrow: "Prova em Produção",
       title: "A Resolução de 16 Minutos.",
-      subtitle: "Dentro de um Banco de Investimento Tier-1 mitigamos um vazamento de Shadow IT que expunha milhões em passivos. Zero-Persistência condensou 21 horas de runbooks manuais em minutos.",
+      subtitle: "Um padrão histórico de incidente que ilustra por que propostas de IA precisam de autoridade explícita, política determinística e evidência verificável de execução.",
       incident: {
         label: "Incidente Detectado",
         desc: "Upload não autorizado de dados de clientes em um assistente de IA público."
       },
       timeline: {
         legacy: "21 Horas (Playbooks Manuais)",
-        foundlab: "16 Minutos (Runbook Zero-Persistência)",
+        foundlab: "Avaliação REX Guard (ilustrativa)",
         label: "Tempo de Resposta"
       },
       metrics: {
-        saved: "R$ 100M+",
+        saved: "DecisionID",
         savedLabel: "Passivo Evitado",
-        reduction: "98.7%",
+        reduction: "Fail closed",
         reductionLabel: "Contenção Mais Rápida"
       }
     },
@@ -780,7 +823,7 @@ export const translations: Record<Language, Translations> = {
       alchemy: {
         input: "Passivo (CUDs Ociosos)",
         process: "Execução de Arbitragem",
-        output: "Ativo (Trust Layer 0)"
+        output: "Avaliação do REX Guard"
       },
       cards: [
         {
@@ -829,10 +872,10 @@ export const translations: Record<Language, Translations> = {
     pages: {
       about: {
         title: "Sobre a FoundLab",
-        description: "Somos o núcleo de engenharia soberana para finanças reguladas.",
+        description: "Desenvolvemos Infraestrutura de Confiança Auditável para ações de IA com consequência real.",
         body: [
-          "A FoundLab não é uma consultoria nem um vendor de SaaS comum. Somos um laboratório deep-tech composto por ex-advogados regulatórios, arquitetos de risco e engenheiros de infraestrutura crítica.",
-          "Existimos para resolver um problema: Como inovar na velocidade da IA sem quebrar a física do sigilo bancário. Não vendemos software; vendemos a certeza matemática de que seus dados nunca deixaram seu perímetro."
+          "A FoundLab desenvolve o REX Guard: infraestrutura que verifica autoridade e aplica políticas determinísticas na fronteira de execução corporativa.",
+          "A IA pode interpretar, recomendar e propor ações. A autoridade institucional permanece fora do modelo. REX Guard conecta execução protegida a evidência identificável e criptograficamente verificável."
         ]
       },
       careers: {
@@ -856,7 +899,7 @@ export const translations: Record<Language, Translations> = {
         title: "Política de Privacidade",
         description: "Nossa política é simples: Não queremos seus dados.",
         body: [
-          "A FoundLab opera em um modelo Zero-Trust e Zero-Persistência. Não ingerimos, armazenamos ou treinamos com dados de clientes. Todo o processamento ocorre dentro da sua VPC soberana.",
+          "A FoundLab documenta os limites do produto e o tratamento de dados no contrato aplicável. O REX Guard separa a avaliação de autoridade da saída do modelo; retenção e processamento devem ser verificados para cada ambiente.",
           "Qualquer telemetria coletada é estritamente para saúde do sistema (uptime, latência) e não contém PII ou segredos financeiros. Somos arquiteturalmente desenhados para não reter o que nunca tivemos."
         ]
       },
@@ -870,57 +913,59 @@ export const translations: Record<Language, Translations> = {
       },
       sla: {
         title: "Acordo de Nível de Serviço",
-        description: "99.95% Uptime. Resposta em 15 Minutos. Sem Desculpas.",
+        description: "Termos de serviço e metas operacionais são definidos no contrato aplicável.",
         body: [
-          "Nosso SLA é garantido por penalidades financeiras, não créditos. Garantimos cold-starts de inferência abaixo de 50ms e 99.95% de disponibilidade para o control plane.",
+          "Metas operacionais, janelas de suporte e remédios são definidos no contrato aplicável; nenhuma afirmação universal de latência ou disponibilidade é feita aqui.",
           "Incidentes críticos (P1) acionam uma resposta imediata do nosso núcleo de engenharia, não uma fila de suporte."
         ]
       }
     },
     terminal: {
-      eyebrow: "Console Guardian AI",
-      title: {
-        line1: { pre: "Revele o", highlight: "Invisível", post: "." },
-        line2: { pre: "Interrogue o", highlight: "Código", post: "." }
-      },
-      description: {
-        pre: "Não entregamos caixas-pretas. O",
-        strong: "motor de Extração de Racional em Tempo Real (REX)",
-        post: "registra cada interdição em português claro dentro do seu perímetro."
-      },
-      bullets: [
-        "Zero-Data Exfiltration (VPC Bloqueada)",
-        "Latência de Interdição sub-20ms",
-        "Ledger de Evidências Criptográficas"
-      ],
-      logSequence: [
-        "> INICIANDO PROTOCOLO GUARDIAN AI...",
-        "> ESTABELECENDO HANDSHAKE SEGURO...",
-        "> CONEXÃO SEGURA",
-        "> CARREGANDO MODELO: FRAUD-DEFENSE-L...",
-        "> ALOCAÇÃO: GPU 0 - 100% DEDICATED",
-        "> TRANSMITINDO LOTE DE TRANSAÇÕES...",
-        "> ANALISANDO... [LATÊNCIA: 12ms]",
-        "> ...",
-        "> ALERTA: ANOMALIA DETECTADA",
-        "> MOTIVO: VELOCITY_CHECK_FAIL",
-        "> SCORE DE RISCO: 99.8/100 [CRÍTICO]",
-        "> AÇÃO: INTERDICTION_IMMEDIATE",
-        "> EXECUTANDO BURN_PROTOCOL...",
-        "> SESSÃO REVOGADA.",
-        "> GERANDO RACIONAL... CONCLUÍDO.",
-        "> REGISTRANDO EVIDÊNCIA...",
-        "> SUCESSO. AMEAÇA NEUTRALIZADA.",
-        "> AGUARDANDO PRÓXIMO LOTE..."
-      ],
-      statusBar: {
-        status: "Status: ONLINE",
-        memory: "Mem: 12GB / 80GB (RAM DISK)",
-        nim: "NIM: ATIVO"
-      }
+  "eyebrow": "REX Guard · demonstração ilustrativa",
+  "title": {
+    "line1": {
+      "pre": "Verifique a",
+      "highlight": "autoridade",
+      "post": "."
     },
+    "line2": {
+      "pre": "Inspecione a",
+      "highlight": "evidência",
+      "post": "."
+    }
+  },
+  "description": {
+    "pre": "Neste fluxo ilustrativo, o",
+    "strong": "REX Guard",
+    "post": "avalia a autorização antes da execução. DecisionID e recibo assinado identificam o resultado; não representam armazenamento integral de entradas e saídas do modelo."
+  },
+  "bullets": [
+    "Autorização vinculada à finalidade e ao contexto",
+    "Ação negada não alcança o sistema protegido",
+    "Assinatura verifica o registro, não a verdade da decisão"
+  ],
+  "logSequence": [
+    "> DEMONSTRAÇÃO — não é uma execução real",
+    "> INTENÇÃO: payment.release | caller=agent-07 | tenant=bank-demo",
+    "> FINALIDADE: approved_invoice | scope=invoice-042",
+    "> AUTORIDADE: identidade, escopo e validade avaliados",
+    "> POLÍTICA: invoice-release/v3 | resultado=ALLOW",
+    "> DecisionID=demo-allow-001 | recibo assinado ilustrativo",
+    "> EXECUÇÃO PROTEGIDA: encaminhada ao adaptador",
+    "> RECONCILIAÇÃO: resultado associado ao DecisionID",
+    "> REPLAY: autorização já consumida | resultado=DENY",
+    "> NOVA INTENÇÃO: finalidade não autorizada | resultado=DENY",
+    "> DecisionID=demo-deny-002 | recibo de negação ilustrativo",
+    "> FAIL CLOSED: sistema protegido não acionado"
+  ],
+  "statusBar": {
+    "status": "Modo: demonstração",
+    "memory": "Política: fail closed",
+    "nim": "REX Guard"
+  }
+},
     footer: {
-      desc: "Deep Tech de Layer 0. Redefinindo confiança financeira com soberania invertida e segurança regida pela física.",
+      desc: "A FoundLab desenvolve Infraestrutura de Confiança Auditável (Auditable Trust Infrastructure, ATI). REX Guard verifica autoridade em runtime, protege ações e produz evidência auditável.",
       headers: {
         platform: "Plataforma",
         company: "Empresa",
@@ -928,8 +973,8 @@ export const translations: Record<Language, Translations> = {
       },
       links: {
         arch: "Arquitetura",
-        proto: "Protocolo Veritas",
-        market: "Marketplace",
+        proto: "REX Guard",
+        market: "Enterprise",
         about: "Sobre",
         careers: "Carreiras",
         contact: "Contato",
@@ -937,8 +982,8 @@ export const translations: Record<Language, Translations> = {
         terms: "Terms of Service",
         sla: "SLA"
       },
-      rights: "FoundLab Inc. Todos os direitos reservados.",
-      locations: "Nova York / São Paulo"
+      rights: "FoundLab. Todos os direitos reservados.",
+      locations: "Auditable Trust Infrastructure"
     },
     socialProof: {
       eyebrow: "Confiança Comprovada",
@@ -973,8 +1018,8 @@ export const translations: Record<Language, Translations> = {
     },
     contactForm: {
       badge: "Canal Direto",
-      title: "Iniciar Handshake.",
-      subtitle: "Para parceiros institucionais e consultas enterprise. Nosso nucleo de engenharia responde em ate 24 horas.",
+      title: "Avaliar REX Guard.",
+      subtitle: "Solicite uma avaliação técnica. Conte quais ações, fontes de autoridade e sistemas corporativos precisam de uma fronteira de execução.",
       channels: [
         { label: "Comercial & Ofertas Privadas", value: "commercial@foundlab.com.br" },
         { label: "Assuntos Regulatorios", value: "legal@foundlab.com.br" },
@@ -991,12 +1036,13 @@ export const translations: Record<Language, Translations> = {
         name: "Joao Silva",
         email: "nome@instituicao.com",
         company: "Empresa S.A.",
-        message: "Descreva seu desafio de compliance ou requisito de infraestrutura..."
+        message: "Descreva a ação, o solicitante, a finalidade e o sistema de destino..."
       },
       submit: "Enviar Mensagem",
       submitting: "Transmitindo...",
-      error: "Falha ao enviar. Tente novamente ou envie um email diretamente.",
-      success: {
+  error: "Falha ao enviar. Tente novamente ou envie um email diretamente.",
+  privacyNotice: "Ao enviar este formulário, você fornece seus dados de contato para que a FoundLab possa responder à solicitação. Consulte",
+  success: {
         title: "Mensagem Transmitida",
         desc: "Sua consulta foi enfileirada com seguranca. Um especialista do nosso nucleo de engenharia respondera em ate 24 horas.",
         another: "Enviar Outra Mensagem"

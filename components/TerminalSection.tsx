@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Terminal, ShieldCheck, AlertOctagon, Lock, BrainCircuit } from 'lucide-react';
+import { Terminal, ShieldCheck, AlertOctagon, Lock } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const bulletIcons = [ShieldCheck, AlertOctagon, Lock];
@@ -76,7 +76,7 @@ const TerminalSection: React.FC = () => {
       setCompletedLogs([]);
       setCurrentLogIndex(0);
     }
-  }, [isInView]);
+  }, [isInView, logSequence]);
 
   useEffect(() => {
     if (isInView && currentLogIndex < logSequence.length) {
@@ -101,7 +101,7 @@ const TerminalSection: React.FC = () => {
 
 
   return (
-    <section ref={ref} className="py-24 lg:py-32 bg-navy-950 relative overflow-hidden border-t border-navy-800">
+    <section id="evidence" ref={ref} className="py-24 lg:py-32 bg-navy-950 relative overflow-hidden border-t border-navy-800">
       
       {/* Technical Grid Overlay */}
       <div 
@@ -178,7 +178,7 @@ const TerminalSection: React.FC = () => {
                         <div className="w-2.5 h-2.5 rounded-full bg-slate-600 hover:bg-yellow-500 transition-colors shadow-inner"></div>
                         <div className="w-2.5 h-2.5 rounded-full bg-slate-600 hover:bg-emerald-500 transition-colors shadow-inner"></div>
                     </div>
-                    <div className="text-slate-500 uppercase tracking-widest text-[9px] font-bold font-mono">root@guardian-ai-node-01:~</div>
+                    <div className="text-slate-500 uppercase tracking-widest text-[9px] font-bold font-mono">demo@rex-guard:~</div>
                     <div className="text-[9px] text-emerald-500/50 font-mono">BASH</div>
                 </div>
 
@@ -230,10 +230,10 @@ const TerminalSection: React.FC = () => {
                 {/* Status Footer */}
                 <div className="border-t border-slate-800 bg-navy-950 px-4 py-2 flex justify-between items-center text-[9px] text-slate-500 uppercase tracking-wider">
                     <div>
-                        Connection: <span className="text-emerald-500">Secure (TLS 1.3)</span>
+                        <span className="text-emerald-500">{terminalCopy.statusBar.status}</span>
                     </div>
                     <div>
-                        Latency: <span className="text-emerald-500">12ms</span>
+                        <span className="text-emerald-500">{terminalCopy.statusBar.memory}</span>
                     </div>
                 </div>
             </div>

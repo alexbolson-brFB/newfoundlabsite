@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Terminal, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 import { useLanguage } from '../contexts/LanguageContext';
-import PrivateOfferModal from './PrivateOfferModal';
 
 const Header: React.FC = () => {
   const { t, language, setLanguage } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
-  const [privateOfferOpen, setPrivateOfferOpen] = useState(false);
+  const navigate = useNavigate();
+  const menuTriggerRef = useRef<HTMLButtonElement>(null);
+  const menuPanelRef = useRef<HTMLDivElement>(null);
+  const wasMenuOpenRef = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -47,35 +49,64 @@ const Header: React.FC = () => {
 
     observeSections();
 
-    // Check periodically for lazy-loaded sections instead of a heavy MutationObserver
-    const intervalId = setInterval(observeSections, 1000);
+    const mutationObserver = new MutationObserver(() => {
+      observeSections();
+      if (observedElements.size >= 7) mutationObserver.disconnect();
+    });
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
 
     return () => {
       observer.disconnect();
-      clearInterval(intervalId);
+      mutationObserver.disconnect();
     };
   }, []);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
+    if (menuOpen) {
+      requestAnimationFrame(() => menuPanelRef.current?.querySelector<HTMLElement>('button, a')?.focus());
+    } else if (wasMenuOpenRef.current) {
+      menuTriggerRef.current?.focus();
+    }
+    wasMenuOpenRef.current = menuOpen;
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false);
+      if (event.key === 'Tab' && menuPanelRef.current) {
+        const focusable = Array.from(menuPanelRef.current.querySelectorAll<HTMLElement>('button, a, [tabindex]:not([tabindex="-1"])'));
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    if (menuOpen) document.addEventListener('keydown', handleEscape);
     return () => {
       document.body.style.overflow = '';
+      document.removeEventListener('keydown', handleEscape);
     };
   }, [menuOpen]);
 
   const navLinks = [
-    { label: 'Gemini Guard', hash: '#gemini-guard' },
-    { label: t.nav.paradox, hash: '#the-paradox' },
-    { label: t.nav.enclave, hash: '#tech-stack' },
+    { label: t.nav.product, hash: '#rex-guard' },
+    { label: t.nav.paradox, hash: '#authority-gap' },
+    { label: t.nav.howItWorks, hash: '#how-it-works' },
     { label: t.nav.architecture, hash: '#architecture' },
-    { label: t.nav.roi, hash: '#roi-case-study' },
-    { label: t.nav.marketplace, hash: '#marketplace' }
+    { label: t.nav.evidence, hash: '#evidence' },
+    { label: t.nav.enterprise, hash: '#enterprise' }
   ];
 
   const handleNav = (hash: string) => {
     const target = document.querySelector(hash);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      navigate(`/${hash}`);
     }
     setMenuOpen(false);
   };
@@ -88,6 +119,7 @@ const Header: React.FC = () => {
   const LangSwitch = ({ variant }: { variant: 'desktop' | 'mobile' }) => (
     <button
       onClick={() => setLanguage(language === 'en' ? 'pt' : 'en')}
+      aria-label={language === 'en' ? 'Mudar idioma para Português' : 'Switch language to English'}
       className={`relative group flex items-center justify-center gap-2 transition-all overflow-hidden ${
         variant === 'desktop' 
           ? 'h-full px-6 hover:bg-slate-50' 
@@ -130,16 +162,17 @@ const Header: React.FC = () => {
         </div>
 
         {/* Desktop Nav Grid */}
-        <div className="hidden lg:flex flex-1 items-stretch justify-end">
+        <div className="hidden xl:flex flex-1 items-stretch justify-end">
             <nav className="flex items-stretch divide-x divide-slate-200 border-l border-slate-200">
                 {navLinks.map((item) => (
-                <button
+                <a
                     key={item.label}
-                    onClick={() => handleNav(item.hash)}
-                    className={`flex items-center px-6 text-[11px] font-bold uppercase tracking-[0.25em] transition-colors relative group min-h-[44px] ${
+                    href={item.hash}
+                    onClick={() => setMenuOpen(false)}
+                    className={`flex items-center px-3 text-[10px] font-bold uppercase tracking-[0.12em] transition-colors relative group min-h-[44px] ${
                       activeSection === item.hash ? 'text-navy-900' : 'text-slate-500 hover:text-navy-900 hover:bg-slate-50'
                     }`}
-                    aria-current={activeSection === item.hash ? 'true' : undefined}
+                    aria-current={activeSection === item.hash ? 'location' : undefined}
                 >
                     {item.label}
                     <span 
@@ -147,7 +180,7 @@ const Header: React.FC = () => {
                         activeSection === item.hash ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                       }`} 
                     />
-                </button>
+                </a>
                 ))}
             </nav>
             
@@ -157,6 +190,7 @@ const Header: React.FC = () => {
                     onClick={triggerCommandMenu}
                     className="flex items-center justify-center px-6 text-slate-400 hover:text-emerald-600 hover:bg-slate-50 transition-colors group"
                     title="Command Interface (Cmd+K)"
+                    aria-label="Open command interface"
                  >
                     <Terminal className="w-4 h-4" />
                  </button>
@@ -167,12 +201,12 @@ const Header: React.FC = () => {
                  {/* CTA */}
                  <div className="flex items-center px-6">
                     <motion.button
-                        onClick={() => setPrivateOfferOpen(true)}
+                        onClick={() => handleNav('#contact-form')}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         className="inline-flex items-center gap-3 px-6 py-3 bg-navy-900 text-white text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm hover:bg-navy-800 transition-all border border-navy-900"
                     >
-                        {t.nav.privateOffer}
+                        {t.nav.evaluation}
                         <ArrowRight className="w-3.5 h-3.5" />
                     </motion.button>
                  </div>
@@ -180,7 +214,7 @@ const Header: React.FC = () => {
         </div>
 
         {/* Mobile Header Right */}
-        <div className="flex lg:hidden flex-1 items-center justify-end px-4 gap-4">
+        <div className="flex xl:hidden flex-1 items-center justify-end px-4 gap-4">
              <button
                 onClick={triggerCommandMenu}
                 className="p-3 text-slate-500 hover:text-navy-900 min-w-[44px] min-h-[44px] flex items-center justify-center"
@@ -189,7 +223,10 @@ const Header: React.FC = () => {
                 <Terminal className="w-5 h-5" />
               </button>
              <button
+                ref={menuTriggerRef}
                 onClick={() => setMenuOpen(true)}
+                aria-expanded={menuOpen}
+                aria-controls="mobile-navigation"
                 className="p-3 text-navy-900 min-w-[44px] min-h-[44px] flex items-center justify-center"
                 aria-label="Open menu"
              >
@@ -205,13 +242,18 @@ const Header: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[130] lg:hidden"
+            className="fixed inset-0 z-[130] xl:hidden"
           >
             <div
               className="absolute inset-0 bg-navy-950/80 backdrop-blur-sm"
               onClick={() => setMenuOpen(false)}
             />
             <motion.div
+              ref={menuPanelRef}
+              id="mobile-navigation"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -250,14 +292,15 @@ const Header: React.FC = () => {
 
                  <div className="flex flex-col gap-0 divide-y divide-slate-100 border-y border-slate-100">
                     {navLinks.map((item) => (
-                        <button
+                        <a
                         key={item.hash}
+                        href={item.hash}
                         onClick={() => handleNav(item.hash)}
                         className="py-5 text-sm font-serif font-medium text-navy-900 hover:text-gold-600 transition-colors flex items-center justify-between group"
                         >
                         {item.label}
                         <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-gold-500" />
-                        </button>
+                        </a>
                     ))}
                  </div>
 
@@ -267,11 +310,11 @@ const Header: React.FC = () => {
                     <motion.button
                         onClick={() => {
                             setMenuOpen(false);
-                            setPrivateOfferOpen(true);
+                            handleNav('#contact-form');
                         }}
                         className="w-full flex items-center justify-center gap-3 px-6 py-3 bg-navy-900 text-white text-[10px] font-bold uppercase tracking-[0.2em] rounded-sm hover:bg-navy-800 transition-all border border-navy-900"
                     >
-                        {t.nav.privateOffer}
+                        {t.nav.evaluation}
                         <ArrowRight className="w-3.5 h-3.5" />
                     </motion.button>
                  </div>
@@ -279,18 +322,13 @@ const Header: React.FC = () => {
 
               {/* Mobile Menu Footer */}
               <div className="p-8 border-t border-slate-200 bg-slate-50">
-                 <div className="flex items-center gap-3 mb-2">
-                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-700">System Operational</span>
-                 </div>
-                 <p className="text-[10px] text-slate-400 font-mono">FoundLab Infrastructure v2.4</p>
+                 <p className="text-[10px] font-mono uppercase tracking-widest text-slate-500">Auditable Trust Infrastructure</p>
+                 <p className="text-[10px] text-slate-400 font-mono mt-2">REX Guard</p>
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-      
-      <PrivateOfferModal isOpen={privateOfferOpen} onClose={() => setPrivateOfferOpen(false)} />
     </header>
   );
 };

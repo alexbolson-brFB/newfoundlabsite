@@ -56,100 +56,94 @@ const pressureCardStyles: PressureCardStyle[] = [
 ];
 
 const paradoxContent: Record<Locale, ParadoxContent> = {
-  en: {
-    pressure: {
-      retention: {
-        eyebrow: 'Regulators',
-        detail: 'BACEN / SEC / SOX',
-        copy: 'Retain every log forever. Evidence trails must survive every audit request.',
+  "en": {
+    "pressure": {
+      "retention": {
+        "eyebrow": "AI / agent",
+        "detail": "Interprets. Recommends. Proposes.",
+        "copy": "A plausible proposal does not grant permission to move resources or change systems."
       },
-      erasure: {
-        eyebrow: 'Privacy Officers',
-        detail: 'LGPD / GDPR',
-        copy: 'Erase on demand. Zero residual data can rest on disk once a user requests deletion.',
-      },
+      "erasure": {
+        "eyebrow": "Institution",
+        "detail": "Defines. Authorizes. Revokes.",
+        "copy": "Authority has an accountable holder, purpose, scope and validity. It must be proven when the action is about to occur."
+      }
     },
-    timeline: [
+    "timeline": [
       {
-        title: 'Zero-Persistence Fabric',
-        description:
-          'Inference spins up inside short-lived enclaves. Once the call ends, memory collapses and retention becomes a math event.',
+        "title": "Identity is not authority",
+        "description": "Knowing who made the call does not establish whether that person or agent may perform the proposed action."
       },
       {
-        title: 'Dual Compliance Ledger',
-        description:
-          'Verifiable attestations prove the request happened and the data was destroyed. Regulators keep trails; users gain oblivion.',
+        "title": "Context belongs in authorization",
+        "description": "Tenant, purpose, action, scope and time delimit institutional permission."
       },
       {
-        title: 'Explainable Exit',
-        description:
-          'Scores leave the enclave with narrative context, enabling instant human audit without exposing raw data.',
-      },
+        "title": "The boundary must enforce control",
+        "description": "A safety recommendation is not enough: an action without proven authority must stop before the protected system."
+      }
     ],
-    safeguards: [
+    "safeguards": [
       {
-        title: 'Physics of Trust',
-        copy: 'Deterministic paths and serverless orchestration eliminate ambiguity from audits.',
+        "title": "Deterministic policy",
+        "copy": "Explicit rules govern the execution path."
       },
       {
-        title: 'Total Governance',
-        copy: 'Legal, risk, and product share the same cryptographically signed evidence stream.',
-      },
+        "title": "Attributable accountability",
+        "copy": "The authorization outcome is identifiable and verifiable."
+      }
     ],
-    flowTitle: 'Dual Compliance Flow',
-    console: {
-      eyebrow: 'Foundlab Response',
-      title: 'Zero-Persistence Compliance Console',
-      body: 'Real-time evidence shows cryptographic retention, instant erasures, and XAI narratives to defend every decision.',
-    },
+    "flowTitle": "From identity to authority",
+    "console": {
+      "eyebrow": "The boundary question",
+      "title": "Authorized to act, now?",
+      "body": "Is this actor authorized to perform this action, for this purpose, in this context, now?"
+    }
   },
-  pt: {
-    pressure: {
-      retention: {
-        eyebrow: 'Reguladores',
-        detail: 'BACEN / SEC / SOX',
-        copy: 'Reter tudo para sempre. Cada log, cada scoring e cada transacao precisam existir para auditorias retroativas.',
+  "pt": {
+    "pressure": {
+      "retention": {
+        "eyebrow": "IA / agente",
+        "detail": "Interpreta. Recomenda. Propõe.",
+        "copy": "Uma proposta plausível não concede permissão para movimentar recursos ou alterar sistemas."
       },
-      erasure: {
-        eyebrow: 'Privacidade',
-        detail: 'LGPD / GDPR',
-        copy: 'Apagar sob demanda. Nenhum dado sensivel pode descansar em disco; o usuario precisa desaparecer quando solicitar.',
-      },
+      "erasure": {
+        "eyebrow": "Instituição",
+        "detail": "Define. Autoriza. Revoga.",
+        "copy": "A autoridade tem titular, finalidade, escopo e validade. Deve ser comprovada quando a ação vai ocorrer."
+      }
     },
-    timeline: [
+    "timeline": [
       {
-        title: 'Tecido de Zero-Persistencia',
-        description:
-          'Cada inferencia nasce em um enclave efemero e morre ao fim da chamada, transformando retencao em evento matematico.',
+        "title": "Identidade não é autoridade",
+        "description": "Saber quem fez a chamada não determina se essa pessoa ou agente pode executar a ação proposta."
       },
       {
-        title: 'Ledger Dual de Conformidade',
-        description:
-          'Assinaturas verificaveis provam que a requisicao existiu e que os dados foram apagados. Reguladores ganham trilha; o usuario ganha esquecimento.',
+        "title": "Contexto faz parte da autorização",
+        "description": "Tenant, finalidade, ação, escopo e tempo delimitam a permissão institucional."
       },
       {
-        title: 'Saida Explicavel',
-        description:
-          'Pontuacoes deixam o enclave com narrativa natural, permitindo auditoria imediata sem expor dados crus.',
-      },
+        "title": "A fronteira precisa aplicar o controle",
+        "description": "Uma recomendação de segurança não basta: a ação sem autoridade comprovada deve parar antes do sistema protegido."
+      }
     ],
-    safeguards: [
+    "safeguards": [
       {
-        title: 'Fisica da Confianca',
-        copy: 'Caminhos deterministicos e orquestracao serverless removem ambiguidade nos processos de auditoria.',
+        "title": "Política determinística",
+        "copy": "Regras explícitas governam o caminho de execução."
       },
       {
-        title: 'Governanca Total',
-        copy: 'Legal, risco e produto compartilham a mesma trilha assinada criptograficamente.',
-      },
+        "title": "Responsabilidade atribuível",
+        "copy": "O resultado da autorização é identificável e verificável."
+      }
     ],
-    flowTitle: 'Fluxo Dual de Conformidade',
-    console: {
-      eyebrow: 'Resposta Foundlab',
-      title: 'Console de Compliance Zero-Persistencia',
-      body: 'Evidencias em tempo real mostram retencao criptografada, exclusoes instantaneas e narrativas XAI para defender cada decisao diante de reguladores.',
-    },
-  },
+    "flowTitle": "Da identidade à autoridade",
+    "console": {
+      "eyebrow": "A pergunta na fronteira",
+      "title": "Autorizado para agir, agora?",
+      "body": "Este ator está autorizado a executar esta ação, para esta finalidade, neste contexto, agora?"
+    }
+  }
 };
 
 const NewParadoxSection: React.FC = () => {
@@ -162,7 +156,7 @@ const NewParadoxSection: React.FC = () => {
   }));
 
   return (
-    <section id="the-paradox" className="relative py-24 lg:py-32 overflow-hidden bg-slate-50 border-t border-slate-200">
+    <section id="authority-gap" className="relative py-24 lg:py-32 overflow-hidden bg-slate-50 border-t border-slate-200">
       
       {/* Rigid Grid Background */}
       <div 
@@ -259,7 +253,7 @@ const NewParadoxSection: React.FC = () => {
                     <div className="absolute left-0 top-3 w-8 md:w-16 h-px bg-slate-200 group-hover:bg-gold-500/50 transition-colors"></div>
                     
                     <h4 className="text-lg font-serif font-medium text-navy-900 group-hover:text-gold-600 transition-colors">
-                      <span className="text-[10px] font-mono text-slate-400 mr-3 uppercase tracking-wider block md:inline mb-1 md:mb-0">Step 0{idx + 1}</span>
+                      <span className="text-[10px] font-mono text-slate-400 mr-3 uppercase tracking-wider block md:inline mb-1 md:mb-0">0{idx + 1}</span>
                       {step.title}
                     </h4>
                     <p className="mt-2 text-slate-600 font-light leading-relaxed max-w-xl">
@@ -283,7 +277,7 @@ const NewParadoxSection: React.FC = () => {
            <div className="p-8 font-mono text-xs md:text-sm">
               <div className="text-navy-900 mb-4">
                  <span className="text-gold-500 mr-2">➜</span>
-                 <span className="font-bold">verify_compliance_ledger</span> --target=transaction_0x8F
+                 <span className="font-bold">{copy.console.title}</span>
               </div>
               <motion.div 
                 initial="hidden"
@@ -295,9 +289,11 @@ const NewParadoxSection: React.FC = () => {
                 }}
                 className="space-y-2 text-slate-500"
               >
-                 <motion.p variants={{ hidden: { opacity: 0, x: -10 }, visible: { opacity: 1, x: 0 } }}>[INFO] Verifying cryptographic signatures...</motion.p>
-                 <motion.p variants={{ hidden: { opacity: 0, x: -10 }, visible: { opacity: 1, x: 0 } }}>[INFO] Data Retention: <span className="text-emerald-600 font-bold">ENFORCED (Audit Trail)</span></motion.p>
-                 <motion.p variants={{ hidden: { opacity: 0, x: -10 }, visible: { opacity: 1, x: 0 } }}>[INFO] PII Erasure: <span className="text-emerald-600 font-bold">CONFIRMED (Zero-Persistence)</span></motion.p>
+                 {copy.safeguards.map((safeguard) => (
+                   <motion.p key={safeguard.title} variants={{ hidden: { opacity: 0, x: -10 }, visible: { opacity: 1, x: 0 } }}>
+                     <span className="text-navy-900 font-bold">{safeguard.title}: </span>{safeguard.copy}
+                   </motion.p>
+                 ))}
                  <motion.p variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="text-navy-900 mt-4 border-l-2 border-gold-500 pl-3 italic">
                     "{copy.console.body}"
                  </motion.p>

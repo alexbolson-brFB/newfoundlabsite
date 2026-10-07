@@ -44,7 +44,7 @@ const ArchitectureSection: React.FC = () => {
         id="architecture" 
         ref={ref}
         onMouseMove={handleMouseMove}
-        className="py-24 lg:py-32 bg-white relative overflow-hidden border-t border-slate-200"
+        className="scroll-mt-24 py-24 lg:py-32 bg-white relative overflow-hidden border-t border-slate-200"
     >
         {/* Rigid Grid Background */}
         <motion.div 

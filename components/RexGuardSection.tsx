@@ -8,7 +8,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 /* ------------------------------------------------------------------ */
 type Locale = 'en' | 'pt';
 
-interface GeminiGuardCopy {
+interface RexGuardCopy {
   badge: string;
   title: string;
   titleItalic: string;
@@ -23,105 +23,176 @@ interface GeminiGuardCopy {
   diffEyebrow: string;
   diffTitle: string;
   differentials: { icon: 'shield' | 'lock' | 'file'; title: string; desc: string; tag: string }[];
-  complianceTitle: string;
-  badges: string[];
-  boothCaption: string;
-  photoCaption1: string;
+  boundaryLabel: string;
+  boundarySteps: string[];
+  signatureExample: string;
 }
 
-const copy: Record<Locale, GeminiGuardCopy> = {
-  en: {
-    badge: 'New Product',
-    title: 'REX Gemini Guard.',
-    titleItalic: 'Compliance as Physics.',
-    subtitle:
-      'Middleware that enables banks and insurers to deploy Google Gemini at scale — while respecting BCB 538/2025, EU AI Act, and DORA. Every AI decision becomes a cryptographic proof.',
-    cta1: 'Access Demo',
-    cta2: 'Read Architecture',
-    archEyebrow: 'Pipeline Architecture',
-    archTitle: 'Zero-Persistence Pipeline',
-    archSubtitle: 'Every inference travels through five deterministic stages. No data rests on disk.',
-    steps: [
-      { label: 'AI Input', desc: 'Prompt ingestion via encrypted channel' },
-      { label: 'Policy Evaluation', desc: 'Real-time rule matching against BCB 538 & AI Act' },
-      { label: 'Decision Execution', desc: 'RAM-only inference inside ephemeral enclave' },
-      { label: 'Cryptographic Seal', desc: 'SHA-256 hash + digital signature of I/O pair' },
-      { label: 'Veritas Ledger', desc: 'Immutable evidence record in BigQuery' },
+const copy: Record<Locale, RexGuardCopy> = {
+  "en": {
+    "badge": "Auditable Trust Infrastructure (ATI)",
+    "title": "REX Guard.",
+    "titleItalic": "Authority stays with the institution.",
+    "subtitle": "Between AI-generated intent and an enterprise action, REX Guard verifies authorization and enforces policy. The model proposes; it does not inherit institutional authority.",
+    "cta1": "Evaluate REX Guard",
+    "cta2": "View Architecture",
+    "archEyebrow": "How it works",
+    "archTitle": "Intent → Authority → Policy → Execution → Evidence",
+    "archSubtitle": "Authorization is checked before execution. Its outcome receives a signed record; execution status is correlated separately.",
+    "steps": [
+      {
+        "label": "Intent Received",
+        "desc": "AI or software proposes an action; intent does not confer authority."
+      },
+      {
+        "label": "Authority Verification",
+        "desc": "Evaluates caller, tenant, purpose, action, scope and temporal validity."
+      },
+      {
+        "label": "Deterministic Policy",
+        "desc": "Rules-as-Code allows or denies. Missing required authority fails closed."
+      },
+      {
+        "label": "Protected Execution",
+        "desc": "Only authorized actions reach the downstream system through the protected adapter."
+      },
+      {
+        "label": "Signed Evidence",
+        "desc": "DecisionID and a receipt record the authorization outcome for audit."
+      }
     ],
-    hashTitle: 'Cryptographic Evidence Output',
-    diffEyebrow: 'Why Gemini Guard',
-    diffTitle: 'From Cost Center to Strategic Advantage.',
-    differentials: [
+    "hashTitle": "Illustrative example · not a real receipt",
+    "diffEyebrow": "Execution-boundary properties",
+    "diffTitle": "Explicit control. Verifiable evidence.",
+    "differentials": [
       {
-        icon: 'shield',
-        title: 'Zero-Persistence',
-        desc: 'RAM-only execution in short-lived enclaves. Once the call ends, memory collapses. No data written to disk, ever.',
-        tag: 'Architecture',
+        "icon": "shield",
+        "title": "Runtime Authority Verification",
+        "desc": "Checks authority at execution time rather than inferring it from model output.",
+        "tag": "Authority"
       },
       {
-        icon: 'lock',
-        title: 'Cryptographic Evidence',
-        desc: 'Every AI decision is sealed with SHA-256 hashes and digital signatures, producing immutable audit trails in BigQuery.',
-        tag: 'Security',
+        "icon": "lock",
+        "title": "Deterministic Enforcement",
+        "desc": "Explicit rules govern execution, not probabilistic model judgment.",
+        "tag": "Policy"
       },
       {
-        icon: 'file',
-        title: 'Regulatory Coverage',
-        desc: 'Full compliance with BCB 538/2025, EU AI Act, DORA, Resolucao 4.893, and SR 11-7 out of the box.',
-        tag: 'Compliance',
+        "icon": "shield",
+        "title": "Fail-Closed Execution",
+        "desc": "If required authority cannot be proven, the protected action does not execute.",
+        "tag": "Execution"
       },
+      {
+        "icon": "lock",
+        "title": "Purpose-Bound Authorization",
+        "desc": "Binds tenant, caller, purpose, action, scope and temporal validity.",
+        "tag": "Context"
+      },
+      {
+        "icon": "shield",
+        "title": "Replay Protection",
+        "desc": "Binds authorization to its intended execution context to reject improper reuse.",
+        "tag": "Scoped use"
+      },
+      {
+        "icon": "file",
+        "title": "Auditable Evidence",
+        "desc": "DecisionID and a signed receipt identify and enable verification of the authorization outcome.",
+        "tag": "Evidence"
+      }
     ],
-    complianceTitle: 'Regulatory Framework Coverage',
-    badges: ['BCB 538/2025', 'EU AI Act', 'DORA', 'Resolucao 4.893', 'SR 11-7'],
-    boothCaption: 'FoundLab at Google Cloud Next — Trust Infrastructure for AI',
-    photoCaption1: 'Governance & Cryptographic Proof of AI Decisions',
+    "boundaryLabel": "Execution boundary",
+    "boundarySteps": [
+      "AI / agent",
+      "REX Guard",
+      "Enterprise system",
+      "Protected action"
+    ],
+    "signatureExample": "[illustrative signature — demo only]"
   },
-  pt: {
-    badge: 'Novo Produto',
-    title: 'REX Gemini Guard.',
-    titleItalic: 'Compliance como Fisica.',
-    subtitle:
-      'Middleware que permite bancos e seguradoras implantarem Google Gemini em escala — respeitando BCB 538/2025, EU AI Act e DORA. Cada decisao de IA se torna uma prova criptografica.',
-    cta1: 'Acesse a Demo',
-    cta2: 'Ver Arquitetura',
-    archEyebrow: 'Arquitetura do Pipeline',
-    archTitle: 'Pipeline Zero-Persistencia',
-    archSubtitle: 'Cada inferencia percorre cinco estagios deterministicos. Nenhum dado descansa em disco.',
-    steps: [
-      { label: 'AI Input', desc: 'Ingestao de prompt via canal criptografado' },
-      { label: 'Policy Evaluation', desc: 'Avaliacao em tempo real contra BCB 538 e AI Act' },
-      { label: 'Decision Execution', desc: 'Inferencia somente em RAM dentro de enclave efemero' },
-      { label: 'Cryptographic Seal', desc: 'Hash SHA-256 + assinatura digital do par I/O' },
-      { label: 'Veritas Ledger', desc: 'Registro de evidencia imutavel no BigQuery' },
+  "pt": {
+    "badge": "Auditable Trust Infrastructure (ATI)",
+    "title": "REX Guard.",
+    "titleItalic": "A autoridade permanece na instituição.",
+    "subtitle": "Entre a intenção gerada por IA e a ação corporativa, REX Guard verifica a autorização e aplica a política. O modelo propõe; não herda autoridade institucional.",
+    "cta1": "Avaliar REX Guard",
+    "cta2": "Ver Arquitetura",
+    "archEyebrow": "Como funciona",
+    "archTitle": "Intenção → Autoridade → Política → Execução → Evidência",
+    "archSubtitle": "A autorização é verificada antes da execução. O resultado recebe um registro assinado; o estado da execução é correlacionado separadamente.",
+    "steps": [
+      {
+        "label": "Intenção recebida",
+        "desc": "IA ou software propõe uma ação; a intenção não concede autoridade."
+      },
+      {
+        "label": "Verificação de autoridade",
+        "desc": "Avalia solicitante, tenant, finalidade, ação, escopo e validade temporal."
+      },
+      {
+        "label": "Política determinística",
+        "desc": "Rules-as-Code permite ou nega. Sem autoridade comprovada, falha de forma fechada."
+      },
+      {
+        "label": "Execução protegida",
+        "desc": "Somente ações autorizadas alcançam o sistema de destino pelo adaptador protegido."
+      },
+      {
+        "label": "Evidência assinada",
+        "desc": "DecisionID e recibo registram o resultado da autorização para auditoria."
+      }
     ],
-    hashTitle: 'Saida de Evidencia Criptografica',
-    diffEyebrow: 'Por que Gemini Guard',
-    diffTitle: 'De Centro de Custo a Diferencial Estrategico.',
-    differentials: [
+    "hashTitle": "Exemplo ilustrativo · não é um recibo real",
+    "diffEyebrow": "Propriedades da fronteira de execução",
+    "diffTitle": "Controle explícito. Evidência verificável.",
+    "differentials": [
       {
-        icon: 'shield',
-        title: 'Zero-Persistencia',
-        desc: 'Execucao somente em RAM em enclaves efemeros. Quando a chamada termina, a memoria colapsa. Nenhum dado gravado em disco.',
-        tag: 'Arquitetura',
+        "icon": "shield",
+        "title": "Autoridade em runtime",
+        "desc": "Verifica autoridade no momento da execução; não a infere da resposta do modelo.",
+        "tag": "Autoridade"
       },
       {
-        icon: 'lock',
-        title: 'Evidencia Criptografica',
-        desc: 'Cada decisao de IA e selada com hashes SHA-256 e assinaturas digitais, produzindo trilhas de auditoria imutaveis no BigQuery.',
-        tag: 'Seguranca',
+        "icon": "lock",
+        "title": "Aplicação determinística",
+        "desc": "Regras explícitas governam a execução, não o julgamento probabilístico do modelo.",
+        "tag": "Política"
       },
       {
-        icon: 'file',
-        title: 'Cobertura Regulatoria',
-        desc: 'Conformidade total com BCB 538/2025, EU AI Act, DORA, Resolucao 4.893 e SR 11-7 out-of-the-box.',
-        tag: 'Compliance',
+        "icon": "shield",
+        "title": "Execução fail closed",
+        "desc": "Sem comprovação da autoridade exigida, a ação protegida não é executada.",
+        "tag": "Execução"
       },
+      {
+        "icon": "lock",
+        "title": "Autorização por finalidade",
+        "desc": "Vincula tenant, solicitante, finalidade, ação, escopo e validade temporal.",
+        "tag": "Contexto"
+      },
+      {
+        "icon": "shield",
+        "title": "Proteção contra replay",
+        "desc": "Vincula a autorização ao contexto previsto para rejeitar reutilizações indevidas.",
+        "tag": "Uso delimitado"
+      },
+      {
+        "icon": "file",
+        "title": "Evidência auditável",
+        "desc": "DecisionID e recibo assinado permitem identificar e verificar o resultado da autorização.",
+        "tag": "Evidência"
+      }
     ],
-    complianceTitle: 'Cobertura Regulatoria',
-    badges: ['BCB 538/2025', 'EU AI Act', 'DORA', 'Resolucao 4.893', 'SR 11-7'],
-    boothCaption: 'FoundLab no Google Cloud Next — Trust Infrastructure for AI',
-    photoCaption1: 'Governanca e Prova Criptografica de Decisoes de IA',
-  },
+    "boundaryLabel": "Fronteira de execução",
+    "boundarySteps": [
+      "IA / agente",
+      "REX Guard",
+      "Sistema corporativo",
+      "Ação protegida"
+    ],
+    "signatureExample": "[assinatura ilustrativa — demonstração]"
+  }
 };
 
 /* ------------------------------------------------------------------ */
@@ -136,13 +207,13 @@ const iconMap = {
 /* ------------------------------------------------------------------ */
 /*  Component                                                         */
 /* ------------------------------------------------------------------ */
-const GeminiGuardSection: React.FC = () => {
+const RexGuardSection: React.FC = () => {
   const { language } = useLanguage();
   const locale: Locale = language === 'pt' ? 'pt' : 'en';
   const t = copy[locale];
 
   return (
-    <section id="gemini-guard" className="relative overflow-hidden">
+    <section id="rex-guard" className="relative overflow-hidden">
 
       {/* ====== PART 1: HERO — WHITE (matches site aesthetic) ====== */}
       <div className="relative py-24 lg:py-32 bg-white border-t border-slate-200 overflow-hidden">
@@ -188,9 +259,7 @@ const GeminiGuardSection: React.FC = () => {
                 {/* CTAs — matching Hero CTA style */}
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a
-                    href="https://foundlab-ati.web.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#contact-form"
                     className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-navy-900 text-white text-[11px] font-bold uppercase tracking-[0.2em] transition-all rounded-sm min-h-[48px]"
                   >
                     {t.cta1}
@@ -215,12 +284,17 @@ const GeminiGuardSection: React.FC = () => {
               className="lg:col-span-5 relative"
             >
               <div className="relative border border-slate-200 bg-white shadow-xl overflow-hidden">
-                <img
-                  src="/images/gemini-guard-main.jpg"
-                  alt={t.photoCaption1}
-                  className="w-full h-auto object-cover"
-                  loading="eager"
-                />
+                <div className="p-8 md:p-10">
+                  <p className="text-[10px] uppercase tracking-widest text-slate-500 mb-8">{t.boundaryLabel}</p>
+                  <ol className="space-y-4">
+                    {t.boundarySteps.map((step, index) => (
+                      <li key={step} className={`flex items-center gap-4 p-4 border ${index === 1 ? 'bg-navy-900 text-white border-navy-900' : 'border-slate-200 text-navy-900'}`}>
+                        <span className="font-mono text-xs text-gold-600">0{index + 1}</span>
+                        <span className="font-serif text-xl">{step}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
               </div>
 
               {/* Corner markings — consistent with ParadoxSection cards */}
@@ -234,7 +308,7 @@ const GeminiGuardSection: React.FC = () => {
       </div>
 
       {/* ====== PART 2: PIPELINE — DARK (matches ROI dark card) ====== */}
-      <div className="relative bg-navy-950 py-20 lg:py-28 border-t border-slate-200 overflow-hidden">
+      <div id="how-it-works" className="relative scroll-mt-24 bg-navy-950 py-20 lg:py-28 border-t border-slate-200 overflow-hidden">
         {/* Grid bg */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px]" />
 
@@ -310,26 +384,26 @@ const GeminiGuardSection: React.FC = () => {
             </div>
             <div className="p-6 md:p-8 font-mono text-xs md:text-sm space-y-2">
               <p>
-                <span className="text-gold-500/80">{'hash(input)'}</span>
+                <span className="text-gold-500/80">{'DecisionID'}</span>
                 <span className="text-slate-700 mx-2">{':'}</span>
-                <span className="text-slate-400">{'0xa1b3c5d7e9f0...c9d0e1f2a3b4'}</span>
+                <span className="text-slate-400">{'demo-allow-001'}</span>
               </p>
               <p>
-                <span className="text-gold-500/80">{'hash(output)'}</span>
+                <span className="text-gold-500/80">{'authorization'}</span>
                 <span className="text-slate-700 mx-2">{':'}</span>
-                <span className="text-slate-400">{'0x3f7a9b1d4e6c...8b2c4d6e0f1a'}</span>
+                <span className="text-slate-400">{'ALLOW | payment.release'}</span>
               </p>
               <p>
-                <span className="text-gold-500/80">{'hash(policy)'}</span>
+                <span className="text-gold-500/80">{'policy_version'}</span>
                 <span className="text-slate-700 mx-2">{':'}</span>
-                <span className="text-slate-400">{'0x9e0d2b4a6c8f...1a5b7c3d9e0f'}</span>
+                <span className="text-slate-400">{'invoice-release/v3'}</span>
               </p>
               <div className="border-t border-navy-800 pt-3 mt-3">
                 <p>
                   <span className="text-emerald-500/80">{'signature'}</span>
                   <span className="text-slate-700 mx-2">{':'}</span>
                   <span className="text-slate-600 break-all">
-                    {'MEUCIQDf3...YnRz9wIgK8m2h...verified=true'}
+                    {t.signatureExample}
                   </span>
                 </p>
               </div>
@@ -403,86 +477,8 @@ const GeminiGuardSection: React.FC = () => {
         </div>
       </div>
 
-      {/* ====== PART 4: COMPLIANCE BADGES + BOOTH IMAGE ====== */}
-      <div className="relative py-16 lg:py-20 bg-slate-50 border-t border-slate-200 overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          aria-hidden="true"
-          style={{
-            backgroundImage: 'linear-gradient(#0f172a 1px, transparent 1px), linear-gradient(90deg, #0f172a 1px, transparent 1px)',
-            backgroundSize: '40px 40px',
-          }}
-        />
-
-        <div className="relative max-w-7xl mx-auto px-6 md:px-12">
-          {/* Badge bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <div className="flex items-center gap-4 mb-8">
-              <div className="h-px bg-slate-200 flex-1" />
-              <span className="text-[10px] uppercase tracking-widest text-slate-400 font-mono">{t.complianceTitle}</span>
-              <div className="h-px bg-slate-200 flex-1" />
-            </div>
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              {t.badges.map((badge, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-2 px-4 py-2.5 bg-white border border-slate-200 min-h-[44px]"
-                >
-                  <Shield className="w-3.5 h-3.5 text-navy-900/40" />
-                  <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-navy-900">
-                    {badge}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Booth photo */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative border border-slate-200 bg-white shadow-xl overflow-hidden"
-          >
-            <img
-              src="/images/foundlab-booth.jpg"
-              alt={t.boothCaption}
-              className="w-full h-auto object-cover"
-              loading="lazy"
-            />
-            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-white via-white/80 to-transparent p-6 md:p-8 pt-16">
-              <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-                <div>
-                  <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-1">
-                    {t.boothCaption}
-                  </p>
-                  <p className="text-xs text-slate-500 font-light">
-                    Powered by Google Cloud
-                  </p>
-                </div>
-                <a
-                  href="https://foundlab-ati.web.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-navy-900 text-white text-[11px] font-bold uppercase tracking-[0.2em] transition-all rounded-sm self-start md:self-auto min-h-[48px]"
-                >
-                  {t.cta1}
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
     </section>
   );
 };
 
-export default GeminiGuardSection;
+export default RexGuardSection;
