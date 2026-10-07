@@ -1,7 +1,0 @@
-{
-  "name": "FoundLab | Auditable Trust Infrastructure",
-  "description": "FoundLab desenvolve Auditable Trust Infrastructure: REX Guard verifica autoridade, aplica políticas determinísticas e produz evidência verificável antes de ações consequenciais.",
-  "capabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
-  ]
-}

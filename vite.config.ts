@@ -1,59 +1,6 @@
 import path from 'path';
-import { defineConfig, loadEnv, Plugin } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
-
-function contactApiPlugin(): Plugin {
-  return {
-    name: 'contact-api-plugin',
-    configureServer(server) {
-      server.middlewares.use(async (req, res, next) => {
-        const url = (req.url || '').split('?')[0];
-        if (url === '/api/contact') {
-          try {
-            const { default: handler } = await import('./api/contact.ts');
-            let bodyStr = '';
-            req.on('data', (chunk) => {
-              bodyStr += chunk;
-            });
-            req.on('end', async () => {
-              try {
-                let parsedBody: unknown = undefined;
-                if (bodyStr) {
-                  try {
-                    parsedBody = JSON.parse(bodyStr);
-                  } catch {
-                    parsedBody = bodyStr;
-                  }
-                }
-                (req as any).body = parsedBody;
-                const vercelRes = Object.assign(res, {
-                  status(code: number) {
-                    res.statusCode = code;
-                    return vercelRes;
-                  },
-                  json(payload: any) {
-                    res.setHeader('Content-Type', 'application/json');
-                    res.end(JSON.stringify(payload));
-                    return vercelRes;
-                  },
-                });
-                await handler(req as any, vercelRes as any);
-              } catch (err: any) {
-                res.statusCode = 500;
-                res.setHeader('Content-Type', 'application/json');
-                res.end(JSON.stringify({ error: err?.message || 'Internal Server Error' }));
-              }
-            });
-            return;
-          } catch (e) {
-            return next(e);
-          }
-        }
-        next();
-      });
-    },
-  };
-}
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
@@ -61,9 +8,14 @@ export default defineConfig(({ mode }) => {
       server: {
         port: 3000,
         host: '0.0.0.0',
-        allowedHosts: true,
+        proxy: {
+          '/api': {
+            target: 'http://localhost:3001',
+            changeOrigin: true,
+          },
+        },
       },
-      plugins: [react(), contactApiPlugin()],
+      plugins: [react()],
       build: {
         minify: 'esbuild',
         rollupOptions: {
