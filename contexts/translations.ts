@@ -682,32 +682,32 @@ export const translations: Record<Language, Translations> = {
         {
           tag: "ATI Core",
           question: "What is Auditable Trust Infrastructure (ATI)?",
-          answer: "Auditable Trust Infrastructure is a deterministic architectural layer that validates authority, scope, and purpose in runtime before consequential AI actions reach downstream systems. Rather than relying on statistical output filtering or heuristics, ATI enforces a verifiable cryptographic boundary between agentic models and protected enterprise systems."
+          answer: "Auditable Trust Infrastructure is an architectural layer for checking institutional authority, scope and purpose at runtime before protected actions reach downstream systems. It separates probabilistic proposal from explicit authorization and produces evidence about the authorization decision."
         },
         {
           tag: "REX Guard",
           question: "How does REX Guard differ from traditional LLM guardrails?",
-          answer: "Traditional guardrails rely on probabilistic heuristics or secondary model judges that remain susceptible to prompt injection, latency spikes, and non-deterministic behavior. REX Guard intercepts tool executions directly at the network boundary with deterministic policy enforcement: if authority is unverified or out-of-scope, the action is blocked at the protocol level before external side effects occur."
+          answer: "Traditional LLM guardrails primarily shape or evaluate model behavior. REX Guard addresses a different control point: execution-time authorization. In the protected path, it evaluates explicit authority and policy before an action is forwarded to the downstream system."
         },
         {
           tag: "Policy & Security",
           question: "What does Fail-Closed Policy Enforcement mean in practice?",
-          answer: "Fail-closed guarantees that any evaluation anomaly, policy server disconnection, scope ambiguity, or expired credential defaults immediately to a strict DENY. Consequential operations (such as financial transactions or data modifications) are never permitted implicitly or on timeout."
+          answer: "Fail closed means the protected path does not treat missing or unverifiable required authority as permission. When the required authorization cannot be established under the configured policy, the decision is DENY rather than an implicit allow."
         },
         {
-          tag: "Privacy & Compliance",
-          question: "How does REX Guard ensure Zero-Persistence of sensitive data?",
-          answer: "REX Guard does not store user prompts, model activations, or sensitive transaction payloads at rest. It generates only deterministic DecisionIDs and cryptographically signed receipts containing audit metadata and cryptographic hashes, satisfying LGPD, GDPR, and tier-1 banking confidentiality mandates."
+          tag: "Privacy & Data Handling",
+          question: "How does REX Guard handle sensitive data?",
+          answer: "Data handling depends on the deployment and configured integration boundary. REX Guard is designed to minimize unnecessary content retention and to keep authorization evidence distinct from model content. Retention, privacy and regulatory requirements must be validated for each environment."
         },
         {
           tag: "Integration",
-          question: "How does it integrate with sovereign clouds and existing enterprise VPCs?",
-          answer: "REX Guard deploys as a high-performance proxy or sidecar inside your sovereign VPC (Google Cloud, NVIDIA NIM, or private Kubernetes clusters). Existing agents and adapters connect via standard mTLS and gRPC/REST APIs without requiring rewrites of existing backend microservices."
+          question: "How does it integrate with existing enterprise environments?",
+          answer: "Integration is designed around a protected execution boundary between the calling software and the downstream system. The exact deployment pattern, connector model and transport depend on the institution's environment and are validated during technical evaluation."
         },
         {
           tag: "Auditability",
           question: "What is a DecisionID and how are receipts audited?",
-          answer: "Every evaluated action receives a deterministic DecisionID bound to a tamper-evident, cryptographically signed receipt. Internal compliance officers and regulators can verify the evidence chain independently to establish cryptographic proof of exactly which policy authorized or rejected each action."
+          answer: "An authorization decision can be associated with a DecisionID and signed receipt so the record and its integrity can be verified. The receipt identifies the authorization outcome and relevant context; it does not by itself prove that the downstream effect occurred or that the substantive decision was correct."
         }
       ]
     }
@@ -1119,32 +1119,32 @@ export const translations: Record<Language, Translations> = {
         {
           tag: "ATI Core",
           question: "O que é Auditable Trust Infrastructure (ATI)?",
-          answer: "A Infraestrutura de Confiança Auditável (ATI) é uma camada arquitetural determinística que valida autoridade, escopo e finalidade em tempo de execução antes que qualquer ação de IA consequencial seja despachada para sistemas corporativos ou bancários. Em vez de confiar em filtros estatísticos de saída de modelos, a ATI estabelece uma fronteira de execução criptográfica verificável."
+          answer: "A Infraestrutura de Confiança Auditável (ATI) é uma camada arquitetural para verificar autoridade institucional, escopo e finalidade em tempo de execução antes que ações protegidas alcancem sistemas de destino. Ela separa proposta probabilística de autorização explícita e produz evidência sobre a decisão de autorização."
         },
         {
           tag: "REX Guard",
           question: "Como o REX Guard difere de guardrails tradicionais baseados em LLM?",
-          answer: "Guardrails tradicionais utilizam heurísticas estatísticas ou julgamento por outros modelos que continuam vulneráveis a jailbreaks, alucinações e latência imprevisível. O REX Guard intercepta chamadas de ferramentas e APIs na fronteira de rede com aplicação determinística de políticas: se a autoridade não for comprovada ou estiver fora do escopo, a ação é vetada no protocolo antes de produzir qualquer efeito colateral externo."
+          answer: "Guardrails tradicionais atuam principalmente sobre o comportamento ou a saída do modelo. O REX Guard atua em outro ponto de controle: autorização no momento da execução. No caminho protegido, ele avalia autoridade explícita e política antes de encaminhar a ação ao sistema de destino."
         },
         {
           tag: "Política & Segurança",
           question: "O que significa o princípio Fail-Closed na prática?",
-          answer: "Fail-closed garante que qualquer falha na avaliação de políticas, perda de conectividade com serviços de validação, ambiguidade de escopo ou credencial expirada resulte imediatamente em negação estrita (DENY). Operações críticas nunca são liberadas implicitamente ou por timeout."
+          answer: "Fail closed significa que o caminho protegido não trata autoridade obrigatória ausente ou não verificável como permissão. Se a autorização exigida não puder ser estabelecida pela política configurada, a decisão é DENY em vez de uma liberação implícita."
         },
         {
-          tag: "Privacidade & LGPD",
-          question: "Como o REX Guard assegura Zero-Persistência de dados sensíveis?",
-          answer: "O REX Guard não armazena prompts de usuários, ativações de modelos ou cargas úteis transacionais confidenciais em repouso. O sistema emite unicamente DecisionIDs e recibos assinados digitalmente contendo metadados de auditoria e hashes de verificação, cumprindo integralmente as exigências da LGPD e normas bancárias."
+          tag: "Privacidade & Dados",
+          question: "Como o REX Guard trata dados sensíveis?",
+          answer: "O tratamento de dados depende do deployment e da fronteira de integração configurada. O REX Guard é projetado para minimizar retenção desnecessária de conteúdo e separar evidência de autorização do conteúdo do modelo. Retenção, privacidade e requisitos regulatórios devem ser validados em cada ambiente."
         },
         {
           tag: "Integração",
-          question: "Como funciona a integração com nuvens soberanas e VPCs corporativas?",
-          answer: "O REX Guard é implantado como proxy ou sidecar de alto desempenho dentro da sua própria VPC soberana (Google Cloud, NVIDIA NIM ou clusters Kubernetes privados). Agentes e adaptadores existentes integram-se via mTLS e gRPC/REST padrão, sem a necessidade de reescrever a lógica de microsserviços legados."
+          question: "Como funciona a integração com ambientes enterprise existentes?",
+          answer: "A integração é desenhada em torno de uma fronteira de execução protegida entre o software solicitante e o sistema de destino. O padrão de deployment, o modelo de conector e o transporte dependem do ambiente da instituição e são validados durante a avaliação técnica."
         },
         {
           tag: "Auditoria",
           question: "O que é um DecisionID e como os recibos são auditados?",
-          answer: "Cada ação avaliada recebe um identificador determinístico (DecisionID) vinculado a um recibo assinado digitalmente com prova de integridade. Auditores internos e órgãos reguladores podem verificar a cadeia de evidências de forma independente para comprovar com exatidão qual política, solicitante e escopo regeram cada decisão."
+          answer: "Uma decisão de autorização pode ser associada a um DecisionID e a um recibo assinado para permitir a verificação do registro e de sua integridade. O recibo identifica o resultado da autorização e o contexto relevante; isoladamente, não prova que o efeito downstream ocorreu nem que a decisão substantiva estava correta."
         }
       ]
     }
