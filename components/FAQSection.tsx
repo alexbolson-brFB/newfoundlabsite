@@ -161,7 +161,7 @@ const FAQSection: React.FC = () => {
                   {faqData.supportPrompt.question}
                 </p>
                 <p className="text-xs text-slate-500 font-light">
-                  {t.socialProof?.badges?.[0] || 'Google Cloud Partner'} · Tier-1 Enterprise ATI
+                  {t.faq.eyebrow} · REX Guard
                 </p>
               </div>
             </div>
