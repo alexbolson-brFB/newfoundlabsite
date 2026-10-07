@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, Variants, useScroll, useTransform, useAnimation, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import heroVisual from '../images/hero_visual.webp';
 
 // --- Animation Variants ---
 
@@ -200,21 +201,6 @@ const NewHero: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
   const { t, language } = useLanguage();
   const [videoFailed, setVideoFailed] = useState(false);
-  const [videoPlaying, setVideoPlaying] = useState(false);
-  const [playError, setPlayError] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const playVideo = async () => {
-    const video = videoRef.current;
-    if (!video) return;
-    setPlayError(false);
-    video.muted = true;
-    try {
-      await video.play();
-    } catch {
-      setPlayError(true);
-    }
-  };
   
   const backgroundY = useTransform(scrollY, [0, 1000], [0, 150]);
   const backgroundOpacity = useTransform(scrollY, [0, 500], [1, 0.3]);
@@ -325,28 +311,26 @@ const NewHero: React.FC = () => {
               transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
               className="relative w-full max-w-md mx-auto lg:col-span-2"
             >
-{videoFailed ? (
-  <img src="/hero-poster.jpg" width={928} height={1376} alt="REX Guard visual" className="w-full h-auto object-contain drop-shadow-2xl" />
+{shouldReduceMotion || videoFailed ? (
+  <img
+    src={heroVisual}
+    alt="REX Guard visual"
+    className="w-full h-auto object-contain drop-shadow-2xl"
+  />
 ) : (
   <video
-    ref={videoRef}
-    poster="/hero-poster.jpg"
-    width={928}
-    height={1376}
-    aria-label={language === 'pt' ? 'Vídeo de apresentação do REX Guard' : 'REX Guard presentation video'}
-    autoPlay={shouldReduceMotion === false}
-    onPlaying={() => { setVideoPlaying(true); setPlayError(false); }}
-    onPause={() => setVideoPlaying(false)}
-    controls
+    poster={heroVisual}
+    autoPlay
     loop
     muted
     playsInline
     preload="metadata"
     onError={() => setVideoFailed(true)}
+    onLoadedData={() => setVideoFailed(false)}
     className="w-full h-auto object-contain drop-shadow-2xl"
   >
-    <source src="/hero-compatible.mp4" type="video/mp4" />
-    <source src="/hero_video.webm" type="video/webm" onError={() => setVideoFailed(true)} />
+    <source src="/hero_video.webm" type="video/webm" />
+    <source src="/hero_visual.webm" type="video/webm" />
   </video>
 )}
             </motion.div>
