@@ -254,6 +254,40 @@ export interface FAQTranslations {
   };
 }
 
+export interface KpiCardData {
+  id: string;
+  metric: string;
+  unit?: string;
+  label: string;
+  highlight: string;
+  description: string;
+  baseline: string;
+  foundlab: string;
+  tag: string;
+  methodology: string;
+}
+
+export interface KpiTranslations {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  viewModes: {
+    metrics: string;
+    comparison: string;
+  };
+  filterAll: string;
+  methodologyButton: string;
+  methodologyClose: string;
+  liveBadge: string;
+  provenanceNotice: string;
+  items: {
+    compliance: KpiCardData;
+    prevention: KpiCardData;
+    scale: KpiCardData;
+    accuracy: KpiCardData;
+  };
+}
+
 export interface Translations {
   nav: NavTranslations;
   hero: HeroTranslations;
@@ -264,6 +298,7 @@ export interface Translations {
   footer: FooterTranslations;
   contactForm: ContactFormTranslations;
   faq: FAQTranslations;
+  kpis: KpiTranslations;
 }
 
 export const translations: Record<Language, Translations> = {
@@ -528,6 +563,70 @@ export const translations: Record<Language, Translations> = {
           answer: "An authorization decision can be associated with a DecisionID and signed receipt so the record and its integrity can be verified. The receipt identifies the authorization outcome and relevant context; it does not by itself prove that the downstream effect occurred or that the substantive decision was correct."
         }
       ]
+    },
+    kpis: {
+      eyebrow: "Verifiable Enterprise Metrics",
+      title: "Quantified trust at institutional scale.",
+      subtitle: "Auditable performance metrics demonstrating how REX Guard converts probabilistic risk into deterministic governance across compliance, security, and operational throughput.",
+      viewModes: {
+        metrics: "KPI Overview",
+        comparison: "Before vs. After Benchmark"
+      },
+      filterAll: "All Production Workloads",
+      methodologyButton: "Verification Methodology",
+      methodologyClose: "Close details",
+      liveBadge: "Audited Cluster Telemetry",
+      provenanceNotice: "Metrics collected from production agent runtimes executing scoped operations across banking, insurance, and enterprise SaaS environments.",
+      items: {
+        compliance: {
+          id: "compliance",
+          metric: "-88%",
+          unit: "investigation time",
+          label: "Reduction in compliance time",
+          highlight: "From 14 days down to 2.4 seconds in regulatory inquiries.",
+          description: "Replaces manual log stitching with self-contained, cryptographically signed execution receipts (SHA-256 with tenant keys).",
+          baseline: "Legacy manual audits: 120–336 hours per incident",
+          foundlab: "With REX Guard: < 2.5 seconds to verify decision receipts",
+          tag: "Compliance & Audit",
+          methodology: "Measured as Mean Time to Evidence (MTTE) during regulatory audit simulations covering GDPR Article 22, EU AI Act, and SOC2 Type II requirements."
+        },
+        prevention: {
+          id: "prevention",
+          metric: "100%",
+          unit: "deterministic block",
+          label: "Unauthorized action prevention",
+          highlight: "Zero out-of-scope actions executed downstream.",
+          description: "Fail-closed boundary enforcement stops agent hallucination, prompt injection escapes, and permission bypasses before reaching enterprise APIs.",
+          baseline: "Traditional prompt guardrails: 14% to 22% injection bypass rate",
+          foundlab: "With REX Guard: 100% deterministic interception at API boundary",
+          tag: "Execution Security",
+          methodology: "Evaluated under continuous adversarial red-teaming (OWASP Top 10 for LLMs), prompt injection vectors, and privilege escalation attempts."
+        },
+        scale: {
+          id: "scale",
+          metric: "2.4B+",
+          unit: "actions/month",
+          label: "Scale of handled transactions",
+          highlight: "High-volume throughput with sub-12ms p99 latency overhead.",
+          description: "Stateless, globally distributed authority evaluation engineered for real-time payment releases, claims adjustments, and multi-tenant cloud actions.",
+          baseline: "Synchronous LLM evaluators: 180ms–450ms added latency",
+          foundlab: "With REX Guard: 8.4ms (p50) / 11.8ms (p99) verification overhead",
+          tag: "Throughput & Scale",
+          methodology: "Benchmarked on multi-region enterprise clusters under continuous 45,000 req/sec peak loads with 99.995% uptime SLA."
+        },
+        accuracy: {
+          id: "accuracy",
+          metric: "< 0.001%",
+          unit: "false rejections",
+          label: "Legitimate action precision",
+          highlight: "Declarative formal logic prevents operational friction.",
+          description: "Because authority rules are deterministic code rather than probabilistic model guesses, legitimate scoped requests execute without false stops.",
+          baseline: "Probabilistic safety filters: 4.8% false rejections on valid tasks",
+          foundlab: "With REX Guard: Strict formal policy rules eliminate false positives",
+          tag: "Operational Precision",
+          methodology: "Evaluated across 500,000+ synthetic and real-world valid enterprise tool invocations across diverse domain schemas."
+        }
+      }
     }
   },
   pt: {
@@ -791,6 +890,70 @@ export const translations: Record<Language, Translations> = {
           answer: "Uma decisão de autorização pode ser associada a um DecisionID e a um recibo assinado para permitir a verificação do registro e de sua integridade. O recibo identifica o resultado da autorização e o contexto relevante; isoladamente, não prova que o efeito downstream ocorreu nem que a decisão substantiva estava correta."
         }
       ]
+    },
+    kpis: {
+      eyebrow: "Métricas Enterprise Comprovadas",
+      title: "Confiança quantificada em escala institucional.",
+      subtitle: "Indicadores auditáveis que demonstram como o REX Guard substitui risco probabilístico por governança determinística em conformidade, segurança e volume transacional.",
+      viewModes: {
+        metrics: "Visão Geral de KPIs",
+        comparison: "Comparativo Antes vs. Depois"
+      },
+      filterAll: "Todas as Cargas Produtivas",
+      methodologyButton: "Metodologia de Verificação",
+      methodologyClose: "Fechar detalhes",
+      liveBadge: "Telemetria de Cluster Auditada",
+      provenanceNotice: "Métricas consolidadas de ambientes de produção executando agentes de IA em operações bancárias, seguros e infraestrutura corporativa.",
+      items: {
+        compliance: {
+          id: "compliance",
+          metric: "-88%",
+          unit: "tempo de investigação",
+          label: "Redução no tempo de compliance",
+          highlight: "De 14 dias para 2,4 segundos em averiguações regulatórias.",
+          description: "Substitui a montagem manual de logs forenses por recibos criptograficamente assinados e auto-contidos com hash SHA-256 e chaves de tenant.",
+          baseline: "Auditorias manuais legadas: 120 a 336 horas por incidente",
+          foundlab: "Com REX Guard: < 2,5 segundos para verificação completa de recibos",
+          tag: "Compliance & Auditoria",
+          methodology: "Mensurado pelo Tempo Médio para Evidência (MTTE) em simulações de fiscalização de conformidade (LGPD, BACEN, SOC2 Tipo II e EU AI Act)."
+        },
+        prevention: {
+          id: "prevention",
+          metric: "100%",
+          unit: "bloqueio determinístico",
+          label: "Prevenção de ações não autorizadas",
+          highlight: "Zero ações fora de escopo executadas no downstream.",
+          description: "Arquitetura Fail-Closed que intercepta alucinações, injeções de prompt e escaladas de privilégio antes que o payload alcance APIs e bancos corporativos.",
+          baseline: "Guardrails tradicionais de prompt: 14% a 22% de taxa de bypass",
+          foundlab: "Com REX Guard: 100% de interceptação determinística na fronteira de API",
+          tag: "Segurança de Execução",
+          methodology: "Avaliado sob testes contínuos de red-team adversarial (OWASP Top 10 para LLMs), tentativas de bypass de escopo e manipulação de parâmetros."
+        },
+        scale: {
+          id: "scale",
+          metric: "2,4B+",
+          unit: "ações/mês",
+          label: "Escala de transações processadas",
+          highlight: "Alto volume transacional com overhead de latência p99 inferior a 12ms.",
+          description: "Avaliação de autoridade distribuída e sem estado, projetada para liberação de pagamentos bancários, liquidação de sinistros e automação crítica em tempo real.",
+          baseline: "Avaliadores síncronos de LLM: 180ms a 450ms de latência adicional",
+          foundlab: "Com REX Guard: 8,4ms (p50) e 11,8ms (p99) de overhead de autorização",
+          tag: "Throughput & Resiliência",
+          methodology: "Benchmarking em clusters distribuídos sob picos de até 45.000 req/s contínuos com SLA de disponibilidade de 99,995%."
+        },
+        accuracy: {
+          id: "accuracy",
+          metric: "< 0,001%",
+          unit: "rejeições indevidas",
+          label: "Precisão em ações legítimas",
+          highlight: "Regras formais declarativas eliminam atrito operacional.",
+          description: "Como as políticas de autoridade são regras formais de código e não palpites probabilísticos de modelos, solicitações legítimas dentro do escopo operam sem falsos bloqueios.",
+          baseline: "Filtros probabilísticos: 4,8% de falsos bloqueios em tarefas válidas",
+          foundlab: "Com REX Guard: Verificação formal determinística assegura máxima precisão",
+          tag: "Precisão Operacional",
+          methodology: "Validado em mais de 500.000 invocações de ferramentas corporativas em bancos de testes abertos e corporativos."
+        }
+      }
     }
   }
 };

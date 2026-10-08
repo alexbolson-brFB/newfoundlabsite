@@ -6,6 +6,7 @@ import {
   Database,
   BrainCircuit,
   LucideIcon,
+  Info,
 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -152,33 +153,39 @@ const sectionCopy: Record<Locale, { eyebrow: string; heading: string; subheading
   }
 };
 
-const statsCopy: Record<Locale, { label: string; value: string }[]> = {
+const statsCopy: Record<Locale, { label: string; value: string; calculation: string }[]> = {
   "en": [
     {
       "label": "Institution",
-      "value": "Defines authority"
+      "value": "Defines authority",
+      "calculation": "Derived from corporate IAM identity providers, governance policies, and cryptographic keys owned by the customer."
     },
     {
       "label": "REX Guard",
-      "value": "Enforces policy"
+      "value": "Enforces policy",
+      "calculation": "Calculated synchronously at the execution boundary via compiled Rules-as-Code policy engines before downstream action invocation."
     },
     {
       "label": "Audit",
-      "value": "Verifies evidence"
+      "value": "Verifies evidence",
+      "calculation": "Mathematically verified offline through asymmetric cryptographic signatures over execution context and DecisionID receipts."
     }
   ],
   "pt": [
     {
       "label": "Instituição",
-      "value": "Define autoridade"
+      "value": "Define autoridade",
+      "calculation": "Derivado dos provedores de identidade IAM corporativos, políticas de governança e chaves criptográficas sob posse do cliente."
     },
     {
       "label": "REX Guard",
-      "value": "Aplica política"
+      "value": "Aplica política",
+      "calculation": "Calculado de forma síncrona na fronteira de execução via motores de regras compiladas Rules-as-Code antes de invocar o downstream."
     },
     {
       "label": "Auditoria",
-      "value": "Verifica evidência"
+      "value": "Verifica evidência",
+      "calculation": "Verificado matematicamente offline por meio de assinaturas criptográficas assimétricas sobre o contexto de execução e recibos DecisionID."
     }
   ]
 };
@@ -231,11 +238,38 @@ const EnterpriseSection: React.FC = () => {
           </motion.div>
 
           {/* KPI Bar - Rigid Style */}
-          <div className="mt-8 md:mt-10 inline-flex flex-col md:flex-row border border-slate-200 bg-white shadow-sm divide-y md:divide-y-0 md:divide-x divide-slate-200 max-w-4xl mx-auto w-full">
+          <div className="mt-8 md:mt-10 inline-flex flex-col md:flex-row border border-slate-200 bg-white shadow-sm divide-y md:divide-y-0 md:divide-x divide-slate-200 max-w-4xl mx-auto w-full relative">
              {stats.map((stat, index) => (
-                <div key={stat.label} className="flex-1 p-5 md:p-6 flex flex-col items-center justify-center group hover:bg-slate-50 transition-colors">
-                   <p className="text-[9px] uppercase tracking-[0.2em] text-slate-400 font-mono mb-2">{stat.label}</p>
+                <div 
+                  key={stat.label} 
+                  tabIndex={0}
+                  className="flex-1 p-5 md:p-6 flex flex-col items-center justify-center group relative hover:bg-slate-50 transition-colors cursor-help"
+                >
+                   <div className="flex items-center gap-1.5 mb-2">
+                     <p className="text-[9px] uppercase tracking-[0.2em] text-slate-400 font-mono">{stat.label}</p>
+                     <Info className="w-2.5 h-2.5 text-slate-400 group-hover:text-gold-600 transition-colors" />
+                   </div>
                    <p className="text-2xl font-serif text-navy-900">{stat.value}</p>
+
+                   {/* Hover Tooltip */}
+                   <div
+                     role="tooltip"
+                     className="opacity-0 pointer-events-none group-hover:opacity-100 group-focus-within:opacity-100 group-hover:pointer-events-auto transition-all duration-200 ease-out translate-y-1 group-hover:translate-y-0 absolute bottom-[calc(100%+10px)] left-1/2 -translate-x-1/2 w-64 p-3.5 bg-navy-900/98 backdrop-blur-md border border-slate-700 text-white rounded-sm shadow-xl z-50 text-left pointer-events-none"
+                   >
+                     <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-navy-800">
+                       <span className="text-[9px] font-mono uppercase tracking-widest text-gold-400 font-bold">
+                         {stat.label} · {locale === 'pt' ? 'Cálculo' : 'Calculation'}
+                       </span>
+                     </div>
+                     <p className="text-xs font-semibold text-slate-100 mb-1">
+                       {stat.value}
+                     </p>
+                     <p className="text-[11px] text-slate-300 font-light leading-relaxed">
+                       {stat.calculation}
+                     </p>
+                     {/* Caret */}
+                     <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 w-2 h-2 bg-navy-900 border-r border-b border-slate-700 rotate-45" />
+                   </div>
                 </div>
              ))}
           </div>

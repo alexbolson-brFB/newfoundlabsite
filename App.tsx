@@ -19,6 +19,7 @@ const TerminalSection = React.lazy(() => import('./components/TerminalSection'))
 const FAQSection = React.lazy(() => import('./components/FAQSection'));
 const ContactForm = React.lazy(() => import('./components/ContactForm'));
 const Footer = React.lazy(() => import('./components/Footer'));
+const KpiMetricsSection = React.lazy(() => import('./components/KpiMetricsSection'));
 
 // Loading fallback with proper CLS-safe dimensions
 const SectionLoader = () => (
@@ -59,6 +60,11 @@ const HomeContent: React.FC = () => (
     <ErrorBoundary>
       <Suspense fallback={<SectionLoader />}>
         <EnterpriseSection />
+      </Suspense>
+    </ErrorBoundary>
+    <ErrorBoundary>
+      <Suspense fallback={<SectionLoader />}>
+        <KpiMetricsSection />
       </Suspense>
     </ErrorBoundary>
     <ErrorBoundary>

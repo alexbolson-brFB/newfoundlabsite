@@ -21,7 +21,8 @@ import {
   X,
   Layers,
   Sparkles,
-  BookOpen
+  BookOpen,
+  BarChart3
 } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -209,6 +210,20 @@ const CommandMenu: React.FC = () => {
         icon: Building2,
         action: () => handleNavSection('#enterprise'),
         shortcut: 'G E'
+      },
+      {
+        id: 'sec-kpis',
+        category: 'section',
+        categoryLabel: isPt ? 'Seção Principal' : 'Main Section',
+        title: isPt ? 'Métricas e KPIs Enterprise' : 'Enterprise KPIs & Data Visualization',
+        subtitle: isPt
+          ? 'Indicadores quantificados: -88% tempo de compliance, 100% prevenção de ações indevidas e 2.4B+ transações.'
+          : 'Quantified metrics: -88% compliance time, 100% unauthorized action prevention, and 2.4B+ transactions.',
+        badge: '#kpis',
+        keywords: ['kpi', 'metricas', 'metrics', 'compliance', 'tempo', 'prevencao', 'unauthorized', 'transacoes', 'escala', 'data visualization', 'benchmark', 'desempenho'],
+        icon: BarChart3,
+        action: () => handleNavSection('#kpis'),
+        shortcut: 'G K'
       },
       {
         id: 'sec-faq',

@@ -240,7 +240,10 @@ const NewHero: React.FC = () => {
         {/* === CONTENT === */}
         <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 relative z-10 w-full">
           <motion.div 
-            whileHover={shouldReduceMotion ? undefined : { scale: 1.008 }}
+            whileHover={shouldReduceMotion ? undefined : { 
+              scale: 1.02,
+              boxShadow: "0 25px 50px -12px rgba(15, 23, 42, 0.08)" 
+            }}
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="grid lg:grid-cols-5 gap-10 lg:gap-12 xl:gap-16 items-center"
           >

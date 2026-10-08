@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Lock, FileCheck, ArrowRight, Fingerprint } from 'lucide-react';
+import { Shield, Lock, FileCheck, ArrowRight, Fingerprint, Info, Sparkles } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import GeminiLiveDemo from './GeminiLiveDemo';
 
 /* ------------------------------------------------------------------ */
 /*  Bilingual copy                                                    */
@@ -18,7 +19,7 @@ interface RexGuardCopy {
   archEyebrow: string;
   archTitle: string;
   archSubtitle: string;
-  steps: { label: string; desc: string }[];
+  steps: { label: string; desc: string; metric: string; calculation: string }[];
   hashTitle: string;
   diffEyebrow: string;
   diffTitle: string;
@@ -42,23 +43,33 @@ const copy: Record<Locale, RexGuardCopy> = {
     "steps": [
       {
         "label": "Intent Received",
-        "desc": "AI or software proposes an action; intent does not confer authority."
+        "desc": "AI or software proposes an action; intent does not confer authority.",
+        "metric": "Ingress Inspection",
+        "calculation": "Calculated via SHA-256 payload integrity hashing and zero-persistence buffer validation before dispatch."
       },
       {
         "label": "Authority Verification",
-        "desc": "Evaluates caller, tenant, purpose, action, scope and temporal validity."
+        "desc": "Evaluates caller, tenant, purpose, action, scope and temporal validity.",
+        "metric": "Multi-Factor Authority",
+        "calculation": "Evaluated against 6-point tuple: caller identity, tenant claim, action scope, purpose tag, TTL, and adapter."
       },
       {
         "label": "Deterministic Policy",
-        "desc": "Rules-as-Code allows or denies. Missing required authority fails closed."
+        "desc": "Rules-as-Code allows or denies. Missing required authority fails closed.",
+        "metric": "Deterministic Enforcement",
+        "calculation": "Verified by compiled Rules-as-Code policy engine with mathematical certainty. Missing policy fails closed."
       },
       {
         "label": "Protected Execution",
-        "desc": "Only authorized actions reach the downstream system through the protected adapter."
+        "desc": "Only authorized actions reach the downstream system through the protected adapter.",
+        "metric": "Protected Gateway",
+        "calculation": "Enforced through single-use ephemeral capability tokens dispatched strictly to validated downstream adapters."
       },
       {
         "label": "Signed Evidence",
-        "desc": "DecisionID and a receipt record the authorization outcome for audit."
+        "desc": "DecisionID and a receipt record the authorization outcome for audit.",
+        "metric": "Cryptographic Audit",
+        "calculation": "Computed by asymmetric ECDSA signature over execution context, generating an immutable DecisionID receipt."
       }
     ],
     "hashTitle": "Illustrative example · not a real receipt",
@@ -124,23 +135,33 @@ const copy: Record<Locale, RexGuardCopy> = {
     "steps": [
       {
         "label": "Intenção recebida",
-        "desc": "IA ou software propõe uma ação; a intenção não concede autoridade."
+        "desc": "IA ou software propõe uma ação; a intenção não concede autoridade.",
+        "metric": "Inspeção de Ingress",
+        "calculation": "Calculado via integridade do payload com SHA-256 e validação em buffer de zero-persistência antes do despacho."
       },
       {
         "label": "Verificação de autoridade",
-        "desc": "Avalia solicitante, tenant, finalidade, ação, escopo e validade temporal."
+        "desc": "Avalia solicitante, tenant, finalidade, ação, escopo e validade temporal.",
+        "metric": "Autoridade Multifatorial",
+        "calculation": "Avaliado dinamicamente sobre a tupla de 6 fatores: solicitante, tenant, escopo, finalidade, TTL e adaptador downstream."
       },
       {
         "label": "Política determinística",
-        "desc": "Rules-as-Code permite ou nega. Sem autoridade comprovada, falha de forma fechada."
+        "desc": "Rules-as-Code permite ou nega. Sem autoridade comprovada, falha de forma fechada.",
+        "metric": "Aplicação Determinística",
+        "calculation": "Verificado por motor compilado de Rules-as-Code com certeza matemática. Ausência de regra resulta em bloqueio (fail-closed)."
       },
       {
         "label": "Execução protegida",
-        "desc": "Somente ações autorizadas alcançam o sistema de destino pelo adaptador protegido."
+        "desc": "Somente ações autorizadas alcançam o sistema de destino pelo adaptador protegido.",
+        "metric": "Gateway Protegido",
+        "calculation": "Aplicado por meio de tokens efêmeros de capacidade de uso único, despachados estritamente para adaptadores autorizados."
       },
       {
         "label": "Evidência assinada",
-        "desc": "DecisionID e recibo registram o resultado da autorização para auditoria."
+        "desc": "DecisionID e recibo registram o resultado da autorização para auditoria.",
+        "metric": "Auditoria Criptográfica",
+        "calculation": "Computado por assinatura assimétrica ECDSA sobre o contexto de execução, gerando um recibo imutável de DecisionID."
       }
     ],
     "hashTitle": "Exemplo ilustrativo · não é um recibo real",
@@ -310,7 +331,7 @@ const RexGuardSection: React.FC = () => {
       {/* ====== PART 2: PIPELINE — DARK (matches ROI dark card) ====== */}
       <div id="how-it-works" className="relative scroll-mt-24 bg-navy-950 py-18 lg:py-24 border-t border-slate-200 overflow-hidden">
         {/* Grid bg */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px]" />
+        <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px]" />
 
         <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12">
           {/* Section header */}
@@ -343,7 +364,7 @@ const RexGuardSection: React.FC = () => {
           </motion.div>
 
           {/* Pipeline steps — same border style as ROI card interior */}
-          <div className="grid grid-cols-1 md:grid-cols-5 border border-navy-800">
+          <div className="grid grid-cols-1 md:grid-cols-5 border border-navy-800 bg-navy-950/40 relative">
             {t.steps.map((step, idx) => (
               <motion.div
                 key={idx}
@@ -351,19 +372,55 @@ const RexGuardSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
-                className={`relative p-6 lg:p-8 flex flex-col group hover:bg-navy-900/60 transition-all duration-300 ${
+                className={`relative p-6 lg:p-7 flex flex-col group hover:bg-navy-900/80 transition-all duration-300 ${
                   idx < t.steps.length - 1 ? 'border-b md:border-b-0 md:border-r border-navy-800' : ''
                 }`}
               >
-                <span className="text-[10px] font-mono text-slate-600 uppercase tracking-widest mb-3">
-                  0{idx + 1}
-                </span>
+                {/* Step header with index and metric pill */}
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <span className="text-[10px] font-mono text-slate-600 uppercase tracking-widest">
+                    0{idx + 1}
+                  </span>
+                  <div 
+                    tabIndex={0}
+                    aria-label={`${step.metric} tooltip`}
+                    className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-sm bg-navy-900/90 border border-gold-500/30 text-[9px] font-mono text-gold-400 group-hover:border-gold-500/60 transition-colors cursor-help"
+                  >
+                    <span className="truncate max-w-[95px] lg:max-w-[110px]">{step.metric}</span>
+                    <Info className="w-2.5 h-2.5 text-gold-500/70 group-hover:text-gold-400 transition-colors flex-shrink-0" />
+                  </div>
+                </div>
+
                 <h4 className="text-sm font-bold uppercase tracking-[0.1em] text-white mb-2 group-hover:text-gold-400 transition-colors">
                   {step.label}
                 </h4>
                 <p className="text-xs text-slate-500 font-light leading-relaxed mt-auto">
                   {step.desc}
                 </p>
+
+                {/* Hover-based Tooltip */}
+                <div
+                  role="tooltip"
+                  className="opacity-0 pointer-events-none group-hover:opacity-100 group-focus-within:opacity-100 group-hover:pointer-events-auto transition-all duration-200 ease-out translate-y-1 group-hover:translate-y-0 absolute bottom-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-64 sm:w-72 p-3.5 bg-navy-900/98 backdrop-blur-md border border-gold-500/40 text-white rounded-sm shadow-[0_20px_40px_rgba(0,0,0,0.6)] z-50 pointer-events-none"
+                >
+                  <div className="flex items-center justify-between gap-2 pb-2 mb-2 border-b border-navy-800">
+                    <span className="text-[9px] font-mono uppercase tracking-widest text-gold-400 font-bold flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" />
+                      {locale === 'pt' ? 'Métrica & Cálculo' : 'Metric & Calculation'}
+                    </span>
+                    <span className="text-[9px] font-mono text-slate-400 uppercase">
+                      0{idx + 1}
+                    </span>
+                  </div>
+                  <p className="text-xs font-semibold text-slate-100 mb-1">
+                    {step.metric}
+                  </p>
+                  <p className="text-[11px] text-slate-300 font-light leading-relaxed">
+                    {step.calculation}
+                  </p>
+                  {/* Tooltip arrow caret */}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 w-2 h-2 bg-navy-900 border-r border-b border-gold-500/40 rotate-45" />
+                </div>
               </motion.div>
             ))}
           </div>
@@ -377,42 +434,29 @@ const RexGuardSection: React.FC = () => {
             className="mt-10 md:mt-12 border border-navy-800 bg-navy-900/50 max-w-3xl mx-auto overflow-hidden"
           >
             {/* Toolbar */}
-            <div className="bg-navy-900 border-b border-navy-800 px-4 py-2 flex items-center gap-2">
-              <div className="flex gap-1.5">
-                <div className="w-2.5 h-2.5 rounded-full bg-slate-700" />
-                <div className="w-2.5 h-2.5 rounded-full bg-slate-700" />
-                <div className="w-2.5 h-2.5 rounded-full bg-slate-700" />
+            <div className="bg-navy-900 border-b border-navy-800 px-4 py-2.5 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="flex gap-1.5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-slate-700" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-slate-700" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-slate-700" />
+                </div>
+                <div className="ml-3 flex items-center gap-2">
+                  <Fingerprint className="w-3.5 h-3.5 text-gold-500/80" />
+                  <span className="text-[10px] text-slate-400 font-mono uppercase tracking-widest">{t.hashTitle}</span>
+                </div>
               </div>
-              <div className="ml-4 flex items-center gap-2">
-                <Fingerprint className="w-3.5 h-3.5 text-gold-500/60" />
-                <span className="text-[10px] text-slate-500 font-mono uppercase tracking-widest">{t.hashTitle}</span>
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-1 text-[9px] font-mono text-gold-400/90 bg-navy-800/80 px-2 py-0.5 rounded border border-gold-500/20">
+                  <Sparkles className="w-2.5 h-2.5" />
+                  Live Agent Demo
+                </span>
               </div>
             </div>
-            <div className="p-6 md:p-8 font-mono text-xs md:text-sm space-y-2">
-              <p>
-                <span className="text-gold-500/80">{'DecisionID'}</span>
-                <span className="text-slate-700 mx-2">{':'}</span>
-                <span className="text-slate-400">{'demo-allow-001'}</span>
-              </p>
-              <p>
-                <span className="text-gold-500/80">{'authorization'}</span>
-                <span className="text-slate-700 mx-2">{':'}</span>
-                <span className="text-slate-400">{'ALLOW | payment.release'}</span>
-              </p>
-              <p>
-                <span className="text-gold-500/80">{'policy_version'}</span>
-                <span className="text-slate-700 mx-2">{':'}</span>
-                <span className="text-slate-400">{'invoice-release/v3'}</span>
-              </p>
-              <div className="border-t border-navy-800 pt-3 mt-3">
-                <p>
-                  <span className="text-emerald-500/80">{'signature'}</span>
-                  <span className="text-slate-700 mx-2">{':'}</span>
-                  <span className="text-slate-600 break-all">
-                    {t.signatureExample}
-                  </span>
-                </p>
-              </div>
+
+            {/* Live Gemini Chatbot Demo Container */}
+            <div className="w-full">
+              <GeminiLiveDemo />
             </div>
           </motion.div>
         </div>
