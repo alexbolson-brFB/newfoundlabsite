@@ -449,7 +449,7 @@ const RexGuardSection: React.FC = () => {
               <div className="flex items-center gap-2">
                 <span className="inline-flex items-center gap-1 text-[9px] font-mono text-gold-400/90 bg-navy-800/80 px-2 py-0.5 rounded border border-gold-500/20">
                   <Sparkles className="w-2.5 h-2.5" />
-                  Live Agent Demo
+                  {locale === 'pt' ? 'Simulação de Agente · Gemini 3.8 Flash' : 'Agent Simulation · Gemini 3.8 Flash'}
                 </span>
               </div>
             </div>

@@ -14,7 +14,7 @@ function devApiPlugin(): Plugin {
               bodyStr += chunk;
             }
             const body = bodyStr ? JSON.parse(bodyStr) : {};
-            const fakeReq = { method: 'POST', body, headers: req.headers } as any;
+            const fakeReq = { method: 'POST', body, headers: req.headers, socket: req.socket } as any;
             const fakeRes = {
               setHeader: (k: string, v: string) => res.setHeader(k, v),
               status: (code: number) => {
