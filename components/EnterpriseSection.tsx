@@ -6,6 +6,7 @@ import {
   Database,
   BrainCircuit,
   LucideIcon,
+  Info,
 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -152,33 +153,39 @@ const sectionCopy: Record<Locale, { eyebrow: string; heading: string; subheading
   }
 };
 
-const statsCopy: Record<Locale, { label: string; value: string }[]> = {
+const statsCopy: Record<Locale, { label: string; value: string; calculation: string }[]> = {
   "en": [
     {
       "label": "Institution",
-      "value": "Defines authority"
+      "value": "Defines authority",
+      "calculation": "Derived from corporate IAM identity providers, governance policies, and cryptographic keys owned by the customer."
     },
     {
       "label": "REX Guard",
-      "value": "Enforces policy"
+      "value": "Enforces policy",
+      "calculation": "Calculated synchronously at the execution boundary via compiled Rules-as-Code policy engines before downstream action invocation."
     },
     {
       "label": "Audit",
-      "value": "Verifies evidence"
+      "value": "Verifies evidence",
+      "calculation": "Mathematically verified offline through asymmetric cryptographic signatures over execution context and DecisionID receipts."
     }
   ],
   "pt": [
     {
       "label": "Instituição",
-      "value": "Define autoridade"
+      "value": "Define autoridade",
+      "calculation": "Derivado dos provedores de identidade IAM corporativos, políticas de governança e chaves criptográficas sob posse do cliente."
     },
     {
       "label": "REX Guard",
-      "value": "Aplica política"
+      "value": "Aplica política",
+      "calculation": "Calculado de forma síncrona na fronteira de execução via motores de regras compiladas Rules-as-Code antes de invocar o downstream."
     },
     {
       "label": "Auditoria",
-      "value": "Verifica evidência"
+      "value": "Verifica evidência",
+      "calculation": "Verificado matematicamente offline por meio de assinaturas criptográficas assimétricas sobre o contexto de execução e recibos DecisionID."
     }
   ]
 };
@@ -195,7 +202,7 @@ const EnterpriseSection: React.FC = () => {
   }));
 
   return (
-    <section id="enterprise" className="relative py-24 lg:py-32 overflow-hidden bg-slate-50 border-t border-slate-200">
+    <section id="enterprise" className="relative py-16 md:py-20 lg:py-28 overflow-hidden bg-slate-50 border-t border-slate-100">
       {/* Background with Audit Grid */}
       <div 
         className="absolute inset-0 opacity-[0.03] pointer-events-none border-b border-slate-200"
@@ -208,48 +215,75 @@ const EnterpriseSection: React.FC = () => {
       {/* Cinematic Gradient overlay */}
       <div className="absolute inset-x-0 top-0 h-[420px] bg-gradient-to-b from-white via-white/50 to-transparent" />
 
-      <div className="relative max-w-7xl mx-auto">
-        <div className="px-6 md:px-10 mb-20 text-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12">
+        <div className="mb-12 md:mb-16 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200 rounded-full mb-5">
                <span className="w-1.5 h-1.5 rounded-full bg-navy-900 animate-pulse" />
                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-navy-900">
                  {section.eyebrow}
                </span>
             </div>
             
-            <h2 className="text-4xl md:text-6xl font-serif text-navy-900 leading-tight mb-6">
+            <h2 className="text-4xl md:text-6xl font-serif text-navy-900 leading-tight mb-5 md:mb-6">
               {section.heading}
             </h2>
-            <p className="text-lg md:text-xl text-slate-600 mx-auto leading-relaxed font-light">
+            <p className="text-lg md:text-xl text-slate-600 mx-auto leading-relaxed font-light max-w-3xl">
               {section.subheading}
             </p>
           </motion.div>
 
           {/* KPI Bar - Rigid Style */}
-          <div className="mt-12 inline-flex flex-col md:flex-row border border-slate-200 bg-white shadow-sm divide-y md:divide-y-0 md:divide-x divide-slate-200 max-w-4xl mx-auto w-full">
+          <div className="mt-8 md:mt-10 inline-flex flex-col md:flex-row border border-slate-200 bg-white shadow-sm divide-y md:divide-y-0 md:divide-x divide-slate-200 max-w-4xl mx-auto w-full relative">
              {stats.map((stat, index) => (
-                <div key={stat.label} className="flex-1 p-6 flex flex-col items-center justify-center group hover:bg-slate-50 transition-colors">
-                   <p className="text-[9px] uppercase tracking-[0.2em] text-slate-400 font-mono mb-2">{stat.label}</p>
+                <div 
+                  key={stat.label} 
+                  tabIndex={0}
+                  className="flex-1 p-5 md:p-6 flex flex-col items-center justify-center group relative hover:bg-slate-50 transition-colors cursor-help"
+                >
+                   <div className="flex items-center gap-1.5 mb-2">
+                     <p className="text-[9px] uppercase tracking-[0.2em] text-slate-400 font-mono">{stat.label}</p>
+                     <Info className="w-2.5 h-2.5 text-slate-400 group-hover:text-gold-600 transition-colors" />
+                   </div>
                    <p className="text-2xl font-serif text-navy-900">{stat.value}</p>
+
+                   {/* Hover Tooltip */}
+                   <div
+                     role="tooltip"
+                     className="opacity-0 pointer-events-none group-hover:opacity-100 group-focus-within:opacity-100 group-hover:pointer-events-auto transition-all duration-200 ease-out translate-y-1 group-hover:translate-y-0 absolute bottom-[calc(100%+10px)] left-1/2 -translate-x-1/2 w-64 p-3.5 bg-navy-900/98 backdrop-blur-md border border-slate-700 text-white rounded-sm shadow-xl z-50 text-left pointer-events-none"
+                   >
+                     <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-navy-800">
+                       <span className="text-[9px] font-mono uppercase tracking-widest text-gold-400 font-bold">
+                         {stat.label} · {locale === 'pt' ? 'Cálculo' : 'Calculation'}
+                       </span>
+                     </div>
+                     <p className="text-xs font-semibold text-slate-100 mb-1">
+                       {stat.value}
+                     </p>
+                     <p className="text-[11px] text-slate-300 font-light leading-relaxed">
+                       {stat.calculation}
+                     </p>
+                     {/* Caret */}
+                     <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 w-2 h-2 bg-navy-900 border-r border-b border-slate-700 rotate-45" />
+                   </div>
                 </div>
              ))}
           </div>
         </div>
 
         {/* Feature Grid - The "Audit Layout" */}
-        <div className="border-y border-slate-200 bg-white">
+        <div className="border border-slate-200 bg-white shadow-lg">
            <div className="grid md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-200">
               {features.map((feature, index) => {
                 const Icon = feature.icon;
                 return (
                   <motion.div
                     key={feature.title}
-                    className="relative group p-8 lg:p-10 flex flex-col h-full hover:bg-slate-50/50 transition-colors duration-500"
+                    className="relative group p-6 sm:p-8 lg:p-10 flex flex-col h-full hover:bg-slate-50/50 transition-colors duration-500"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}

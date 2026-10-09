@@ -8,15 +8,15 @@ const Footer: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <footer id="contact" className="bg-slate-50 border-t border-slate-200 text-slate-600 relative">
+    <footer id="contact" className="bg-slate-50 border-t border-slate-100 text-slate-600 relative">
       
       <div className="max-w-7xl mx-auto border-x border-slate-200 bg-white">
         <div className="grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-200">
           {/* Brand Column */}
-          <div className="col-span-1 p-8 md:p-12 flex flex-col justify-between h-full">
+          <div className="col-span-1 p-6 sm:p-8 lg:p-10 xl:p-12 flex flex-col justify-between h-full">
             <div>
-              <div className="mb-8">
-                <Logo className="w-8 h-8" classNameText="text-navy-900 text-lg" />
+              <div className="mb-6 md:mb-8">
+                <Logo classNameText="text-navy-900 text-lg" />
               </div>
               <p className="text-xs leading-relaxed text-slate-500 max-w-xs font-light">
                 {t.footer.desc}
@@ -27,19 +27,20 @@ const Footer: React.FC = () => {
           </div>
           
           {/* Platform Links */}
-          <div className="p-8 md:p-12">
-            <h4 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-navy-900 mb-8">{t.footer.headers.platform}</h4>
-            <ul className="space-y-4 text-xs font-medium text-slate-500">
+          <div className="p-6 sm:p-8 lg:p-10 xl:p-12">
+            <h4 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-navy-900 mb-6 md:mb-8">{t.footer.headers.platform}</h4>
+            <ul className="space-y-3.5 md:space-y-4 text-xs font-medium text-slate-500">
                 <li><a href="/#architecture" className="hover:text-navy-900 hover:translate-x-1 transition-all duration-300 block py-1">{t.footer.links.arch}</a></li>
                 <li><a href="/#rex-guard" className="hover:text-navy-900 hover:translate-x-1 transition-all duration-300 block py-1">{t.footer.links.proto}</a></li>
                 <li><a href="/#enterprise" className="hover:text-navy-900 hover:translate-x-1 transition-all duration-300 block py-1">{t.footer.links.market}</a></li>
+                <li><a href="/#faq" className="hover:text-navy-900 hover:translate-x-1 transition-all duration-300 block py-1">{t.faq?.eyebrow || 'FAQ'}</a></li>
             </ul>
           </div>
 
           {/* Company Links */}
-          <div className="p-8 md:p-12">
-            <h4 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-navy-900 mb-8">{t.footer.headers.company}</h4>
-            <ul className="space-y-4 text-xs font-medium text-slate-500">
+          <div className="p-6 sm:p-8 lg:p-10 xl:p-12">
+            <h4 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-navy-900 mb-6 md:mb-8">{t.footer.headers.company}</h4>
+            <ul className="space-y-3.5 md:space-y-4 text-xs font-medium text-slate-500">
                 <li><Link to={STATIC_PAGE_ROUTES.about} className="hover:text-navy-900 hover:translate-x-1 transition-all duration-300 block py-1">{t.footer.links.about}</Link></li>
                 <li><Link to={STATIC_PAGE_ROUTES.careers} className="hover:text-navy-900 hover:translate-x-1 transition-all duration-300 block py-1">{t.footer.links.careers}</Link></li>
                 <li><Link to={STATIC_PAGE_ROUTES.contact} className="hover:text-navy-900 hover:translate-x-1 transition-all duration-300 block py-1">{t.footer.links.contact}</Link></li>
@@ -47,9 +48,9 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Legal Links */}
-          <div className="p-8 md:p-12">
-            <h4 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-navy-900 mb-8">{t.footer.headers.legal}</h4>
-            <ul className="space-y-4 text-xs font-medium text-slate-500">
+          <div className="p-6 sm:p-8 lg:p-10 xl:p-12">
+            <h4 className="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-navy-900 mb-6 md:mb-8">{t.footer.headers.legal}</h4>
+            <ul className="space-y-3.5 md:space-y-4 text-xs font-medium text-slate-500">
                 <li><Link to={STATIC_PAGE_ROUTES.privacy} className="hover:text-navy-900 hover:translate-x-1 transition-all duration-300 block py-1">{t.footer.links.privacy}</Link></li>
                 <li><Link to={STATIC_PAGE_ROUTES.terms} className="hover:text-navy-900 hover:translate-x-1 transition-all duration-300 block py-1">{t.footer.links.terms}</Link></li>
                 <li><Link to={STATIC_PAGE_ROUTES.sla} className="hover:text-navy-900 hover:translate-x-1 transition-all duration-300 block py-1">{t.footer.links.sla}</Link></li>

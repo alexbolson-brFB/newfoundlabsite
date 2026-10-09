@@ -1,0 +1,8 @@
+{
+  "name": "FoundLab - Auditable Trust Infrastructure",
+  "description": "FoundLab - Infraestrutura de Confiança Auditável para Agentes de IA Enterprise",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -105,6 +105,7 @@ const Header: React.FC = () => {
     const target = document.querySelector(hash);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.history.pushState(null, '', hash);
     } else {
       navigate(`/${hash}`);
     }
@@ -154,10 +155,14 @@ const Header: React.FC = () => {
         <div className="flex-shrink-0 flex items-center px-6 md:px-10 border-r border-slate-200 bg-white gap-6">
           <Link
             to="/"
-            onClick={() => setMenuOpen(false)}
+            onClick={() => {
+              setMenuOpen(false);
+              window.history.replaceState(null, '', '/');
+              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+            }}
             className="flex items-center"
           >
-            <Logo className="w-8 h-8" />
+            <Logo />
           </Link>
         </div>
 
@@ -168,7 +173,10 @@ const Header: React.FC = () => {
                 <a
                     key={item.label}
                     href={item.hash}
-                    onClick={() => setMenuOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNav(item.hash);
+                    }}
                     className={`flex items-center px-3 text-[10px] font-bold uppercase tracking-[0.12em] transition-colors relative group min-h-[44px] ${
                       activeSection === item.hash ? 'text-navy-900' : 'text-slate-500 hover:text-navy-900 hover:bg-slate-50'
                     }`}
@@ -295,7 +303,10 @@ const Header: React.FC = () => {
                         <a
                         key={item.hash}
                         href={item.hash}
-                        onClick={() => handleNav(item.hash)}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleNav(item.hash);
+                        }}
                         className="py-5 text-sm font-serif font-medium text-navy-900 hover:text-gold-600 transition-colors flex items-center justify-between group"
                         >
                         {item.label}

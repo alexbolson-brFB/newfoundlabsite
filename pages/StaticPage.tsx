@@ -52,11 +52,11 @@ const StaticPage: React.FC<StaticPageProps> = ({ pageKey }) => {
   }, [content.description, content.title]);
 
   return (
-    <section className="min-h-screen bg-slate-50 pt-32 pb-24 border-t border-slate-200">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section className="min-h-screen bg-slate-50 pt-28 md:pt-32 pb-20 md:pb-24 border-t border-slate-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
         
         {/* Header Block - Rigid Style */}
-        <div className="bg-white border border-slate-200 p-8 md:p-16 mb-8 shadow-sm">
+        <div className="bg-white border border-slate-200 p-6 sm:p-8 md:p-16 mb-8 shadow-sm">
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -82,7 +82,7 @@ const StaticPage: React.FC<StaticPageProps> = ({ pageKey }) => {
             
             {/* Main Body Text */}
             <motion.div 
-              className="lg:col-span-9 bg-white border border-slate-200 p-8 md:p-16 shadow-sm"
+              className="lg:col-span-9 bg-white border border-slate-200 p-6 sm:p-8 md:p-16 shadow-sm"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
