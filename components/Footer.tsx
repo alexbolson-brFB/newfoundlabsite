@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
           <div className="col-span-1 p-6 sm:p-8 lg:p-10 xl:p-12 flex flex-col justify-between h-full">
             <div>
               <div className="mb-6 md:mb-8">
-                <Logo className="w-8 h-8" classNameText="text-navy-900 text-lg" />
+                <Logo classNameText="text-navy-900 text-lg" />
               </div>
               <p className="text-xs leading-relaxed text-slate-500 max-w-xs font-light">
                 {t.footer.desc}

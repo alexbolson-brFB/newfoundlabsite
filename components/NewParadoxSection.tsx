@@ -156,7 +156,7 @@ const NewParadoxSection: React.FC = () => {
   }));
 
   return (
-    <section id="authority-gap" className="relative py-20 lg:py-28 overflow-hidden bg-slate-50 border-t border-slate-100">
+    <section id="authority-gap" className="relative py-20 lg:py-28 overflow-hidden bg-slate-50 border-t border-slate-100 scroll-mt-20 lg:scroll-mt-24">
       
       {/* Rigid Grid Background */}
       <div 

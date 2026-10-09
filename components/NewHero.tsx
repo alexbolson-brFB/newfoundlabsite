@@ -381,16 +381,34 @@ const NewHero: React.FC = () => {
         <motion.a 
           aria-label={t.hero.scroll}
           href="#authority-gap"
-          initial={{ opacity: 0 }}
-animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: [0, 5, 0] }}
-  transition={shouldReduceMotion ? { duration: 0 } : {
-  opacity: { delay: 0.5, duration: 0.5 },
-  y: { repeat: Infinity, duration: 2, ease: "easeInOut" }
-  }}
-          className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 cursor-pointer group"
+          onClick={(e) => {
+            e.preventDefault();
+            const target = document.getElementById('authority-gap');
+            if (target) {
+              const headerOffset = 84;
+              const elementPosition = target.getBoundingClientRect().top;
+              const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+              });
+              window.history.pushState(null, '', '#authority-gap');
+            }
+          }}
+          initial={{ opacity: 0, y: 8 }}
+          animate={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: [0, 4, 0] }}
+          transition={shouldReduceMotion ? { duration: 0.3 } : {
+            opacity: { delay: 0.5, duration: 0.5 },
+            y: { repeat: Infinity, duration: 2.2, ease: "easeInOut" }
+          }}
+          whileHover={shouldReduceMotion ? undefined : { scale: 1.04 }}
+          whileTap={shouldReduceMotion ? undefined : { scale: 0.96 }}
+          className="absolute bottom-5 sm:bottom-7 md:bottom-9 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 hover:bg-white backdrop-blur-md border border-slate-200/90 hover:border-slate-300 shadow-xs hover:shadow-md transition-all duration-200 z-20 cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-900 focus-visible:ring-offset-2"
         >
-          <span className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold group-hover:text-navy-900 transition-colors">{t.hero.scroll}</span>
-          <ChevronDown className="w-4 h-4 text-slate-400 opacity-70 group-hover:text-navy-900 transition-colors" />
+          <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-slate-700 font-bold whitespace-nowrap group-hover:text-navy-900 transition-colors">
+            {t.hero.scroll}
+          </span>
+          <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-500 group-hover:text-navy-900 group-hover:translate-y-0.5 transition-all duration-200" />
         </motion.a>
       </section>
     </>

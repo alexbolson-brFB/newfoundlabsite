@@ -10,6 +10,7 @@ import CursorSpotlight from './components/CursorSpotlight';
 import PrivacyBlur from './components/PrivacyBlur';
 import ErrorBoundary from './components/ErrorBoundary';
 import SectionReveal from './components/SectionReveal';
+import BackToTop from './components/BackToTop';
 import { STATIC_PAGE_ROUTES, StaticPageKey } from './routes/pageRoutes';
 
 const NewParadoxSection = React.lazy(() => import('./components/NewParadoxSection'));
@@ -144,6 +145,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <Suspense fallback={null}>
         <Footer />
       </Suspense>
+      <BackToTop />
     </div>
   );
 };

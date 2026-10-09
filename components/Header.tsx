@@ -162,7 +162,7 @@ const Header: React.FC = () => {
             }}
             className="flex items-center"
           >
-            <Logo className="w-8 h-8" />
+            <Logo />
           </Link>
         </div>
 
