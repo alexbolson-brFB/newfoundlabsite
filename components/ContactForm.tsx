@@ -52,9 +52,15 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <section id="contact-form" className="py-20 lg:py-28 bg-white border-t border-slate-100">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12">
-        <div className="grid lg:grid-cols-5 gap-0 border border-slate-200 bg-white shadow-xl">
+    <section id="contact-form" className="py-16 md:py-20 lg:py-28 bg-white border-t border-slate-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+          className="grid lg:grid-cols-5 gap-0 border border-slate-200 bg-white shadow-xl"
+        >
           {/* Left Column: Info */}
           <div className="lg:col-span-2 bg-navy-900 p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between">
             <div>
@@ -233,7 +239,7 @@ const ContactForm: React.FC = () => {
               </form>
             )}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

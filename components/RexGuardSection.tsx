@@ -237,7 +237,7 @@ const RexGuardSection: React.FC = () => {
     <section id="rex-guard" className="relative overflow-hidden">
 
       {/* ====== PART 1: HERO — WHITE (matches site aesthetic) ====== */}
-      <div className="relative py-20 lg:py-28 bg-white border-t border-slate-100 overflow-hidden">
+      <div className="relative py-16 md:py-20 lg:py-28 bg-white border-t border-slate-100 overflow-hidden">
         {/* Grid background */}
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -248,7 +248,7 @@ const RexGuardSection: React.FC = () => {
           }}
         />
 
-        <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-16 items-center">
             {/* Left: Text */}
             <div className="lg:col-span-7">
@@ -305,7 +305,7 @@ const RexGuardSection: React.FC = () => {
               className="lg:col-span-5 relative"
             >
               <div className="relative border border-slate-200 bg-white shadow-xl overflow-hidden">
-                <div className="p-8 md:p-10">
+                <div className="p-6 sm:p-8 md:p-10">
                   <p className="text-[10px] uppercase tracking-widest text-slate-500 mb-8">{t.boundaryLabel}</p>
                   <ol className="space-y-4">
                     {t.boundarySteps.map((step, index) => (
@@ -329,11 +329,11 @@ const RexGuardSection: React.FC = () => {
       </div>
 
       {/* ====== PART 2: PIPELINE — DARK (matches ROI dark card) ====== */}
-      <div id="how-it-works" className="relative scroll-mt-24 bg-navy-950 py-18 lg:py-24 border-t border-slate-200 overflow-hidden">
+      <div id="how-it-works" className="relative scroll-mt-24 bg-navy-950 py-16 md:py-20 lg:py-24 border-t border-slate-200 overflow-hidden">
         {/* Grid bg */}
         <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px]" />
 
-        <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12">
           {/* Section header */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -372,7 +372,7 @@ const RexGuardSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
-                className={`relative p-6 lg:p-7 flex flex-col group hover:bg-navy-900/80 transition-all duration-300 ${
+                className={`relative p-5 sm:p-6 lg:p-7 flex flex-col group hover:bg-navy-900/80 transition-all duration-300 ${
                   idx < t.steps.length - 1 ? 'border-b md:border-b-0 md:border-r border-navy-800' : ''
                 }`}
               >

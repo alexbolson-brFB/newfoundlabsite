@@ -202,7 +202,7 @@ const EnterpriseSection: React.FC = () => {
   }));
 
   return (
-    <section id="enterprise" className="relative py-20 lg:py-28 overflow-hidden bg-slate-50 border-t border-slate-100">
+    <section id="enterprise" className="relative py-16 md:py-20 lg:py-28 overflow-hidden bg-slate-50 border-t border-slate-100">
       {/* Background with Audit Grid */}
       <div 
         className="absolute inset-0 opacity-[0.03] pointer-events-none border-b border-slate-200"
@@ -215,7 +215,7 @@ const EnterpriseSection: React.FC = () => {
       {/* Cinematic Gradient overlay */}
       <div className="absolute inset-x-0 top-0 h-[420px] bg-gradient-to-b from-white via-white/50 to-transparent" />
 
-      <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12">
         <div className="mb-12 md:mb-16 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

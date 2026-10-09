@@ -33,7 +33,8 @@ interface Message {
 export const GeminiLiveDemo: React.FC = () => {
   const { language } = useLanguage();
   const isPt = language === 'pt';
-  const threadEndRef = useRef<HTMLDivElement>(null);
+  const threadContainerRef = useRef<HTMLDivElement>(null);
+  const isInitialMount = useRef(true);
 
   const initialWelcome = isPt
     ? 'Ambiente de Simulação de Políticas · REX Guard\nSou o agente de demonstração interativa. Aqui você pode testar propostas operacionais e observar como intenções de IA são interceptadas e avaliadas contra políticas determinísticas na fronteira de execução (Authority at execution time). Nenhuma transação bancária ou mutação em sistemas reais é executada nesta interface de teste.'
@@ -75,10 +76,20 @@ export const GeminiLiveDemo: React.FC = () => {
       ];
 
   const scrollToBottom = () => {
-    threadEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (threadContainerRef.current) {
+      threadContainerRef.current.scrollTo({
+        top: threadContainerRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
   };
 
   useEffect(() => {
+    // Prevent scrolling on initial page mount so the page hero stays at the top
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
     scrollToBottom();
   }, [messages, isLoading, errorMessage]);
 
@@ -321,7 +332,7 @@ export const GeminiLiveDemo: React.FC = () => {
       </AnimatePresence>
 
       {/* Scrollable Message Thread */}
-      <div className="flex-1 overflow-y-auto p-4 md:p-5 space-y-4 scroll-smooth">
+      <div ref={threadContainerRef} className="flex-1 overflow-y-auto p-4 md:p-5 space-y-4 scroll-smooth">
         {messages.map((msg) => (
           <div
             key={msg.id}
@@ -475,8 +486,6 @@ export const GeminiLiveDemo: React.FC = () => {
             </div>
           </div>
         )}
-
-        <div ref={threadEndRef} />
       </div>
 
       {/* Quick Prompt Suggestions */}

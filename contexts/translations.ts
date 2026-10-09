@@ -19,6 +19,7 @@ export interface HeroTranslations {
   title1: string;
   title2: string;
   subtitle: string;
+  valueProps: string[];
   cta1: string;
   cta2: string;
   ctaVideo: string;
@@ -317,6 +318,13 @@ export const translations: Record<Language, Translations> = {
   "title1": "AI can propose.",
   "title2": "Authority must be verified.",
   "subtitle": "REX Guard is Auditable Trust Infrastructure for consequential AI actions. It verifies authority, enforces deterministic policy, and produces cryptographically verifiable evidence before execution.",
+  "valueProps": [
+    "Verifies authority at execution time before actions reach enterprise systems.",
+    "Enforces deterministic, fail-closed policy code rather than probabilistic model guesses.",
+    "Binds scoped purpose, identity, temporal validity, and cryptographic receipts.",
+    "Generates non-repudiable audit evidence for consequential AI actions.",
+    "Separates probabilistic generation from institutional execution authority."
+  ],
   "cta1": "Evaluate REX Guard",
   "cta2": "View Architecture",
   "ctaVideo": "View Simulation",
@@ -644,6 +652,13 @@ export const translations: Record<Language, Translations> = {
   "title1": "A IA pode propor.",
   "title2": "A autoridade precisa ser verificada.",
   "subtitle": "REX Guard é uma Infraestrutura de Confiança Auditável para ações de IA com consequência real. Verifica autoridade, aplica políticas determinísticas e produz evidência criptograficamente verificável antes da execução.",
+  "valueProps": [
+    "Verifica autoridade no momento da execução antes de acionar sistemas corporativos.",
+    "Aplica políticas determinísticas fail-closed em vez de respostas probabilísticas de modelos.",
+    "Vincula finalidade delimitada, identidade, validade temporal e recibos criptográficos.",
+    "Gera evidências de auditoria não-repudiáveis para ações de IA de alta consequência.",
+    "Separa a geração probabilística da autoridade institucional de execução."
+  ],
   "cta1": "Avaliar REX Guard",
   "cta2": "Ver Arquitetura",
   "ctaVideo": "Ver Simulação",

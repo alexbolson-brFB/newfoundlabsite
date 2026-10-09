@@ -67,7 +67,7 @@ const ArchitectureSection: React.FC = () => {
              }}
         />
 
-        <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12 relative z-10">
           
           <div className="max-w-3xl mb-12 md:mb-16">
                 <motion.div 

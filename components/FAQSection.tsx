@@ -19,7 +19,7 @@ const FAQSection: React.FC = () => {
   return (
     <section 
       id="faq" 
-      className="scroll-mt-24 py-20 lg:py-28 bg-slate-50 border-t border-slate-100 relative overflow-hidden"
+      className="scroll-mt-24 py-16 md:py-20 lg:py-28 bg-slate-50 border-t border-slate-100 relative overflow-hidden"
     >
       {/* Background Grid Pattern */}
       <div 
@@ -31,7 +31,7 @@ const FAQSection: React.FC = () => {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12 relative z-10">
         <div className="max-w-4xl mx-auto">
           {/* Header Block */}
           <div className="mb-12 md:mb-16 text-center sm:text-left">

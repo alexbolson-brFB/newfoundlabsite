@@ -169,7 +169,7 @@ const NewParadoxSection: React.FC = () => {
       
       <div className="absolute inset-x-0 top-0 h-[320px] bg-gradient-to-b from-white via-white/80 to-transparent" />
 
-      <div className="relative max-w-7xl mx-auto px-6 md:px-10 lg:px-12">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12">
         <motion.div
           className="text-center mx-auto mb-12 md:mb-16"
           initial={{ opacity: 0, y: 20 }}

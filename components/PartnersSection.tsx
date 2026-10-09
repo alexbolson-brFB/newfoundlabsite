@@ -196,7 +196,7 @@ const PartnersSection: React.FC = () => {
   const t = copy[locale];
 
   return (
-    <section id="partners" className="relative py-20 lg:py-28 bg-slate-50 border-t border-slate-200 overflow-hidden">
+    <section id="partners" className="relative py-16 md:py-20 lg:py-28 bg-slate-50 border-t border-slate-200 overflow-hidden">
       {/* Background grid */}
       <div
         className="absolute inset-0 opacity-[0.025] pointer-events-none"
@@ -208,7 +208,7 @@ const PartnersSection: React.FC = () => {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 md:px-12">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

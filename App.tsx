@@ -9,6 +9,7 @@ import PrivacyBanner from './components/PrivacyBanner';
 import CursorSpotlight from './components/CursorSpotlight';
 import PrivacyBlur from './components/PrivacyBlur';
 import ErrorBoundary from './components/ErrorBoundary';
+import SectionReveal from './components/SectionReveal';
 import { STATIC_PAGE_ROUTES, StaticPageKey } from './routes/pageRoutes';
 
 const NewParadoxSection = React.lazy(() => import('./components/NewParadoxSection'));
@@ -19,7 +20,6 @@ const TerminalSection = React.lazy(() => import('./components/TerminalSection'))
 const FAQSection = React.lazy(() => import('./components/FAQSection'));
 const ContactForm = React.lazy(() => import('./components/ContactForm'));
 const Footer = React.lazy(() => import('./components/Footer'));
-const KpiMetricsSection = React.lazy(() => import('./components/KpiMetricsSection'));
 
 // Loading fallback with proper CLS-safe dimensions
 const SectionLoader = () => (
@@ -39,42 +39,51 @@ const HomeContent: React.FC = () => (
     <NewHero />
     <ErrorBoundary>
       <Suspense fallback={<SectionLoader />}>
-        <NewParadoxSection />
+        <SectionReveal>
+          <NewParadoxSection />
+        </SectionReveal>
       </Suspense>
     </ErrorBoundary>
     <ErrorBoundary>
       <Suspense fallback={<SectionLoader />}>
-        <RexGuardSection />
+        <SectionReveal>
+          <RexGuardSection />
+        </SectionReveal>
       </Suspense>
     </ErrorBoundary>
     <ErrorBoundary>
       <Suspense fallback={<SectionLoader />}>
-        <ArchitectureSection />
+        <SectionReveal>
+          <ArchitectureSection />
+        </SectionReveal>
       </Suspense>
     </ErrorBoundary>
     <ErrorBoundary>
       <Suspense fallback={<SectionLoader />}>
-        <TerminalSection />
+        <SectionReveal>
+          <TerminalSection />
+        </SectionReveal>
       </Suspense>
     </ErrorBoundary>
     <ErrorBoundary>
       <Suspense fallback={<SectionLoader />}>
-        <EnterpriseSection />
+        <SectionReveal>
+          <EnterpriseSection />
+        </SectionReveal>
       </Suspense>
     </ErrorBoundary>
     <ErrorBoundary>
       <Suspense fallback={<SectionLoader />}>
-        <KpiMetricsSection />
+        <SectionReveal>
+          <FAQSection />
+        </SectionReveal>
       </Suspense>
     </ErrorBoundary>
     <ErrorBoundary>
       <Suspense fallback={<SectionLoader />}>
-        <FAQSection />
-      </Suspense>
-    </ErrorBoundary>
-    <ErrorBoundary>
-      <Suspense fallback={<SectionLoader />}>
-        <ContactForm />
+        <SectionReveal>
+          <ContactForm />
+        </SectionReveal>
       </Suspense>
     </ErrorBoundary>
   </>
@@ -82,19 +91,36 @@ const HomeContent: React.FC = () => (
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
+  const isInitialMount = React.useRef(true);
 
   useEffect(() => {
-    // Wait for lazy sections when arriving from another route or a direct anchor link.
-    if (!location.hash) {
-      window.scrollTo(0, 0);
+    // When accessing the site on initial load, ensure user always starts at the Hero at the top.
+    // If the browser loaded with a lingering #rex-guard or #hero hash, clear it and start at top.
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      if (location.pathname === '/') {
+        if (!location.hash || location.hash === '#rex-guard' || location.hash === '#hero') {
+          if (location.hash) {
+            window.history.replaceState(null, '', window.location.pathname);
+          }
+          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          return;
+        }
+      }
+    }
+
+    if (!location.hash || location.hash === '#hero') {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
       return;
     }
+
     const scrollToTarget = () => {
       const target = document.getElementById(location.hash.slice(1));
       if (!target) return false;
-      target.scrollIntoView({ block: 'start' });
+      target.scrollIntoView({ block: 'start', behavior: 'smooth' });
       return true;
     };
+
     if (scrollToTarget()) return;
     const observer = new MutationObserver(() => {
       if (scrollToTarget()) observer.disconnect();

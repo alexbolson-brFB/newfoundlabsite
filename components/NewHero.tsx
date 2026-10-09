@@ -210,7 +210,7 @@ const NewHero: React.FC = () => {
 
   return (
     <>
-      <section className="relative isolate min-h-screen flex flex-col justify-center bg-slate-50 pt-28 pb-20 md:pt-36 md:pb-28 lg:pt-40 lg:pb-32 overflow-hidden">
+      <section id="hero" className="relative isolate min-h-screen flex flex-col justify-center bg-slate-50 pt-28 pb-20 md:pt-36 md:pb-28 lg:pt-40 lg:pb-32 overflow-hidden">
         
         {/* === BACKGROUND === */}
         <div 
@@ -238,7 +238,7 @@ const NewHero: React.FC = () => {
         </div>
         
         {/* === CONTENT === */}
-        <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 relative z-10 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12 relative z-10 w-full">
           <motion.div 
             whileHover={shouldReduceMotion ? undefined : { 
               scale: 1.02,
@@ -254,7 +254,13 @@ const NewHero: React.FC = () => {
               className="text-center lg:text-left lg:col-span-3"
             >
                 <h1 aria-label={`${t.hero.title1} ${t.hero.title2}`} className="font-serif text-[clamp(2.5rem,6vw,4.5rem)] text-navy-900 leading-[1.1] mb-6 md:mb-8 font-medium tracking-tight break-words">
-                    <span className="block">
+                    <motion.span 
+                      key={`hero-title-1-${language}`}
+                      className="block"
+                      initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
+                    >
                       <AnimatedText 
                           key={`title1-${language}`}
                           text={t.hero.title1} 
@@ -263,8 +269,14 @@ const NewHero: React.FC = () => {
                           mode="letter"
                           enableGlitch={false}
                        />
-                    </span>
-                    <span className="block mt-1">
+                    </motion.span>
+                    <motion.span 
+                      key={`hero-title-2-${language}`}
+                      className="block mt-1"
+                      initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.18 }}
+                    >
                        <span className="italic text-slate-500 font-light inline-block">
                          <AnimatedText 
                             key={`title2-${language}`}
@@ -275,21 +287,23 @@ const NewHero: React.FC = () => {
                             enableGlitch={false}
                          />
                        </span>
-                    </span>
+                    </motion.span>
                 </h1>
 
                 <motion.div 
                   whileHover={shouldReduceMotion ? undefined : { scale: 1.02, y: -1 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="max-w-xl mx-auto lg:mx-0 mb-8 md:mb-10 text-base md:text-lg text-slate-600 font-light leading-relaxed cursor-default"
+                  className="max-w-xl mx-auto lg:mx-0 mb-8 md:mb-10 cursor-default"
                 >
-                   <AnimatedText 
-                      key={`subtitle-${language}`}
-                      text={t.hero.subtitle} 
-                      containerVariants={subtitleContainerVariants} 
-                      mode="word" 
-                      enableGlitch={false}
-                   />
+                   <p className="text-base md:text-lg text-slate-600 font-light leading-relaxed">
+                     <AnimatedText 
+                        key={`subtitle-${language}`}
+                        text={t.hero.subtitle} 
+                        containerVariants={subtitleContainerVariants} 
+                        mode="word" 
+                        enableGlitch={false}
+                     />
+                   </p>
                 </motion.div>
 
                 <motion.div

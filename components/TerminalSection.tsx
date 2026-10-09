@@ -112,7 +112,7 @@ const TerminalSection: React.FC = () => {
         }}
       ></div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 grid lg:grid-cols-2 gap-10 lg:gap-14 xl:gap-16 items-center relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12 grid lg:grid-cols-2 gap-10 lg:gap-14 xl:gap-16 items-center relative z-10">
         
         {/* Left: Explanation */}
         <motion.div 
